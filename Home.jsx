@@ -3,7 +3,6 @@ import './Home.css';
 class Navbar extends React.Component {
     render() { 
         return (
-            
        <div className='home'>
         <nav class="navbar navbar-expand-lg navbar-light bg-light" >
           <div class="container-fluid">
