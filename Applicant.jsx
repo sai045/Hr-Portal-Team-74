@@ -13,7 +13,6 @@ class Applicant extends Component {
       Experience: this.props.Experience,
     };
   }
-
   render() {
     console.log("props", this.props);
     return (
@@ -80,5 +79,4 @@ class Applicant extends Component {
     );
   }
 }
-
 export default Applicant;
