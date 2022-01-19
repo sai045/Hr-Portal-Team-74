@@ -64,8 +64,8 @@ class Navbar extends React.Component {
         <div class="col-sm-10 col-md-2 sidebar">
          <ul class="nav nav-sidebar row">
            <li class="active"><a href="#">Home</a></li>
-           <li><a href="#">Reports</a></li>
            <li><a href="#">Salary</a></li>
+           <li><a href="#">Complaints</a></li>
            <li><a href="#">Leave Requests</a></li>
         </ul>
        </div>
