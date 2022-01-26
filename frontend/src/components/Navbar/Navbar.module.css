@@ -1,0 +1,13 @@
+.navText {
+  position: relative;
+  padding: 15px;
+}
+.navPro {
+  display: block;
+  margin: 0 auto;
+  width: 45px;
+}
+
+.navbar {
+  z-index: 2;
+}

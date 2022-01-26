@@ -1,0 +1,10 @@
+.PieBody {
+  float: right;
+  margin-right: 1rem;
+  border-radius: 1rem;
+  box-shadow: 1rem 0rem 2rem rgb(88, 99, 161);
+}
+h2 {
+  margin: 0rem 5rem;
+  color: rgb(88, 99, 161);
+}

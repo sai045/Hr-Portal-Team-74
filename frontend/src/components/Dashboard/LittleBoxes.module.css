@@ -1,0 +1,26 @@
+.allboxes {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  margin-left: 50px;
+}
+.infobox {
+  padding: 0rem 1rem 0rem 1rem;
+  border-radius: 10px;
+  text-align: center;
+  height: 90px;
+  background-color: rgb(156, 181, 226);
+  font-size: 1rem;
+}
+.vcncs {
+  width: 140px;
+  text-align: center;
+}
+.aplcns {
+  width: 140px;
+  text-align: center;
+}
+
+.infobox h1 {
+  margin: 1rem;
+}

@@ -1,0 +1,49 @@
+.lgnbx {
+  text-align: center;
+  margin: auto;
+  padding: 1rem;
+  /* height: 25rem; */
+  background-color: rgb(189, 196, 235);
+  border-radius: 20px;
+  box-shadow: 4px 3px 4px black;
+}
+.infoBox {
+  display: block;
+  margin: 15px 0px 0px 35px;
+  padding: 10px 50px 10px 5px;
+  border: 2px solid rgb(88 99 161);
+  border-radius: 15px;
+}
+.btn {
+  margin: 20px 20px 10px 40px;
+  padding: 10px 30px 10px 30px;
+  background-color: rgb(88 99 161);
+  border-radius: 10px;
+}
+.btn:hover {
+  background-color: white;
+  color: rgb(88 99 161);
+  cursor: pointer;
+}
+.whole {
+  display: flex;
+  /* border: 2px solid black; */
+  margin: 60px 150px 30px 150px;
+  padding: 0px 50px 65px 36px;
+  border-radius: 25px;
+  box-shadow: 6px 6px 8px 6px rgb(88 99 161);
+  position: relative;
+  top: 3rem;
+}
+.image {
+  margin: 1rem auto;
+}
+.head {
+  margin: 10px 30px 10px 80px;
+}
+/* .foot {
+  text-decoration: underline;
+  color: blue;
+  margin: 0px 0px 0px 30px;
+  cursor: pointer;
+} */
