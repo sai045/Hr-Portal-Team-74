@@ -15,7 +15,6 @@ import Dash from "./components/Dashboard/Dash";
 import Home from "./components/Home/Home";
 import Salary from "./components/Salary/Salary";
 import Complaints from "./components/Complaints/Complaints";
-import HomeTemp from "./components/HomeTemp/HomeTemp";
 
 function App() {
   return (
@@ -31,7 +30,6 @@ function App() {
           <Route path="/Employee" element={<Employee />} />
           <Route path="/LeaveRequests" element={<LeaveRequests />} />
           <Route path="/Schedule" element={<Schedule />} />
-          <Route path="/HomeTemp" element={<HomeTemp />} />
           <Route path="/:id/resume" element={<Resume />} />
 
           <Route

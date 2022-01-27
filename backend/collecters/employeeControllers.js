@@ -1,71 +1,103 @@
 const error = require("../models/error");
 const { validationResult } = require("express-validator");
+const Employee = require("../models/Employee");
 
-let DUMMY_EMPLOYEES = [
-  {
-    id: "e1",
-    name: "Klaus Mikaelson",
-    qualification: "little brother",
-    experience: 4,
-    position: "King",
-  },
-  {
-    id: "e2",
-    name: "Elijah Mikaelson",
-    qualification: "big brother",
-    experience: 4,
-    position: "Noble man",
-  },
-];
-
-const getAllEmployees = (req, res, next) => {
-  const employees = DUMMY_EMPLOYEES;
-  res.json({ employees });
+const getAllEmployees = async (req, res, next) => {
+  try {
+    const employees = await Employee.find();
+    res.json({ employees });
+  } catch (err) {
+    return next(Error(err, 500));
+  }
 };
 
-const getEmployeeById = (req, res, next) => {
+const getEmployeeById = async (req, res, next) => {
   const eid = req.params.eid;
-  const employee = DUMMY_EMPLOYEES.find((e) => {
-    return e.id == eid;
-  });
+
+  let employee;
+
+  try {
+    employee = await Employee.findById(eid).exec();
+  } catch (err) {
+    next(Error(err, 500));
+  }
+
   if (!employee) {
     return next(new Error(`Couldn't find employee`, 404));
   }
 
-  //   res.json({ applicant });
-  res.json({ employee });
+  res.json({ employee: employee.toObject({ getters: true }) });
 };
 
-const createEmployee = (req, res, next) => {
-  const { id, name, experience, qualification, position } = req.body;
-  const newEmployee = {
-    id,
+const createEmployee = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    console.log(errors);
+    next(Error("InValid Input", 422));
+  }
+  const { name, experience, qualification, position } = req.body;
+  const newEmployee = new Employee({
     name,
     experience,
     qualification,
     position,
-  };
-  DUMMY_EMPLOYEES.push(newEmployee);
-  res.json({ DUMMY_EMPLOYEES });
+    travelRequests: [],
+  });
+
+  try {
+    const employee = await newEmployee.save();
+    res.json({ employee });
+  } catch (err) {
+    return next(Error(err, 500));
+  }
 };
 
-const updateEmployeeByID = (req, res, next) => {
+const updateEmployeeByID = async (req, res, next) => {
   const { name, position } = req.body;
   const eid = req.params.eid;
 
-  const employee = { ...DUMMY_EMPLOYEES.find((e) => (e.id = eid)) };
-  const employeeIndex = DUMMY_EMPLOYEES.findIndex((e) => e.id == eid);
+  let employee;
+  try {
+    employee = await Employee.findById(eid).exec();
+  } catch (err) {
+    next(Error(err, 500));
+  }
+
+  if (!employee) {
+    return next(new Error(`Couldn't find applicant`, 404));
+  }
+
   employee.name = name;
   employee.position = position;
 
-  DUMMY_EMPLOYEES[employeeIndex] = employee;
-  res.status(200).json({ employee });
+  try {
+    await employee.save();
+    res.status(200).json({ employee });
+  } catch (err) {
+    return next(Error(err, 500));
+  }
 };
 
-const deleteEmployeeById = (req, res, next) => {
+const deleteEmployeeById = async (req, res, next) => {
   const eid = req.params.eid;
-  DUMMY_EMPLOYEES = DUMMY_EMPLOYEES.filter((e) => e.id !== eid);
-  res.status(200).json({ message: "Deleted employee" });
+
+  let employee;
+  try {
+    employee = await Employee.findById(eid).exec();
+  } catch (err) {
+    next(Error(err, 500));
+  }
+
+  if (!employee) {
+    return next(new Error(`Couldn't find employee`, 404));
+  }
+
+  try {
+    await employee.remove();
+    res.status(200).json({ message: "Deleted employee" });
+  } catch (err) {
+    return next(Error(err, 500));
+  }
 };
 
 exports.getAllEmployees = getAllEmployees;

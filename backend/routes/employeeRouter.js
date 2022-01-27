@@ -10,7 +10,16 @@ router.get("/", employeeController.getAllEmployees);
 
 router.get("/:eid", employeeController.getEmployeeById);
 
-router.post("/", employeeController.createEmployee);
+router.post(
+  "/",
+  [
+    check("name").not().isEmpty(),
+    check("qualification").not().isEmpty(),
+    check("position").not().isEmpty(),
+    check("experience").not().isEmpty(),
+  ],
+  employeeController.createEmployee
+);
 
 router.patch("/:eid", employeeController.updateEmployeeByID);
 

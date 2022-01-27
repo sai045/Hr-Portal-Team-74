@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://klaus:klaus123@hr-portal.kx5ek.mongodb.net/Hr-Portal?retryWrites=true&w=majority",
+  "jwtSecret": "mysecrettoken"
+}

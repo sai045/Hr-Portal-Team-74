@@ -1,57 +1,127 @@
 const error = require("../models/error");
 const { validationResult } = require("express-validator");
+const Applicant = require("../models/Applicant");
 
-let DUMMY_APPLICANTS = [
-  {
-    id: "a1",
-    name: "Damon Salvatore",
-    qualification: "big brother",
-    experience: 4,
-    position: "bourbon",
-  },
-  {
-    id: "a2",
-    name: "Stefan Salvatore",
-    qualification: "little brother",
-    experience: 2,
-    position: "hero hair",
-  },
-];
-
-const getAllApplicants = (req, res, next) => {
-  const applicants = DUMMY_APPLICANTS;
-  res.json({ applicants });
+const getAllApplicants = async (req, res, next) => {
+  try {
+    const applicants = await Applicant.find();
+    res.json({ applicants });
+  } catch (err) {
+    return next(Error(err, 500));
+  }
 };
 
-const getApplicantById = (req, res, next) => {
+const getApplicantById = async (req, res, next) => {
   const aid = req.params.aid;
-  const applicant = DUMMY_APPLICANTS.find((a) => {
-    return a.id == aid;
-  });
+
+  let applicant;
+
+  try {
+    applicant = await Applicant.findById(aid).exec();
+  } catch (err) {
+    next(Error(err, 500));
+  }
+
   if (!applicant) {
     return next(new Error(`Couldn't find applicant`, 404));
   }
 
-  //   res.json({ applicant });
   res.json({ applicant });
 };
 
-const createApplicant = (req, res, next) => {
-  const { id, name, experience, qualification, position } = req.body;
-  const newApplicant = {
-    id,
+const createApplicant = async (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    console.log(errors);
+    next(Error("InValid Input", 422));
+  }
+  const { resume, name, experience, qualification, position } = req.body;
+  const newApplicant = new Applicant({
+    resume,
     name,
     experience,
     qualification,
     position,
-  };
-  DUMMY_APPLICANTS.push(newApplicant);
-  res.json({ DUMMY_APPLICANTS });
+  });
+
+  try {
+    const applicant = await newApplicant.save();
+    res.json({ applicant });
+  } catch (err) {
+    return next(Error(err, 500));
+  }
 };
 
-const getResumeById = (req,res,next) => {}
+const getResumeById = async (req, res, next) => {
+  const aid = req.params.aid;
+
+  let applicant;
+
+  try {
+    applicant = await Applicant.findById(aid).exec();
+  } catch (err) {
+    next(Error(err, 500));
+  }
+
+  if (!applicant) {
+    return next(new Error(`Couldn't find applicant`, 404));
+  }
+
+  const resume = applicant.resume;
+  res.json({ resume });
+};
+
+const editResumeById = async (req, res, next) => {
+  const aid = req.params.aid;
+
+  let applicant;
+  try {
+    applicant = await Applicant.findById(aid).exec();
+  } catch (err) {
+    next(Error(err, 500));
+  }
+
+  if (!applicant) {
+    return next(new Error(`Couldn't find applicant`, 404));
+  }
+
+  const { resume } = req.body;
+  applicant.resume = resume;
+
+  try {
+    await applicant.save();
+  } catch (err) {
+    return next(Error(err, 500));
+  }
+
+  res.json({ applicant });
+};
+
+const deleteResumeById = async (req, res, next) => {
+  const aid = req.params.aid;
+
+  let applicant;
+  try {
+    applicant = await Applicant.findById(aid).exec();
+  } catch (err) {
+    next(Error(err, 500));
+  }
+
+  if (!applicant) {
+    return next(new Error(`Couldn't find applicant`, 404));
+  }
+
+  try {
+    await applicant.remove();
+  } catch (err) {
+    return next(Error(err, 500));
+  }
+  res.status(200).json({ message: "Deleted Applicant" });
+};
 
 exports.getAllApplicants = getAllApplicants;
 exports.getApplicantById = getApplicantById;
 exports.createApplicant = createApplicant;
 exports.getResumeById = getResumeById;
+exports.editResumeById = editResumeById;
+exports.deleteResumeById = deleteResumeById;
