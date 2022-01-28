@@ -4,8 +4,12 @@ const Applicant = require("../models/Applicant");
 
 const getAllApplicants = async (req, res, next) => {
   try {
-    const applicants = await Applicant.find();
-    res.json({ applicants });
+    const applicants = await Applicant.find().exec();
+    res.json({
+      applicants: applicants.map((applicant) =>
+        applicant.toObject({ getters: true })
+      ),
+    });
   } catch (err) {
     return next(Error(err, 500));
   }

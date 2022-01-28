@@ -1,11 +1,7 @@
 export const COLUMNS = [
   {
-    Header: "Id",
-    accessor: "id",
-  },
-  {
     Header: "Employee Name",
-    accessor: "full_name",
+    accessor: "name",
   },
   {
     Header: "Department",
@@ -17,10 +13,6 @@ export const COLUMNS = [
   },
   {
     Header: "Working Hours",
-    accessor: "Working_Hours",
-  },
-  {
-    Header: "Hired date",
-    accessor: "Hired_date",
+    accessor: "working_hours",
   },
 ];

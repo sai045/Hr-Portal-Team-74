@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect, useState } from "react";
 import { useTable, useGlobalFilter, usePagination } from "react-table";
 import { COLUMNS } from "./columns";
 import GlobalFilter from "./GlobalFilter";
@@ -6,6 +6,8 @@ import styles from "./Employee.module.css";
 import Navbar from "../../Navbar/Navbar";
 import Card from "../../UI/Card";
 import { Link } from "react-router-dom";
+import ErrorModel from "../../UI/ErrorModal";
+import LoadingSpinner from "../../UI/LoadingSpinner";
 
 const Data = [
   {
@@ -43,8 +45,34 @@ const Data = [
 ];
 
 const Employee = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState();
+  const [loadedEmployees, setLoadedEmployees] = useState([]);
+  useEffect(() => {
+    const sendRequest = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch("http://localhost:5000/employee/");
+        const responseData = await response.json();
+        if (!response.ok) {
+          throw new Error(responseData.message);
+        }
+        setLoadedEmployees(responseData.employees);
+        setIsLoading(false);
+      } catch (err) {
+        setIsLoading(false);
+        setError(err.message);
+      }
+    };
+    sendRequest();
+  }, []);
+
+  const errorHandler = () => {
+    setError(null);
+  };
+
   const columns = useMemo(() => COLUMNS, []);
-  const data = useMemo(() => Data, []);
+  const data = useMemo(() => loadedEmployees, [loadedEmployees]);
   const eid = 1;
   const infoHandler = () => {
     window.location.href = `/${eid}/employeeDashboard`;
@@ -79,6 +107,12 @@ const Employee = () => {
 
   return (
     <>
+      <ErrorModel error={error} onClear={errorHandler} />
+      {isLoading && (
+        <div className="center">
+          <LoadingSpinner />
+        </div>
+      )}
       <Navbar />
       <Card>
         <div className={styles.Employee}>

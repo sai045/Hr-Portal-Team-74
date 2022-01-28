@@ -14,9 +14,10 @@ router.post(
   "/",
   [
     check("name").not().isEmpty(),
-    check("qualification").not().isEmpty(),
-    check("position").not().isEmpty(),
-    check("experience").not().isEmpty(),
+    check("department").not().isEmpty(),
+    check("email").isEmail(),
+    check("working_hours").not().isEmpty(),
+    check("salary").not().isEmpty(),
   ],
   employeeController.createEmployee
 );

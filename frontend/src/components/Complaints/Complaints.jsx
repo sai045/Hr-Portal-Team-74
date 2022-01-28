@@ -1,83 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Details from "./Details";
 import styles from "./Complaints.module.css";
 import Navbar from "../Navbar/Navbar";
 import Card from "../UI/Card";
 
 const Complaints = () => {
-  const details = [
-    {
-      name: "Abeu Galvin",
-      department: "Accounting",
-      complaint: "Computers are giving trouble since so long",
-    },
-    {
-      name: "Nealson Dorking",
-      department: "Marketing",
-      complaint: "Stock did not arrive yet",
-    },
-    {
-      name: "Marcelle Sibyllina",
-      department: "Services",
-      complaint: "There isn't enough workspace in Services Department",
-    },
-    {
-      name: "Ezmeralda Donaher",
-      department: "Product Management",
-      complaint: "My Salary didn't get debited",
-    },
-    {
-      name: "Syman Squirrel",
-      department: "Marketing",
-      complaint:
-        "Marketing manager is not in time and doesn't encourage our work ",
-    },
-    {
-      name: "Clemmy Claybourn",
-      department: "Product Management",
-      complaint:
-        "My team is not working effectively and are causing disturbance",
-    },
-    {
-      name: "Gene Tottman",
-      department: "Sales",
-      complaint:
-        "There is a delay in delivery customers are complaining about this",
-    },
-    {
-      name: "Josephina Girth",
-      department: "Accounting",
-      complaint: "Accounting department manager is showing favouritism",
-    },
-    {
-      name: "Vail Szymonowicz",
-      department: "Legal",
-      complaint: "I am being paid less, i am expecting a hike",
-    },
-    {
-      name: "Lance Hamlin",
-      department: "Support",
-      complaint: "Proper cleanliness is not maintained in 4th floor",
-    },
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState();
+  const [complaints, setComplaints] = useState([]);
+  useEffect(() => {
+    const sendRequest = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch("http://localhost:5000/complaints/");
+        const responseData = await response.json();
+        if (!response.ok) {
+          throw new Error(responseData.message);
+        }
+        setComplaints(responseData.complaints);
+        setIsLoading(false);
+      } catch (err) {
+        setIsLoading(false);
+        setError(err.message);
+      }
+    };
+    sendRequest();
+  }, []);
 
-    {
-      name: "Myriam Pregel",
-      department: "Engineering",
-      complaint:
-        "My workload is increased where as other workers working hours are less ",
-    },
-    {
-      name: "Torrance Inge",
-      department: "Sales",
-      complaint: "My Salary didn't get debited",
-    },
-  ];
+  const errorHandler = () => {
+    setError(null);
+  };
 
-  const [complaints, setComplaints] = useState(details);
+  const complaintDeleteHandler = (deletedComplaintId) => {
+    setComplaints((prevComplaints) => {
+      prevComplaints.filter((complaint) => complaint !== deletedComplaintId);
+    });
+  };
   return (
     <>
+      <div>
       <Navbar />
-      <body>
         <Card className={styles.background}>
           <div className={styles.body}>
             <div>
@@ -86,22 +48,18 @@ const Complaints = () => {
             <div>
               {complaints.map((detail) => (
                 <Details
-                  key={detail.name}
-                  name={detail.name}
-                  department={detail.department}
+                  key={detail._id}
+                  name={detail.Name}
+                  department={detail.Department}
                   complaint={detail.complaint}
-                  onRemove={() => {
-                    var updatedComplaints = complaints.filter(
-                      (complaint) => complaint.name !== detail.name
-                    );
-                    setComplaints(updatedComplaints);
-                  }}
+                  id={detail._id.toString()}
+                  onDelete={complaintDeleteHandler}
                 />
               ))}
             </div>
           </div>
         </Card>
-      </body>
+      </div>
     </>
   );
 };

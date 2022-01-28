@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Login.module.css";
 
@@ -9,8 +9,8 @@ const Login = () => {
     textAlign: "center",
   };
   // render() {
-  return (
-    <div className={styles.whole}>
+    return (
+      <div className={styles.whole}>
       <div className={styles.lgnbx}>
         <h1 className={styles.head}>HR-Portal</h1>
         <svg
@@ -36,7 +36,9 @@ const Login = () => {
         ></input>
         <button className={styles.btn}>Login</button>
         <Link to={`/Signup`} style={LinkStyles}>
-          <p style={{color : "blue"}} className={styles.foot}>Sign Up here</p>
+          <p style={{ color: "blue" }} className={styles.foot}>
+            Sign Up here
+          </p>
         </Link>
       </div>
       <div className={styles.image}>

@@ -5,7 +5,9 @@ const Employee = require("../models/Employee");
 const getAllEmployees = async (req, res, next) => {
   try {
     const employees = await Employee.find();
-    res.json({ employees });
+    res.json({
+      employees: employees.map((e) => e.toObject({ getters: true })),
+    });
   } catch (err) {
     return next(Error(err, 500));
   }
@@ -35,25 +37,26 @@ const createEmployee = async (req, res, next) => {
     console.log(errors);
     next(Error("InValid Input", 422));
   }
-  const { name, experience, qualification, position } = req.body;
+  const { name, email, department, working_hours, salary } = req.body;
   const newEmployee = new Employee({
     name,
-    experience,
-    qualification,
-    position,
+    email,
+    department,
+    working_hours,
+    salary,
     travelRequests: [],
   });
 
   try {
     const employee = await newEmployee.save();
-    res.json({ employee });
+    res.json({ employee: employee.toObject({ getters: true }) });
   } catch (err) {
     return next(Error(err, 500));
   }
 };
 
 const updateEmployeeByID = async (req, res, next) => {
-  const { name, position } = req.body;
+  const { name, department } = req.body;
   const eid = req.params.eid;
 
   let employee;
@@ -68,7 +71,7 @@ const updateEmployeeByID = async (req, res, next) => {
   }
 
   employee.name = name;
-  employee.position = position;
+  employee.department = department;
 
   try {
     await employee.save();

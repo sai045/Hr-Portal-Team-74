@@ -6,20 +6,30 @@ const app = express();
 
 const Error = require("./models/error");
 
+const cors = require("cors");
+
 const ApplicantRouter = require("./routes/applicantRouter");
 const EmployeeRouter = require("./routes/employeeRouter");
 const TravelRouter = require("./routes/TravelRequests-router");
+const SalaryRouter = require("./routes/salaryRouter");
+const complaintsRouter = require("./routes/complaintRoutes");
 const connectDB = require("./config/config");
 
 connectDB();
 
 app.use(bodyParser.json());
 
+app.use(cors());
+
 app.use("/applicant", ApplicantRouter);
 
 app.use("/employee", EmployeeRouter);
 
 app.use("/travel", TravelRouter);
+
+app.use("/salary", SalaryRouter);
+
+app.use("/complaints", complaintsRouter);
 
 app.use("/api/users", require("./routes/users"));
 app.use("/api/profile", require("./routes/profile"));
@@ -37,20 +47,5 @@ app.use((error, req, res, next) => {
   res.status(error.code || 500);
   res.json({ message: error.message || "An unknown error occured " });
 });
-
-// mongoose
-//   .connect(
-//     "mongodb+srv://klaus:klaus123@hr-portal.kx5ek.mongodb.net/Hr-Portal?retryWrites=true&w=majority",
-//     // "jwtSecret" = "mySecret"
-//   )
-//   .then(() => {
-//     app.listen(5000, () => {
-//       console.log("Server running at 5000");
-//     });
-//     console.log("MongoDB connected");
-//   })
-//   .catch((err) => {
-//     throw new Error(err, 404);
-//   });
 
 app.listen(5000);

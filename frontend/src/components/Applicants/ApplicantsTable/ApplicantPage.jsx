@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect, useState } from "react";
 import { useTable, useGlobalFilter, usePagination } from "react-table";
 import { COLUMNS } from "./columns";
 import GlobalFilter from "./GlobalFilter";
@@ -7,45 +7,38 @@ import Navbar from "../../Navbar/Navbar";
 import Card from "../../UI/Card";
 import { Link, useParams } from "react-router-dom";
 import Resume from "../Resume/Resume";
-
-const Data = [
-  {
-    id: 1,
-    name: "Juditha Brookshaw",
-    qualification: "Services",
-    age: 39,
-    experience: 4,
-    position: "Research and Development",
-  },
-  {
-    id: 2,
-    name: "Jesse Butson",
-    qualification: "Accounting",
-    age: 25,
-    experience: 3,
-    position: "Marketing",
-  },
-  {
-    id: 3,
-    name: "Laurianne Jurkowski",
-    qualification: "Marketing",
-    age: 58,
-    experience: 9,
-    position: "Services",
-  },
-  {
-    id: 4,
-    name: "Oliviero Catt",
-    qualification: "Marketing",
-    age: 54,
-    experience: 9,
-    position: "Training",
-  },
-];
+import ErrorModel from "../../UI/ErrorModal";
+import LoadingSpinner from "../../UI/LoadingSpinner";
 
 const Applicant = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState();
+  const [loadedApplicants, setLoadedApplicants] = useState([]);
+  useEffect(() => {
+    const sendRequest = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch("http://localhost:5000/applicant/");
+        const responseData = await response.json();
+        if (!response.ok) {
+          throw new Error(responseData.message);
+        }
+        setLoadedApplicants(responseData.applicants);
+        setIsLoading(false);
+      } catch (err) {
+        setIsLoading(false);
+        setError(err.message);
+      }
+    };
+    sendRequest();
+  }, []);
+
+  const errorHandler = () => {
+    setError(null);
+  };
+
   const columns = useMemo(() => COLUMNS, []);
-  const data = useMemo(() => Data, []);
+  const data = useMemo(() => loadedApplicants, [loadedApplicants]);
   const uid = "u1";
   const resumeHandler = (event) => {
     window.location.href = `/${uid}/resume`;
@@ -80,6 +73,12 @@ const Applicant = () => {
 
   return (
     <>
+      <ErrorModel error={error} onClear={errorHandler} />
+      {isLoading && (
+        <div className="center">
+          <LoadingSpinner />
+        </div>
+      )}
       <Navbar />
       <Card>
         <div className={styles.Applicant}>
