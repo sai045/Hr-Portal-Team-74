@@ -73,12 +73,12 @@ const Applicant = () => {
 
   return (
     <>
-      <ErrorModel error={error} onClear={errorHandler} />
+      {/* <ErrorModel error={error} onClear={errorHandler} />
       {isLoading && (
         <div className="center">
           <LoadingSpinner />
         </div>
-      )}
+      )} */}
       <Navbar />
       <Card>
         <div className={styles.Applicant}>

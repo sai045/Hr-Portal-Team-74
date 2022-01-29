@@ -15,6 +15,7 @@ import Dash from "./components/Dashboard/Dash";
 import Home from "./components/Home/Home";
 import Salary from "./components/Salary/Salary";
 import Complaints from "./components/Complaints/Complaints";
+import Details from "./components/Complaints/Complaint";
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/signUp" element={<SignUp />} />
-          <Route path="/Dashbiard" element={<Dash />} />
+          <Route path="/Dashboard" element={<Dash />} />
           <Route path="/ApplicantPage" element={<ApplicantPage />} />
           <Route path="/TravelRequests" element={<TravelRequests />} />
           <Route path="/Employee" element={<Employee />} />
