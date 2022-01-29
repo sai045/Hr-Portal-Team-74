@@ -16,6 +16,7 @@ import Home from "./components/Home/Home";
 import Salary from "./components/Salary/Salary";
 import Complaints from "./components/Complaints/Complaints";
 import Details from "./components/Complaints/Complaint";
+import NewComplaint from "./components/Complaints/NewComplaint";
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
           />
           <Route path="/salary" element={<Salary />} />
           <Route path="/Complaints" element={<Complaints />} />
+          <Route path="/newComplaints" element={<NewComplaint />} />
         </Routes>
       </Router>
     </div>

@@ -11,6 +11,7 @@
   width: 50%;
   background-color: white;
 }
+
 .li {
   background-color: white;
   text-align: left;
@@ -21,6 +22,9 @@
   padding: 0;
   width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .del {
@@ -34,4 +38,59 @@
 .body {
   position: relative;
   top: 1rem;
+  width: 100%;
+}
+
+.Card {
+  width: 60%;
+}
+
+.newComplaintForm {
+  /* border: 2px solid black; */
+  /* width: 60%; */
+}
+
+.newComplaint {
+  position: relative;
+  left: 20%;
+  /* top: 5%; */
+  /* float: right; */
+}
+
+.newComplaintForm label {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  width: 50%;
+}
+
+.newComplaintForm input {
+  border-radius: 0.5rem;
+  width: 50%;
+}
+
+@media (max-width: 500px) {
+  .newComplaintForm {
+    width: 100%;
+  }
+}
+
+@media (max-width: 1000px) {
+  .ul {
+    width: 80%;
+    margin: 2rem auto;
+  }
+}
+@media (max-width: 600px) {
+  .Card {
+    width: 80%;
+  }
+}
+
+@media (max-width: 400px) {
+  .newComplaintForm label {
+    width: 100%;
+  }
+
+  .newComplaintForm input {
+    width: 100%;
+  }
 }

@@ -9,6 +9,7 @@ const Complaints = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
   const [complaints, setComplaints] = useState([]);
+  const [newComplaint, setNewComplaint] = useState(false);
   const sendRequest = async () => {
     setIsLoading(true);
     try {
@@ -32,6 +33,12 @@ const Complaints = () => {
     sendRequest();
   }, []);
 
+  const submitHandler = (newComplaint) => {
+    setNewComplaint(false);
+    // setComplaints((prevComplaints) => prevComplaints.concat(newComplaint));
+    sendRequest();
+  };
+
   const errorHandler = () => {
     setError(null);
   };
@@ -46,7 +53,15 @@ const Complaints = () => {
       <div>
         <Navbar />
         <Card className={styles.background}>
-        {/* <NewComplaint /> */}
+          <button
+            className={`btn btn-success ${styles.newComplaint}`}
+            onClick={() => {
+              setNewComplaint(true);
+            }}
+          >
+            New Complaint
+          </button>
+          {newComplaint && <NewComplaint onAdd={submitHandler} />}
           <div className={styles.body}>
             <div>
               <h1 className={styles.heading}>Complaints</h1>
