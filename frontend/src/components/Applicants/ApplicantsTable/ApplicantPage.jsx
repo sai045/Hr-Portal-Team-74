@@ -5,8 +5,8 @@ import GlobalFilter from "./GlobalFilter";
 import styles from "./Applicant.module.css";
 import Navbar from "../../Navbar/Navbar";
 import Card from "../../UI/Card";
+import NewApplicant from "./NewApplicant";
 import { Link, useParams } from "react-router-dom";
-import Resume from "../Resume/Resume";
 import ErrorModel from "../../UI/ErrorModal";
 import LoadingSpinner from "../../UI/LoadingSpinner";
 
@@ -14,22 +14,20 @@ const Applicant = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
   const [loadedApplicants, setLoadedApplicants] = useState([]);
+  const [newApplicant, setNewApplicant] = useState(false);
+  const sendRequest = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch("http://localhost:5000/applicant/");
+      const responseData = await response.json();
+      setLoadedApplicants(responseData.applicants);
+      setIsLoading(false);
+    } catch (err) {
+      setIsLoading(false);
+      setError(err.message);
+    }
+  };
   useEffect(() => {
-    const sendRequest = async () => {
-      setIsLoading(true);
-      try {
-        const response = await fetch("http://localhost:5000/applicant/");
-        const responseData = await response.json();
-        if (!response.ok) {
-          throw new Error(responseData.message);
-        }
-        setLoadedApplicants(responseData.applicants);
-        setIsLoading(false);
-      } catch (err) {
-        setIsLoading(false);
-        setError(err.message);
-      }
-    };
     sendRequest();
   }, []);
 
@@ -40,8 +38,11 @@ const Applicant = () => {
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => loadedApplicants, [loadedApplicants]);
   const uid = "u1";
-  const resumeHandler = (event) => {
-    window.location.href = `/${uid}/resume`;
+
+  const submitHandler = () => {
+    sendRequest();
+    setNewApplicant(false);
+    console.log("onAdd");
   };
 
   const {
@@ -80,7 +81,18 @@ const Applicant = () => {
         </div>
       )} */}
       <Navbar />
-      <Card>
+      <Card className={styles.background}>
+        <button
+          className={`btn btn-success ${styles.newApplicant}`}
+          onClick={() => {
+            setNewApplicant(true);
+          }}
+        >
+          New Applicant
+        </button>
+        {newApplicant && (
+          <NewApplicant onAdd={submitHandler} sendRequest={sendRequest} />
+        )}
         <div className={styles.Applicant}>
           <div className={styles.heading}>
             <h1>Applicant Data</h1>
@@ -97,7 +109,6 @@ const Applicant = () => {
                       {column.render("Header")}
                     </th>
                   ))}
-                  <th>Resume</th>
                 </tr>
               ))}
             </thead>
@@ -113,9 +124,6 @@ const Applicant = () => {
                         </td>
                       );
                     })}
-                    <td>
-                      <button onClick={resumeHandler}>Resume</button>
-                    </td>
                   </tr>
                 );
               })}

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export const COLUMNS = [
   {
     Header: "Name",
@@ -14,5 +16,18 @@ export const COLUMNS = [
   {
     Header: "Position",
     accessor: "position",
+  },
+  {
+    Header: "Resume",
+    accessor: "resume",
+    Cell: ({ cell }) => (
+      <button
+        onClick={() => {
+          window.location.assign(`${cell.row.values.resume}`);
+        }}
+      >
+        Resume
+      </button>
+    ),
   },
 ];

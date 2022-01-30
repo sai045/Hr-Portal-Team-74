@@ -9,41 +9,6 @@ import { Link } from "react-router-dom";
 import ErrorModel from "../../UI/ErrorModal";
 import LoadingSpinner from "../../UI/LoadingSpinner";
 
-const Data = [
-  {
-    id: 1,
-    full_name: "Batsheva Beedle",
-    email: "bbeedle0@sourceforge.net",
-    department: "Marketing",
-    Working_Hours: 6,
-    Hired_date: "10.04.2017",
-  },
-  {
-    id: 2,
-    full_name: "Adrian Gooke",
-    email: "agooke1@discovery.com",
-    department: "Human Resources",
-    Working_Hours: 12,
-    Hired_date: "21.04.2018",
-  },
-  {
-    id: 3,
-    full_name: "Kylen Blunsom",
-    email: "kblunsom2@360.cn",
-    department: "Research and Development",
-    Working_Hours: 13,
-    Hired_date: "04.04.2019",
-  },
-  {
-    id: 4,
-    full_name: "Tull Purver",
-    email: "tpurver3@infoseek.co.jp",
-    department: "Engineering",
-    Working_Hours: 10,
-    Hired_date: "13.05.2017",
-  },
-];
-
 const Employee = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
@@ -132,7 +97,7 @@ const Employee = () => {
                       {column.render("Header")}
                     </th>
                   ))}
-                  <th>More info</th>
+                  {/* <th>More info</th> */}
                 </tr>
               ))}
             </thead>
@@ -148,12 +113,10 @@ const Employee = () => {
                         </td>
                       );
                     })}
-                    <td>
+                    {/* <td>
                       <button onClick={infoHandler}>More info</button>
-                      {/* <Link to={`/${eid}/employeeDashboard`}>
-                        <button>More info</button>
-                      </Link> */}
-                    </td>
+                      
+                    </td> */}
                   </tr>
                 );
               })}

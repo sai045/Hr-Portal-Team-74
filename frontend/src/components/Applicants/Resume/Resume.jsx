@@ -1,49 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./Resume.css";
 
-const Data = [
-  {
-    id: "u1",
-    name: "Juditha Brookshaw",
-    qualification: "Services",
-    age: 39,
-    experience: 4,
-    position: "Research and Development",
-  },
-  {
-    id: "u2",
-    name: "Jesse Butson",
-    qualification: "Accounting",
-    age: 25,
-    experience: 3,
-    position: "Marketing",
-  },
-  {
-    id: "u3",
-    name: "Laurianne Jurkowski",
-    qualification: "Marketing",
-    age: 58,
-    experience: 9,
-    position: "Services",
-  },
-  {
-    id: "u4",
-    name: "Oliviero Catt",
-    qualification: "Marketing",
-    age: 54,
-    experience: 9,
-    position: "Training",
-  },
-];
+const Resume = () => {
+  const [resume, setResume] = useState();
+  const [resumeName, setResumeName] = useState("");
+  const { id } = useParams();
+  const [Id, SetId] = useState(id);
+  const sendRequest = async (req, res, next) => {
+    try {
+      const response = await fetch(`http://localhost:5000/applicant/${Id}`);
+      const ResumeData = await response.json();
+      setResume(ResumeData.applicant);
+      const name = ResumeData.applicant.name;
 
-const Resume = (props) => {
-  const userId = useParams().userId;
-  const resume = Data.filter((data) => data.id === userId);
+      setResumeName(name);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    sendRequest();
+  }, []);
+
+  const deleteHandler = async () => {
+    const response = await fetch(
+      `http://localhost:5000/applicant/resume/${Id}`,
+      {
+        method: "DELETE",
+      }
+    );
+    window.location.assign(`http://localhost:3000/ApplicantPage`);
+  };
+
   return (
     <>
       <div>
-        <h1>Hi {resume[0].name}</h1>
+        <h1>Hi {resumeName}</h1>
+        <button onClick={deleteHandler}>Delete</button>
       </div>
     </>
   );

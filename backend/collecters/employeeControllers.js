@@ -37,7 +37,8 @@ const createEmployee = async (req, res, next) => {
     console.log(errors);
     next(Error("InValid Input", 422));
   }
-  const { name, email, department, working_hours, salary } = req.body;
+  const { name, email, department, working_hours, salary, dashboard } =
+    req.body;
   const newEmployee = new Employee({
     name,
     email,
@@ -45,11 +46,20 @@ const createEmployee = async (req, res, next) => {
     working_hours,
     salary,
     travelRequests: [],
+    dashboard,
   });
 
   try {
     const employee = await newEmployee.save();
-    res.json({ employee: employee.toObject({ getters: true }) });
+    const id = newEmployee._id.toString();
+    const dashboardLink = `http://localhost:3000/employeeDashboard/${id}`;
+    employee.dashboard = dashboardLink;
+    try {
+      await employee.save();
+    } catch (err) {
+      console.log(err);
+    }
+    res.json({ employee });
   } catch (err) {
     return next(Error(err, 500));
   }

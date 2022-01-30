@@ -32,10 +32,10 @@ function App() {
           <Route path="/Employee" element={<Employee />} />
           <Route path="/LeaveRequests" element={<LeaveRequests />} />
           <Route path="/Schedule" element={<Schedule />} />
-          <Route path="/:id/resume" element={<Resume />} />
+          <Route path="/resume/:id" element={<Resume />} />
 
           <Route
-            path="/:id/employeeDashboard"
+            path="//employeeDashboard/:id"
             element={<EmployeeDashboard />}
           />
           <Route

@@ -6,6 +6,7 @@ const employeeSchema = new mongoose.Schema({
   email: { type: String, required: true },
   working_hours: { type: Number, required: true },
   salary: { type: Number, required: true },
+  dashboard: { type: String },
   travelRequests: [
     {
       type: mongoose.Types.ObjectId,

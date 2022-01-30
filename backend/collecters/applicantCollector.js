@@ -50,6 +50,14 @@ const createApplicant = async (req, res, next) => {
 
   try {
     const applicant = await newApplicant.save();
+    const id = newApplicant._id.toString();
+    const resumeLink = `http://localhost:3000/resume/${id}`;
+    applicant.resume = resumeLink;
+    try {
+      await applicant.save();
+    } catch (err) {
+      console.log(err);
+    }
     res.json({ applicant });
   } catch (err) {
     return next(Error(err, 500));

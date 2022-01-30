@@ -1,0 +1,39 @@
+.Card {
+  width: 60%;
+}
+
+.newComplaintForm {
+  /* border: 2px solid black; */
+  /* width: 60%; */
+}
+
+.newComplaint {
+  position: relative;
+  left: 20%;
+}
+
+.newComplaintForm label {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  width: 50%;
+}
+
+.newComplaintForm input {
+  border-radius: 0.5rem;
+  width: 50%;
+}
+
+@media (max-width: 500px) {
+  .newComplaintForm {
+    width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .newComplaintForm label {
+    width: 100%;
+  }
+
+  .newComplaintForm input {
+    width: 100%;
+  }
+}

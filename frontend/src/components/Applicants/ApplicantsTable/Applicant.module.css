@@ -1,11 +1,23 @@
-.Employee {
+.Applicant {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 75%;
 }
 .heading {
   padding: 20px 0 0 0;
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+.newApplicant {
+  /* position: relative;
+  right: 20%; */
+}
+
+.background {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .search {
@@ -20,9 +32,7 @@
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   text-align: center;
-  width: 80%;
-  position: relative;
-  left: 10%;
+  width: 100%;
 }
 
 .table td,
