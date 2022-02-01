@@ -2,38 +2,45 @@
   width: 60%;
 }
 
-.newApplicantForm {
+.newEmployeeForm {
   /* border: 2px solid black; */
   /* width: 60%; */
 }
 
-.newApplicant {
+.newEmployee {
   position: relative;
   left: 20%;
 }
 
-.newApplicantForm label {
+.newEmployeeForm label {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   width: 50%;
 }
 
-.newApplicantForm input {
+.newEmployeeForm input {
   border-radius: 0.5rem;
   width: 50%;
 }
 
 @media (max-width: 500px) {
-  .newApplicantForm {
+  .newEmployeeForm {
     width: 100%;
   }
 }
 
 @media (max-width: 400px) {
-  .newApplicantForm label {
+  .newEmployeeForm label {
     width: 100%;
   }
 
-  .newApplicantForm input {
+  .newEmployeeForm input {
     width: 100%;
   }
+}
+
+.closeButton {
+  position: relative;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, 0%);
 }

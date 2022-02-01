@@ -1,16 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from './Navbar.module.css'
+import styles from "./Navbar.module.css";
 
 const Navbar = () => {
   const LinkStyles = {
     textDecoration: "none",
-    margin:"0.5rem",
-    color:"grey"
-  }
+    margin: "0.5rem",
+    color: "grey",
+  };
   return (
     <div>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav
+        className="navbar navbar-expand-lg navbar-light bg-light"
+        style={{ width: "100vw" }}
+      >
         <div className="container-fluid">
           <Link to={`/`} style={LinkStyles}>
             <h1>HR Portal</h1>

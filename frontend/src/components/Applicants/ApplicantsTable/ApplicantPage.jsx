@@ -6,15 +6,15 @@ import styles from "./Applicant.module.css";
 import Navbar from "../../Navbar/Navbar";
 import Card from "../../UI/Card";
 import NewApplicant from "./NewApplicant";
-import { Link, useParams } from "react-router-dom";
-import ErrorModel from "../../UI/ErrorModal";
 import LoadingSpinner from "../../UI/LoadingSpinner";
 
 const Applicant = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState();
   const [loadedApplicants, setLoadedApplicants] = useState([]);
   const [newApplicant, setNewApplicant] = useState(false);
+
+  let error = [];
+
   const sendRequest = async () => {
     setIsLoading(true);
     try {
@@ -24,25 +24,44 @@ const Applicant = () => {
       setIsLoading(false);
     } catch (err) {
       setIsLoading(false);
-      setError(err.message);
+      error.push(err);
     }
   };
   useEffect(() => {
     sendRequest();
   }, []);
 
-  const errorHandler = () => {
-    setError(null);
-  };
-
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => loadedApplicants, [loadedApplicants]);
-  const uid = "u1";
 
   const submitHandler = () => {
     sendRequest();
     setNewApplicant(false);
     console.log("onAdd");
+  };
+
+  const errorHandler = (err) => {
+    error.push(err);
+
+    console.log(error);
+    printError();
+  };
+
+  const printError = () => {
+    const Error = document.createElement("h1");
+    let ERROR = String(error[0]);
+    const duplicate = String("E11000");
+
+    if (ERROR.includes(duplicate)) {
+      Error.innerHTML = "Applicant already exists";
+      console.log("E11000");
+    }
+
+    document.getElementById("error").appendChild(Error);
+  };
+
+  const closeHandler = () => {
+    setNewApplicant(false);
   };
 
   const {
@@ -74,12 +93,11 @@ const Applicant = () => {
 
   return (
     <>
-      {/* <ErrorModel error={error} onClear={errorHandler} />
       {isLoading && (
         <div className="center">
           <LoadingSpinner />
         </div>
-      )} */}
+      )}
       <Navbar />
       <Card className={styles.background}>
         <button
@@ -91,9 +109,14 @@ const Applicant = () => {
           New Applicant
         </button>
         {newApplicant && (
-          <NewApplicant onAdd={submitHandler} sendRequest={sendRequest} />
+          <NewApplicant
+            onAdd={submitHandler}
+            onError={errorHandler}
+            onClose={closeHandler}
+          />
         )}
         <div className={styles.Applicant}>
+          <div id="error" className={newApplicant ? "m-4" : "m-2"}></div>
           <div className={styles.heading}>
             <h1>Applicant Data</h1>
           </div>

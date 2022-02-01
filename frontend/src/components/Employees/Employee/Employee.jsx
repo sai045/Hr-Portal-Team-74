@@ -5,42 +5,63 @@ import GlobalFilter from "./GlobalFilter";
 import styles from "./Employee.module.css";
 import Navbar from "../../Navbar/Navbar";
 import Card from "../../UI/Card";
-import { Link } from "react-router-dom";
-import ErrorModel from "../../UI/ErrorModal";
 import LoadingSpinner from "../../UI/LoadingSpinner";
+import NewEmpoloyee from "./NewEmployee";
 
 const Employee = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState();
   const [loadedEmployees, setLoadedEmployees] = useState([]);
-  useEffect(() => {
-    const sendRequest = async () => {
-      setIsLoading(true);
-      try {
-        const response = await fetch("http://localhost:5000/employee/");
-        const responseData = await response.json();
-        if (!response.ok) {
-          throw new Error(responseData.message);
-        }
-        setLoadedEmployees(responseData.employees);
-        setIsLoading(false);
-      } catch (err) {
-        setIsLoading(false);
-        setError(err.message);
-      }
-    };
-    sendRequest();
-  }, []);
+  const [newEmployee, setNewEmployee] = useState(false);
 
-  const errorHandler = () => {
-    setError(null);
+  let error = [];
+
+  const sendRequest = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch("http://localhost:5000/employee/");
+      const responseData = await response.json();
+      if (!response.ok) {
+        throw new Error(responseData.message);
+      }
+      setLoadedEmployees(responseData.employees);
+      setIsLoading(false);
+    } catch (err) {
+      setIsLoading(false);
+
+      error.push(err);
+    }
   };
+  useEffect(() => {
+    sendRequest();
+  }, [newEmployee]);
 
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => loadedEmployees, [loadedEmployees]);
-  const eid = 1;
-  const infoHandler = () => {
-    window.location.href = `/${eid}/employeeDashboard`;
+  const submitHandler = () => {
+    setNewEmployee(false);
+  };
+  const errorHandler = (err) => {
+    error.push(err);
+
+    console.log(error);
+    printError();
+  };
+
+  const printError = () => {
+    const Error = document.createElement("h1");
+    let ERROR = String(error[0]);
+    const duplicate = String("E11000");
+
+    if (ERROR.includes(duplicate)) {
+      Error.innerHTML = "Employee already exists";
+      console.log("E11000");
+    }
+
+    document.getElementById("error").appendChild(Error);
+  };
+
+  const closeHandler = () => {
+    setNewEmployee(false);
   };
 
   const {
@@ -72,7 +93,6 @@ const Employee = () => {
 
   return (
     <>
-      <ErrorModel error={error} onClear={errorHandler} />
       {isLoading && (
         <div className="center">
           <LoadingSpinner />
@@ -80,7 +100,24 @@ const Employee = () => {
       )}
       <Navbar />
       <Card>
+        <button
+          className={`btn btn-success ${styles.newEmployee}`}
+          onClick={() => {
+            setNewEmployee(true);
+          }}
+        >
+          New Employee
+        </button>
+        {newEmployee && (
+          <NewEmpoloyee
+            onAdd={submitHandler}
+            onError={errorHandler}
+            onClose={closeHandler}
+          />
+        )}
         <div className={styles.Employee}>
+          <div id="error" className={newEmployee ? "m-4" : "m-2"}></div>
+
           <div className={styles.heading}>
             <h1>Employee Data</h1>
           </div>
@@ -97,7 +134,6 @@ const Employee = () => {
                       {column.render("Header")}
                     </th>
                   ))}
-                  {/* <th>More info</th> */}
                 </tr>
               ))}
             </thead>
@@ -113,10 +149,6 @@ const Employee = () => {
                         </td>
                       );
                     })}
-                    {/* <td>
-                      <button onClick={infoHandler}>More info</button>
-                      
-                    </td> */}
                   </tr>
                 );
               })}

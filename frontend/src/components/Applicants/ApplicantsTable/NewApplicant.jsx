@@ -18,7 +18,8 @@ const NewComplaint = (props) => {
         }),
       });
     } catch (err) {
-      console.log(err);
+      // console.log(err);
+      props.onError(err);
     }
   };
   const [name, setName] = useState("");
@@ -60,10 +61,13 @@ const NewComplaint = (props) => {
       <div className="m-4">
         <h1 className={styles.heading}>New Applicant</h1>
       </div>
+      <button onClick={props.onClose} className={styles.closeButton}>
+        <i className="fas fa-window-close">Close</i>
+      </button>
       <form
         action=""
         onSubmit={newApplicantHandler}
-        className={`m-2 p-4 ${styles.newComplaintForm}`}
+        className={`m-2 p-4 ${styles.newApplicantForm}`}
       >
         <label htmlFor="Name">Name : </label>
         <input

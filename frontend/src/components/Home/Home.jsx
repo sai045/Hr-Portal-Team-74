@@ -14,9 +14,9 @@ class Home extends Component {
             className={`col-sm-10 col-md-2 ${styles.sidebar} ${styles.sidenavbar}`}
           >
             <ul className={`nav navSidebar row ${styles.navSidenavbar}`}>
-              <Link to={`/`}>
+              {/* <Link to={`/`}>
                 <li className="active">Home</li>
-              </Link>
+              </Link> */}
               <Link to={`/complaints`}>
                 <li>Complaints</li>
               </Link>
@@ -32,7 +32,7 @@ class Home extends Component {
           <p className="text-center">Human Resource Manager</p>
           <div className={`${styles.mid}`}>
             <div className="text-center">
-              <Link to={`/dash`}>
+              <Link to={`/dashboard`}>
                 <button className={`${styles.icons}`}>
                   <img
                     src="http://cdn.onlinewebfonts.com/svg/img_233159.svg"
