@@ -29,6 +29,7 @@ const createTravelRequests = async (req, res, next) => {
     employeeId,
     from,
     to,
+    // tid,
   });
 
   let employee;
@@ -46,11 +47,11 @@ const createTravelRequests = async (req, res, next) => {
   try {
     const sess = await mongoose.startSession();
     sess.startTransaction();
-    await newTravel.save({ session: sess });
     employee.travelRequests.push(newTravel);
+    await newTravel.save({ session: sess });
     await employee.save({ session: sess });
     await sess.commitTransaction();
-    res.json({newTravel})
+    res.json({ newTravel });
   } catch (err) {
     return next(new Error(err, 500));
   }
@@ -84,14 +85,30 @@ const deleteTravelRequestById = async (req, res, next) => {
   }
 
   if (!travel) {
-    return next(Error("Couldn't find the Travel Request", 500));
+    return next(new Error("Couldn't find the Travel Request", 500));
+  }
+
+  const employeeId = travel.employeeId;
+
+  let employee;
+
+  try {
+    employee = await Employee.findById(employeeId);
+  } catch (err) {
+    return next(new Error(err, 500));
   }
 
   try {
     await travel.remove();
+    const sess = await mongoose.startSession();
+    sess.startTransaction();
+    employee.travelRequests.splice(employee.travelRequests.indexOf(travel));
+    await travel.remove({ session: sess });
+    await employee.save({ session: sess });
+    await sess.commitTransaction();
     res.json({ message: "Deleted Travel Request" });
   } catch (err) {
-    return next(Error(err, 500));
+    return next(new Error(err, 500));
   }
 };
 

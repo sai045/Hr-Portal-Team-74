@@ -1,46 +1,43 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { useTable, useGlobalFilter, usePagination } from "react-table";
 import { COLUMNS } from "./column(tr)";
 import GlobalFilter from "./GlobalFilter";
 import styles from "./TravelRequests.module.css";
 import Navbar from "../../Navbar/Navbar";
 import Card from "../../UI/Card";
-import { Link } from "react-router-dom";
-
-const Data = [
-  {
-    id: 1,
-    name: "Beckie Skinner",
-    from: "Al Quwaysimah",
-    to: "Lühua",
-    status: true,
-  },
-  {
-    id: 2,
-    name: "Godart Buffy",
-    from: "Santo Domingo",
-    to: "Údlice",
-    status: false,
-  },
-  {
-    id: 3,
-    name: "Alphard Cruise",
-    from: "Fatuulan",
-    to: "Javānrūd",
-    status: true,
-  },
-  {
-    id: 4,
-    name: "Ted Haugeh",
-    from: "Dolní Černilov",
-    to: "Wangchuanchang",
-    status: false,
-  },
-];
+import LoadingSpinner from "../../UI/LoadingSpinner";
+import NewTravel from "./NewTravel";
 
 const TravelRequests = () => {
+  const [travels, setTravels] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [newTravel, setNewTravel] = useState(false);
+  const sendRequest = async () => {
+    setIsLoading(true);
+    // let travels;
+    try {
+      const response = await fetch("http://localhost:5000/travel");
+
+      const responseData = await response.json();
+      console.log(responseData);
+      if (!response.ok) {
+        throw new Error(responseData.message);
+      }
+      // travels = responseData.travels;
+      setTravels(responseData.travels);
+      setIsLoading(false);
+    } catch (err) {
+      console.log(err);
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    sendRequest();
+  }, []);
+
   const columns = useMemo(() => COLUMNS, []);
-  const data = useMemo(() => Data, []);
+  const data = useMemo(() => travels, [travels]);
   const tid = 1;
   const travelHandler = () => {
     window.location.href = `/${tid}/travelConfirmation`;
@@ -71,12 +68,35 @@ const TravelRequests = () => {
     usePagination
   );
 
+  const submitHandler = () => {
+    setNewTravel(false);
+  };
   const { globalFilter, pageIndex, pageSize } = state;
+
+  const closeHandler = () => {
+    setNewTravel(false);
+  };
 
   return (
     <>
+      {isLoading && (
+        <div>
+          <LoadingSpinner />
+        </div>
+      )}
       <Navbar />
       <Card>
+        <button
+          className={`btn btn-success ${styles.newTravel}`}
+          onClick={() => {
+            setNewTravel(true);
+          }}
+        >
+          New Travel
+        </button>
+        {newTravel && (
+          <NewTravel onAdd={submitHandler} onClose={closeHandler} />
+        )}
         <div className={styles.Travelrequests}>
           <div className={styles.heading}>
             <h1>Travel Requests</h1>

@@ -113,6 +113,7 @@ const Applicant = () => {
             onAdd={submitHandler}
             onError={errorHandler}
             onClose={closeHandler}
+            sendRequest={sendRequest}
           />
         )}
         <div className={styles.Applicant}>

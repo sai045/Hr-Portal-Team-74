@@ -48,4 +48,5 @@ app.use((error, req, res, next) => {
   res.json({ message: error.message || "An unknown error occured " });
 });
 
+// mongoose.set("useCreateIndex", true);
 app.listen(5000);

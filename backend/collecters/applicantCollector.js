@@ -39,9 +39,9 @@ const createApplicant = async (req, res, next) => {
     console.log(errors);
     next(Error("InValid Input", 422));
   }
-  const { resume, name, experience, qualification, position } = req.body;
+  const { name, experience, qualification, position } = req.body;
   const newApplicant = new Applicant({
-    resume,
+    // resume,
     name,
     experience,
     qualification,

@@ -4,10 +4,6 @@ export const COLUMNS = [
     accessor: "id",
   },
   {
-    Header: "Name",
-    accessor: "name",
-  },
-  {
     Header: "From",
     accessor: "from",
   },

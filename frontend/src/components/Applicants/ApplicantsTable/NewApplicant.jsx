@@ -18,8 +18,8 @@ const NewComplaint = (props) => {
         }),
       });
     } catch (err) {
-      // console.log(err);
-      props.onError(err);
+      console.log(err);
+      // props.onError(err);
     }
   };
   const [name, setName] = useState("");
