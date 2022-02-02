@@ -83,6 +83,7 @@ p {
     overflow-y: visible;
     background-color: rgb(88 99 161);
     height: auto;
+    margin: 0 auto;
   }
   .mid {
     width: 80%;
@@ -123,6 +124,7 @@ p {
   }
   .navSidenavbar {
     margin-top: 5%;
+    display: block;
   }
 }
 
