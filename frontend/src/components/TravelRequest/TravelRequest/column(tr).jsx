@@ -1,7 +1,7 @@
 export const COLUMNS = [
   {
     Header: "Id",
-    accessor: "id",
+    accessor: "employeeId",
   },
   {
     Header: "From",

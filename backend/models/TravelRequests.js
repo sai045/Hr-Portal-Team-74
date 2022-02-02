@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const travelSchema = new mongoose.Schema({
-  from: { type: String, required: true },
+  from: { type: String, required: true, sparse: true },
   to: { type: String, required: true },
   employeeId: {
     type: mongoose.Types.ObjectId,

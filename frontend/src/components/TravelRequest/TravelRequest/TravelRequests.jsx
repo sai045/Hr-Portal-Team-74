@@ -38,7 +38,7 @@ const TravelRequests = () => {
 
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => travels, [travels]);
-  const tid = 1;
+  // const tid = 1;
   const travelHandler = () => {
     window.location.href = `/${tid}/travelConfirmation`;
   };
@@ -132,9 +132,6 @@ const TravelRequests = () => {
                     })}
                     <td>
                       <button onClick={travelHandler}>Confirmation</button>
-                      {/* <Link to={`/${tid}/travelConfirmation`}>
-                        <button>Confirmation</button>
-                      </Link> */}
                     </td>
                   </tr>
                 );

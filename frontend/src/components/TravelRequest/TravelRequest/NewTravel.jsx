@@ -7,7 +7,6 @@ const NewTravel = (props) => {
   const [employeeId, setId] = useState("");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
-  // const [tid, setTid] = useState("");
 
   const sendRequest = async () => {
     try {
@@ -20,7 +19,6 @@ const NewTravel = (props) => {
           employeeId,
           from,
           to,
-          // tid,
         }),
       });
       const responseData = await response.json();
@@ -43,9 +41,7 @@ const NewTravel = (props) => {
   const toHandler = (event) => {
     setTo(event.target.value);
   };
-  // const tidHandler = (event) => {
-  //   setTid(event.target.value);
-  // };
+
   const newTravelHandler = (event) => {
     sendRequest();
     event.preventDefault();
@@ -53,14 +49,12 @@ const NewTravel = (props) => {
       employeeId,
       from,
       to,
-      //   tid,
     };
     props.onAdd(NewTravel);
     setId("");
     setFrom("");
     setTo("");
-    // setTid("");
-    // console.log(typeof Id);
+
     console.log(NewTravel);
   };
 
@@ -114,18 +108,7 @@ const NewTravel = (props) => {
           />
           <br />
           <br />
-          {/* <label htmlFor="tid">Tid : </label>
-          <input
-            type="text"
-            name="tid"
-            id="tid"
-            placeholder="Enter your desired to"
-            value={tid}
-            onChange={tidHandler}
-            required
-          />
-          <br />
-          <br /> */}
+
           <button type="submit" className={`m-4`}>
             Submit Travel
           </button>
