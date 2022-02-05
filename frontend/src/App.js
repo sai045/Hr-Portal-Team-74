@@ -19,6 +19,7 @@ import Details from "./components/Complaints/Complaint";
 import NewComplaint from "./components/Complaints/NewComplaint";
 
 function App() {
+  
   return (
     <div className="App">
       <Router>
@@ -28,7 +29,10 @@ function App() {
           <Route path="/signUp" element={<SignUp />} />
           <Route path="/Dashboard" element={<Dash />} />
           <Route path="/ApplicantPage" element={<ApplicantPage />} />
-          <Route path="/TravelRequests" element={<TravelRequests />} />
+          <Route
+            path="/TravelRequests"
+            element={<TravelRequests popup={false} />}
+          />
           <Route path="/Employee" element={<Employee />} />
           <Route path="/LeaveRequests" element={<LeaveRequests />} />
           <Route path="/Schedule" element={<Schedule />} />
@@ -43,8 +47,8 @@ function App() {
             element={<LeaveConfirmation />}
           />
           <Route
-            path="/:id/travelConfirmation"
-            element={<TravelConfirmation />}
+            path="/travel/:id"
+            element={<TravelRequests popup={true} />}
           />
           <Route path="/salary" element={<Salary />} />
           <Route path="/Complaints" element={<Complaints />} />

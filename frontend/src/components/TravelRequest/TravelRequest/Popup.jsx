@@ -1,12 +1,38 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
+import { useParams } from "react-router";
 import "./PopUp.css";
 
-function PopUp(props) {
+const PopUp = (props) => {
+  // const [confirmation, setConfirmation] = useState(false);
+  let confirmation = false;
+  const { id } = useParams();
+
+  const sendRequest = async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/travel/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          confirmation: confirmation,
+        }),
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return props.trigger ? (
     <div className="Pop-Card">
       <div className="Pop-top">
         <h4 className="Pop-head">Do You Want To Confirm the Request?</h4>
-        <button className="close-btn" onClick={() => props.setTrigger(false)}>
+        <button
+          className="close-btn"
+          onClick={() => {
+            window.location.assign(`http://localhost:3000/travelRequests`);
+          }}
+        >
           {" "}
           ❌
         </button>
@@ -14,9 +40,27 @@ function PopUp(props) {
 
       <div className="buttons-div">
         <span>
-          <button className="Pop-btn">Yes</button>
+          <button
+            className="Pop-btn"
+            onClick={() => {
+              confirmation = true;
+              sendRequest();
+              window.location.assign(`http://localhost:3000/travelRequests`);
+              confirmation = false;
+            }}
+          >
+            Yes
+          </button>
         </span>
-        <button className="Pop-btn" onClick={() => props.setTrigger(false)}>
+        <button
+          className="Pop-btn"
+          onClick={() => {
+            confirmation = true;
+            sendRequest();
+            // window.location.assign(`http://localhost:3000/travelRequests`);
+            // setConfirm(0);
+          }}
+        >
           No
         </button>
       </div>
@@ -24,5 +68,5 @@ function PopUp(props) {
   ) : (
     ""
   );
-}
+};
 export default PopUp;

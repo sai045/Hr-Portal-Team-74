@@ -7,7 +7,7 @@ const { json } = require("body-parser");
 
 const getAllTravelRequests = async (req, res, next) => {
   try {
-    const travels = await Travel.find();
+    const travels = await Travel.find({ confirmation: false });
     if (travels.length == 0) {
       return res.json({ message: "No Travel Requests" });
     }
@@ -29,7 +29,6 @@ const createTravelRequests = async (req, res, next) => {
     employeeId,
     from,
     to,
-    // tid,
   });
 
   let employee;
@@ -49,6 +48,8 @@ const createTravelRequests = async (req, res, next) => {
     sess.startTransaction();
     employee.travelRequests.push(newTravel);
     await newTravel.save({ session: sess });
+    newTravel.id = newTravel._id;
+    await newTravel.save({ session: sess });
     await employee.save({ session: sess });
     await sess.commitTransaction();
     res.json({ newTravel });
@@ -57,12 +58,16 @@ const createTravelRequests = async (req, res, next) => {
   }
 };
 
-const getTravelRequestById = async (req, res, next) => {
+const confirmTravelRequestById = async (req, res, next) => {
   const tid = req.params.tid;
+
+  const { confirmation } = req.body;
 
   let travel;
   try {
     travel = await Travel.findById(tid).exec();
+    travel.confirmation = confirmation;
+    await travel.save();
   } catch (err) {
     return next(Error(err, 500));
   }
@@ -72,47 +77,9 @@ const getTravelRequestById = async (req, res, next) => {
   }
 
   res.json({ travel });
-};
-
-const deleteTravelRequestById = async (req, res, next) => {
-  const tid = req.params.tid;
-
-  let travel;
-  try {
-    travel = await Travel.findById(tid).exec();
-  } catch (err) {
-    return next(Error(err, 500));
-  }
-
-  if (!travel) {
-    return next(new Error("Couldn't find the Travel Request", 500));
-  }
-
-  const employeeId = travel.employeeId;
-
-  let employee;
-
-  try {
-    employee = await Employee.findById(employeeId);
-  } catch (err) {
-    return next(new Error(err, 500));
-  }
-
-  try {
-    await travel.remove();
-    const sess = await mongoose.startSession();
-    sess.startTransaction();
-    employee.travelRequests.splice(employee.travelRequests.indexOf(travel));
-    await travel.remove({ session: sess });
-    await employee.save({ session: sess });
-    await sess.commitTransaction();
-    res.json({ message: "Deleted Travel Request" });
-  } catch (err) {
-    return next(new Error(err, 500));
-  }
+  console.log(travel);
 };
 
 exports.getAllTravelRequests = getAllTravelRequests;
-exports.getTravelRequestById = getTravelRequestById;
-exports.deleteTravelRequestById = deleteTravelRequestById;
+exports.confirmTravelRequestById = confirmTravelRequestById;
 exports.createTravelRequests = createTravelRequests;

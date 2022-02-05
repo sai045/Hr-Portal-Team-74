@@ -18,8 +18,8 @@ router.post(
   travelCollecters.createTravelRequests
 );
 
-router.get("/:tid", travelCollecters.getTravelRequestById);
+router.patch("/:tid", travelCollecters.confirmTravelRequestById);
 
-router.delete("/:tid", travelCollecters.deleteTravelRequestById);
+// router.delete("/:tid", travelCollecters.deleteTravelRequestById);
 
 module.exports = router;

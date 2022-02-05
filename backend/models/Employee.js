@@ -14,6 +14,7 @@ const employeeSchema = new mongoose.Schema({
       ref: "Travel",
     },
   ],
+  
 });
 
 module.exports = mongoose.model("Employee", employeeSchema);
