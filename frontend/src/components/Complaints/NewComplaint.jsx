@@ -20,6 +20,7 @@ const NewComplaint = (props) => {
       console.log(err);
     }
   };
+
   const [name, setName] = useState("");
   const [department, setDepartment] = useState("");
   const [complaint, setComplaint] = useState("");
@@ -45,8 +46,12 @@ const NewComplaint = (props) => {
     setName(""), setComplaint(""), setDepartment("");
     console.log(NewComplaint);
   };
+
   return (
     <Card className={`${styles.Card} m-4`}>
+      <button onClick={props.onClose} className={styles.closeButton}>
+        <i className="fas fa-window-close">Close</i>
+      </button>
       <div className="m-4">
         <h1 className={styles.heading}>New Complaint</h1>
       </div>

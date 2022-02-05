@@ -2,16 +2,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80%;
+  /* width: 80%; */
 }
 .heading {
   padding: 20px 0 0 0;
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-}
-
-.newApplicant {
-  /* position: relative;
-  right: 20%; */
 }
 
 .background {
@@ -32,7 +27,7 @@
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   text-align: center;
-  width: 100%;
+  width: 70%;
 }
 
 .table td,
@@ -56,4 +51,7 @@
 
 * {
   box-sizing: border-box;
+}
+
+@media (max-width: 620px) {
 }

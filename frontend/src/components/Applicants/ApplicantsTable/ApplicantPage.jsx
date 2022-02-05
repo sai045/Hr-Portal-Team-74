@@ -108,15 +108,15 @@ const Applicant = () => {
         >
           New Applicant
         </button>
-        {newApplicant && (
-          <NewApplicant
-            onAdd={submitHandler}
-            onError={errorHandler}
-            onClose={closeHandler}
-            sendRequest={sendRequest}
-          />
-        )}
         <div className={styles.Applicant}>
+          {newApplicant && (
+            <NewApplicant
+              onAdd={submitHandler}
+              onError={errorHandler}
+              onClose={closeHandler}
+              sendRequest={sendRequest}
+            />
+          )}
           <div id="error" className={newApplicant ? "m-4" : "m-2"}></div>
           <div className={styles.heading}>
             <h1>Applicant Data</h1>

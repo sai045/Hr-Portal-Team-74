@@ -23,6 +23,10 @@
   width: 80%;
 }
 
+/* .tableOuter {
+  overflow: scroll;
+} */
+
 .table td,
 .table th {
   border: 2px solid #ddd;
@@ -44,4 +48,19 @@
 
 * {
   box-sizing: content-box;
+}
+
+@media (max-width: 620px) {
+  table {
+    display: block;
+    max-width: -moz-fit-content;
+    max-width: fit-content;
+    margin: 0 auto;
+    overflow-x: auto;
+    white-space: nowrap;
+    box-sizing: border-box;
+  }
+  .table {
+    width: 100%;
+  }
 }

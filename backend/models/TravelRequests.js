@@ -8,7 +8,7 @@ const travelSchema = new mongoose.Schema({
     required: true,
     ref: "Employee",
   },
-  // tid: { type: String, required: true, unique: true },
+  
 });
 
 module.exports = mongoose.model("Travel", travelSchema);

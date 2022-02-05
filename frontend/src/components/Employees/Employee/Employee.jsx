@@ -108,14 +108,14 @@ const Employee = () => {
         >
           New Employee
         </button>
-        {newEmployee && (
-          <NewEmpoloyee
-            onAdd={submitHandler}
-            onError={errorHandler}
-            onClose={closeHandler}
-          />
-        )}
         <div className={styles.Employee}>
+          {newEmployee && (
+            <NewEmpoloyee
+              onAdd={submitHandler}
+              onError={errorHandler}
+              onClose={closeHandler}
+            />
+          )}
           <div id="error" className={newEmployee ? "m-4" : "m-2"}></div>
 
           <div className={styles.heading}>
@@ -154,6 +154,7 @@ const Employee = () => {
               })}
             </tbody>
           </table>
+
           <div className="m-2">
             <span>
               Go to page

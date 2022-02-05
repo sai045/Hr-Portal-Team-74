@@ -7,11 +7,13 @@ import Navbar from "../../Navbar/Navbar";
 import Card from "../../UI/Card";
 import LoadingSpinner from "../../UI/LoadingSpinner";
 import NewTravel from "./NewTravel";
+import PopUp from "./Popup";
 
 const TravelRequests = () => {
   const [travels, setTravels] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [newTravel, setNewTravel] = useState(false);
+  const [popup, setPopup] = useState(false);
   const sendRequest = async () => {
     setIsLoading(true);
     // let travels;
@@ -38,10 +40,6 @@ const TravelRequests = () => {
 
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => travels, [travels]);
-  // const tid = 1;
-  const travelHandler = () => {
-    window.location.href = `/${tid}/travelConfirmation`;
-  };
 
   const {
     getTableProps,
@@ -94,10 +92,10 @@ const TravelRequests = () => {
         >
           New Travel
         </button>
-        {newTravel && (
-          <NewTravel onAdd={submitHandler} onClose={closeHandler} />
-        )}
         <div className={styles.Travelrequests}>
+          {newTravel && (
+            <NewTravel onAdd={submitHandler} onClose={closeHandler} />
+          )}
           <div className={styles.heading}>
             <h1>Travel Requests</h1>
           </div>
@@ -105,7 +103,7 @@ const TravelRequests = () => {
             <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
           </div>
 
-          <table {...getTableProps()}>
+          <table {...getTableProps()} className={styles.table}>
             <thead>
               {headerGroups.map((headerGroup) => (
                 <tr {...headerGroup.getHeaderGroupProps()}>
@@ -131,7 +129,13 @@ const TravelRequests = () => {
                       );
                     })}
                     <td>
-                      <button onClick={travelHandler}>Confirmation</button>
+                      <button
+                        onClick={() => {
+                          setPopup(true);
+                        }}
+                      >
+                        Confirmation
+                      </button>
                     </td>
                   </tr>
                 );
@@ -187,6 +191,7 @@ const TravelRequests = () => {
               Next
             </button>
           </div>
+          <PopUp trigger={popup} setTrigger={setPopup} />
         </div>
       </Card>
     </>

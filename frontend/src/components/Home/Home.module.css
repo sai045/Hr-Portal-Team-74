@@ -112,6 +112,7 @@ p {
     border: 2px solid black;
     margin: 0.5rem;
     border-radius: 0.5rem;
+    color: #000000;
   }
   .symbols {
     display: none;

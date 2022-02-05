@@ -26,6 +26,9 @@
   .newEmployeeForm {
     width: 100%;
   }
+  .Card {
+    width: 100%;
+  }
 }
 
 @media (max-width: 400px) {

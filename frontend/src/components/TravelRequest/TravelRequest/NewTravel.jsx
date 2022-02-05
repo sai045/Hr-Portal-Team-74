@@ -1,4 +1,3 @@
-import { ObjectID } from "bson";
 import React, { useState } from "react";
 import Card from "../../UI/Card";
 import styles from "./NewTravel.module.css";
@@ -25,9 +24,7 @@ const NewTravel = (props) => {
       if (!response.ok) {
         throw new Error(responseData.message);
       }
-      console.log(typeof employeeId);
     } catch (err) {
-      // props.onError(err);
       console.log(err);
     }
   };
