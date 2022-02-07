@@ -10,6 +10,8 @@ router.get("/", employeeController.getAllEmployees);
 
 router.get("/:eid", employeeController.getEmployeeById);
 
+router.get("/travel/:eid", employeeController.getTravelsByEmployeeId);
+
 router.post(
   "/",
   [

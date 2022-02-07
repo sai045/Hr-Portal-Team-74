@@ -1,6 +1,7 @@
 const error = require("../models/error");
 const { validationResult } = require("express-validator");
 const Employee = require("../models/Employee");
+const Travel = require("../models/TravelRequests");
 
 const getAllEmployees = async (req, res, next) => {
   try {
@@ -113,8 +114,35 @@ const deleteEmployeeById = async (req, res, next) => {
   }
 };
 
+const getTravelsByEmployeeId = async (req, res, next) => {
+  const eid = req.params.eid;
+
+  let travels;
+  let employee;
+  try {
+    employee = await Employee.findById(eid).exec();
+  } catch (err) {
+    next(Error(err, 500));
+  }
+
+  travels = employee.travelRequests;
+  let travelJSON = [];
+  for (let i = 0; i < travels.length; i++) {
+    try {
+      let TRAVEL = await Travel.findById(travels[i]);
+      travelJSON.push(TRAVEL);
+    } catch (err) {
+      console.log(err);
+      next(Error(err, 500));
+    }
+  }
+
+  res.json({ travelJSON });
+};
+
 exports.getAllEmployees = getAllEmployees;
 exports.getEmployeeById = getEmployeeById;
 exports.createEmployee = createEmployee;
 exports.updateEmployeeByID = updateEmployeeByID;
 exports.deleteEmployeeById = deleteEmployeeById;
+exports.getTravelsByEmployeeId = getTravelsByEmployeeId;

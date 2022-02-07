@@ -1,19 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { useParams } from "react-router";
-import "./EmployeeDashboard.css";
+import { useTable, useGlobalFilter, usePagination } from "react-table";
+import styles from "./EmployeeDashboard.module.css";
+import GlobalFilter from "./GlobalFilter";
+import Navbar from "../../Navbar/Navbar";
+import Card from "../../UI/Card";
+import { COLUMNS } from "./Tcolumns";
 
 const EmployeeDashboard = () => {
   const [travels, setTravels] = useState([]);
   const [employeeName, setEmployeeName] = useState("");
   const { id } = useParams();
   const [Id, setId] = useState(id);
+
   const sendRequest = async () => {
     try {
       const response = await fetch(`http://localhost:5000/employee/${Id}`);
       const responseData = await response.json();
       const name = responseData.employee.name;
-      const travel = responseData.employee.travelRequests;
-      setTravels(travel);
+      const travelRequestsResponse = await fetch(
+        `http://localhost:5000/employee/travel/${Id}`
+      );
+      const travelRequestsResponseData = await travelRequestsResponse.json();
+      console.log(travelRequestsResponseData.travelJSON);
+      setTravels(travelRequestsResponseData.travelJSON);
       setEmployeeName(name);
     } catch (err) {
       console.log(err);
@@ -31,12 +41,126 @@ const EmployeeDashboard = () => {
     window.location.assign(`http://localhost:3000/Employee`);
   };
 
+  const columns = useMemo(() => COLUMNS, []);
+  const data = useMemo(() => travels, [travels]);
+
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    page,
+    nextPage,
+    previousPage,
+    canNextPage,
+    canPreviousPage,
+    pageOptions,
+    gotoPage,
+    pageCount,
+    setPageSize,
+    prepareRow,
+    state,
+    setGlobalFilter,
+  } = useTable(
+    {
+      columns,
+      data,
+    },
+    useGlobalFilter,
+    usePagination
+  );
+
+  const { globalFilter, pageIndex, pageSize } = state;
+
   return (
     <>
+      <Navbar />
       <h1>Hi {employeeName}</h1>
       <button onClick={deleteHandler}>Delete</button>
       <h1>Travels</h1>
-      <div>{travels}</div>
+
+      <div className={styles.search}>
+        <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
+      </div>
+
+      <table {...getTableProps()} className={styles.table}>
+        <thead>
+          {headerGroups.map((headerGroup) => (
+            <tr {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map((column) => (
+                <th {...column.getHeaderProps()} className="rounded-3">
+                  {column.render("Header")}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody {...getTableBodyProps()}>
+          {page.map((row) => {
+            prepareRow(row);
+            return (
+              <tr {...row.getRowProps()}>
+                {row.cells.map((cell) => {
+                  return (
+                    <td {...cell.getCellProps()} className="rounded-3">
+                      {cell.render("Cell")}
+                    </td>
+                  );
+                })}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+
+      <div className="m-2">
+        <span>
+          Go to page
+          <input
+            type="number"
+            defaultValue={pageIndex + 1}
+            onChange={(e) => {
+              const pageNumber = e.target.value
+                ? Number(e.target.value - 1)
+                : 0;
+              gotoPage(pageNumber);
+            }}
+            className="m-2"
+            style={{ width: "40px" }}
+          />
+        </span>
+        <span className="mx-1">
+          Page{" "}
+          <strong>
+            {pageIndex + 1} of {pageOptions.length}
+          </strong>{" "}
+        </span>
+        <select
+          value={pageSize}
+          onChange={(e) => setPageSize(Number(e.target.value))}
+        >
+          {[10, 20, 50].map((pageSize) => (
+            <option value={pageSize} key={pageSize}>
+              Show {pageSize}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className="m-2 px-4">
+        <button
+          onClick={() => previousPage()}
+          disabled={!canPreviousPage}
+          style={{ width: "8rem" }}
+        >
+          Previous
+        </button>
+        <button
+          onClick={() => nextPage()}
+          disabled={!canNextPage}
+          style={{ width: "8rem" }}
+        >
+          Next
+        </button>
+      </div>
     </>
   );
 };

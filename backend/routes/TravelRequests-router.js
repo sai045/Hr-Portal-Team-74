@@ -8,6 +8,8 @@ const travelCollecters = require("../collecters/travelRequests-collecters");
 
 router.get("/", travelCollecters.getAllTravelRequests);
 
+router.get("/:tid", travelCollecters.getTravelRequestById);
+
 router.post(
   "/",
   [
@@ -19,7 +21,5 @@ router.post(
 );
 
 router.patch("/:tid", travelCollecters.confirmTravelRequestById);
-
-// router.delete("/:tid", travelCollecters.deleteTravelRequestById);
 
 module.exports = router;

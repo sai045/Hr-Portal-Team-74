@@ -5,7 +5,7 @@ const Complaint = require("../models/Complaint");
 const getComplaints = async (req, res, next) => {
   try {
     const complaints = await Complaint.find().exec();
-    res.json({ complaints});
+    res.json({ complaints });
   } catch (err) {
     return next(Error(err, 500));
   }

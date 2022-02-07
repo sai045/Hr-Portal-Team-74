@@ -17,6 +17,22 @@ const getAllTravelRequests = async (req, res, next) => {
   }
 };
 
+const getTravelRequestById = async (req, res, next) => {
+  const tid = req.params.tid;
+  let travel;
+  try {
+    travel = await Travel.findById(tid);
+  } catch (err) {
+    return next(new Error(err, 500));
+  }
+
+  if (!travel) {
+    return next(Error("Couldn't find the complint", 500));
+  }
+
+  res.json({ travel });
+};
+
 const createTravelRequests = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -83,3 +99,4 @@ const confirmTravelRequestById = async (req, res, next) => {
 exports.getAllTravelRequests = getAllTravelRequests;
 exports.confirmTravelRequestById = confirmTravelRequestById;
 exports.createTravelRequests = createTravelRequests;
+exports.getTravelRequestById = getTravelRequestById;
