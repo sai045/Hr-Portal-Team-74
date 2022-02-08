@@ -1,34 +1,25 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useTable } from "react-table";
 import { COLUMNS } from "./columns(sl)";
 import "./salary.css";
 
-const Data = [
-  {
-    department: "Accounting",
-    count: 25,
-    amount: 270500,
-  },
-  {
-    department: "Services",
-    count: 34,
-    amount: 150000,
-  },
-  {
-    department: "Legal",
-    count: 8,
-    amount: 206000,
-  },
-  {
-    department: "Product Managment",
-    count: 13,
-    amount: 130500,
-  },
-];
-
 const Table = () => {
+  const [Data, setData] = useState([]);
+  const sendRequest = async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/salary`);
+      const responseData = await response.json();
+      setData(responseData.obj);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    sendRequest();
+  }, []);
   const columns = useMemo(() => COLUMNS, []);
-  const data = useMemo(() => Data, []);
+  const data = useMemo(() => Data, [Data]);
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable({

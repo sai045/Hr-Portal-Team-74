@@ -1,24 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { PieChart, Pie, Tooltip } from "recharts";
 import "./salary.css";
 import Table from "./table";
+import Navbar from "../Navbar/Navbar";
 
 const Salary = () => {
-  const data = [
-    { department: "Marketing", salary: 400 },
-    { department: "Legal", salary: 700 },
-    { department: "Product Managment", salary: 700 },
-    { department: "Product Managment", salary: 700 },
-    { department: "Product Managment", salary: 700 },
-    { department: "Accounting", salary: 200 },
-    { department: "Services", salary: 1000 },
-    { department: "Engineering", salary: 1000 },
-    { department: "Sales", salary: 1000 },
-    { department: "Services", salary: 1000 },
-  ];
+  const [Data, setData] = useState([]);
+  const sendRequest = async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/salary`);
+      const responseData = await response.json();
+      console.log(responseData.obj);
+      setData(responseData.obj);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    sendRequest();
+  }, []);
+
+  let renderLabel = (Data) => {
+    return Data.department;
+  };
 
   return (
     <div className="salary">
+      <Navbar />
       <h2>Salary</h2>
       <div>
         {" "}
@@ -30,10 +39,10 @@ const Salary = () => {
           <div className="p">
             <PieChart width={400} height={300}>
               <Pie
-                data={data}
+                data={Data}
                 dataKey="salary"
                 outerRadius={100}
-                label
+                label={renderLabel}
                 fill="rgb(88 99 161)"
               />
               <Tooltip />

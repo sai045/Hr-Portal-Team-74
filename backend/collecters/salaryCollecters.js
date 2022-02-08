@@ -59,6 +59,54 @@ const updateSalaryById = async (req, res, next) => {
   }
 };
 
+const groupSalaryByDepartment = async (req, res, next) => {
+  let departments = [];
+  try {
+    const employees = await Employee.find().exec();
+    employees.map((e) => {
+      let department = e.department;
+      let present = departments.includes();
+
+      if (present) {
+      } else {
+        departments.push(department);
+      }
+    });
+  } catch (err) {
+    console.log(err);
+  }
+
+  var groups = [];
+  try {
+    for (let i = 0; i < departments.length; i++) {
+      let group = await Employee.find({ department: departments[i] }).exec();
+      groups[i] = group;
+    }
+  } catch (err) {
+    console.log(err);
+  }
+  let GroupSalary = [];
+  for (let i = 0; i < groups.length; i++) {
+    let length = groups[i].length;
+    let groupSalary = 0;
+    groupSalary = Number(groupSalary);
+    for (let j = 0; j < length; j++) {
+      arr = groups[i][j];
+      arrSalary = Number(arr.salary);
+      groupSalary = groupSalary + arrSalary;
+      GroupSalary.push(groupSalary);
+    }
+  }
+  var obj = [];
+  for (let k = 0; k < departments.length; k++) {
+    let department = departments[k];
+    let salary = GroupSalary[k];
+    obj.push({ department, salary });
+  }
+  res.json({ obj });
+};
+
 exports.getSalaryById = getSalaryById;
 exports.getAllSalaries = getAllSalaries;
 exports.updateSalaryById = updateSalaryById;
+exports.groupSalaryByDepartment = groupSalaryByDepartment;
