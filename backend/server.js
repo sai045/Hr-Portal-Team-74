@@ -13,6 +13,7 @@ const EmployeeRouter = require("./routes/employeeRouter");
 const TravelRouter = require("./routes/TravelRequests-router");
 const SalaryRouter = require("./routes/salaryRouter");
 const complaintsRouter = require("./routes/complaintRoutes");
+const leaveRouter = require("./routes/leaverequests");
 const connectDB = require("./config/config");
 
 connectDB();
@@ -30,6 +31,8 @@ app.use("/travel", TravelRouter);
 app.use("/salary", SalaryRouter);
 
 app.use("/complaints", complaintsRouter);
+
+app.use("/leave", leaveRouter);
 
 app.use("/api/users", require("./routes/users"));
 app.use("/api/profile", require("./routes/profile"));

@@ -2,6 +2,7 @@ const error = require("../models/error");
 const { validationResult } = require("express-validator");
 const Employee = require("../models/Employee");
 const Travel = require("../models/TravelRequests");
+const Leave = require("../models/Leaverequests");
 
 const getAllEmployees = async (req, res, next) => {
   try {
@@ -48,6 +49,7 @@ const createEmployee = async (req, res, next) => {
     salary,
     travelRequests: [],
     dashboard,
+    leaveRequests: [],
   });
 
   try {
@@ -140,9 +142,36 @@ const getTravelsByEmployeeId = async (req, res, next) => {
   res.json({ travelJSON });
 };
 
+const getLeavesByEmployeeId = async (req, res, next) => {
+  const eid = req.params.eid;
+
+  let leaves;
+  let employee;
+  try {
+    employee = await Employee.findById(eid).exec();
+  } catch (err) {
+    next(Error(err, 500));
+  }
+
+  leaves = employee.leaveRequests;
+  let leaveJSON = [];
+  for (let i = 0; i < leaves.length; i++) {
+    try {
+      let LEAVE = await Leave.findById(leaves[i]);
+      leaveJSON.push(LEAVE);
+    } catch (err) {
+      console.log(err);
+      next(Error(err, 500));
+    }
+  }
+
+  res.json({ leaveJSON });
+};
+
 exports.getAllEmployees = getAllEmployees;
 exports.getEmployeeById = getEmployeeById;
 exports.createEmployee = createEmployee;
 exports.updateEmployeeByID = updateEmployeeByID;
 exports.deleteEmployeeById = deleteEmployeeById;
 exports.getTravelsByEmployeeId = getTravelsByEmployeeId;
+exports.getLeavesByEmployeeId = getLeavesByEmployeeId;

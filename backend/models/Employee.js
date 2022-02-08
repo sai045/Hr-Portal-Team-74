@@ -14,7 +14,13 @@ const employeeSchema = new mongoose.Schema({
       ref: "Travel",
     },
   ],
-  
+  leaveRequests: [
+    {
+      type: mongoose.Types.ObjectId,
+      required: true,
+      ref: "Travel",
+    },
+  ],
 });
 
 module.exports = mongoose.model("Employee", employeeSchema);
