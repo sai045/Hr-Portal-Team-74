@@ -26,6 +26,7 @@ const NewEmployee = (props) => {
       });
       const responseData = await response.json();
       if (!response.ok) {
+        // console.log(responseData.message);
         throw new Error(responseData.message);
       }
     } catch (err) {

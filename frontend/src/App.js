@@ -10,12 +10,10 @@ import Schedule from "./components/Schedule/Schedule";
 import Resume from "./components/Applicants/Resume/Resume";
 import EmployeeDashboard from "./components/Employees/EmployeeDashboard/EmployeeDashboard";
 import LeaveConfirmation from "./components/Leave Request/LeaveConfirmation/LeaveConfirmation";
-import TravelConfirmation from "./components/TravelRequest/TravelConfirmation/TravelConfirmation";
 import Dash from "./components/Dashboard/Dash";
 import Home from "./components/Home/Home";
 import Salary from "./components/Salary/Salary";
 import Complaints from "./components/Complaints/Complaints";
-import Details from "./components/Complaints/Complaint";
 import NewComplaint from "./components/Complaints/NewComplaint";
 
 function App() {

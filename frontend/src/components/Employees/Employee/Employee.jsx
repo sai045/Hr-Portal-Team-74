@@ -27,7 +27,6 @@ const Employee = () => {
       setIsLoading(false);
     } catch (err) {
       setIsLoading(false);
-
       error.push(err);
     }
   };

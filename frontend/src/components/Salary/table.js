@@ -1,9 +1,10 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useTable } from "react-table";
 import { COLUMNS } from "./columns(sl)";
-import "./salary.css";
+// import "./salary.css";
+import styles from "./salary.module.css"
 
-const Table = () => {
+const Table = (props) => {
   const [Data, setData] = useState([]);
   const sendRequest = async () => {
     try {
@@ -28,9 +29,9 @@ const Table = () => {
     });
 
   return (
-    <div className="right">
-      <span>
-        <table {...getTableProps()}>
+    <div className={styles.right}>
+      {/* <span> */}
+        <table {...getTableProps()} className={styles.table}>
           <thead>
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
@@ -57,7 +58,7 @@ const Table = () => {
             })}
           </tbody>
         </table>
-      </span>
+      {/* </span> */}
     </div>
   );
 };

@@ -37,7 +37,8 @@ const createEmployee = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     console.log(errors);
-    next(Error("InValid Input", 422));
+    // return next(error("InValid Input", 422));
+    return res.json({ errors });
   }
   const { name, email, department, working_hours, salary, dashboard } =
     req.body;

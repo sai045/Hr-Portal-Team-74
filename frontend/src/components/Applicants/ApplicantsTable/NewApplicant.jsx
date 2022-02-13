@@ -17,9 +17,14 @@ const NewComplaint = (props) => {
           experience,
         }),
       });
+      const responseData = await response.json();
+      if (!response.ok) {
+        console.log(responseData.message);
+        throw new Error(responseData.message);
+      }
     } catch (err) {
       console.log(err);
-      // props.onError(err);
+      props.onError(err);
     }
   };
   const [name, setName] = useState("");
@@ -40,6 +45,7 @@ const NewComplaint = (props) => {
     setExperience(event.target.value);
   };
   const newApplicantHandler = (event) => {
+    sendRequest();
     event.preventDefault();
     const NewApplicant = {
       name,
@@ -47,9 +53,8 @@ const NewComplaint = (props) => {
       experience,
       position,
     };
-    sendRequest();
     props.onAdd(NewApplicant);
-    props.sendRequest();
+    // props.sendRequest();
     setName("");
     setPosition("");
     setQualification("");

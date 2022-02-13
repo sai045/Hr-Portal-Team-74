@@ -35,9 +35,8 @@ const Applicant = () => {
   const data = useMemo(() => loadedApplicants, [loadedApplicants]);
 
   const submitHandler = () => {
-    sendRequest();
+    // sendRequest();
     setNewApplicant(false);
-    console.log("onAdd");
   };
 
   const errorHandler = (err) => {
@@ -51,6 +50,7 @@ const Applicant = () => {
     const Error = document.createElement("h1");
     let ERROR = String(error[0]);
     const duplicate = String("E11000");
+    console.log(error[0]);
 
     if (ERROR.includes(duplicate)) {
       Error.innerHTML = "Applicant already exists";

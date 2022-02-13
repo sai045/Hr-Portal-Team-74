@@ -31,9 +31,9 @@ span {
   display: block;
   clear: both;
 }
-* {
+/* * {
   box-sizing: border-box;
-}
+} */
 h2 {
   text-align: center;
   font-size: 50px;
@@ -41,4 +41,33 @@ h2 {
 }
 .recharts-wrapper {
   margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .tab {
+    display: block;
+    /* margin: auto 0; */
+    width: 100vw;
+    position: relative;
+    left: 10%;
+  }
+  .pie {
+    /* display: block; */
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    left: 7vw;
+  }
+}
+
+@media (max-width: 620px) {
+  .tab table {
+    width: 80vw;
+    max-width: none;
+    display: inline-table;
+    position: relative;
+    right: 7vw;
+  }
 }

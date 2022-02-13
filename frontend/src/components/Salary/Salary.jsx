@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { PieChart, Pie, Tooltip } from "recharts";
-import "./salary.css";
+// import "./salary.css";
+import styles from "./salary.module.css";
 import Table from "./table";
 import Navbar from "../Navbar/Navbar";
 
@@ -26,17 +27,17 @@ const Salary = () => {
   };
 
   return (
-    <div className="salary">
+    <div className={styles.salary}>
       <Navbar />
       <h2>Salary</h2>
       <div>
         {" "}
-        <div className="tab">
+        <div className={styles.tab}>
           <Table />
         </div>
-        <div className="pie">
-          <h1 className="heading">Departments annualpay </h1>
-          <div className="p">
+        <div className={styles.pie}>
+          <h1 className={styles.heading}>Departments annualpay </h1>
+          <div className={styles.p}>
             <PieChart width={400} height={300}>
               <Pie
                 data={Data}
