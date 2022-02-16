@@ -45,3 +45,7 @@
     box-sizing: content-box;
   }
   
+  .newLeaveRequest{
+    border-width:3px;
+    border: 1px solid black;
+  }
