@@ -5,11 +5,11 @@ import "./PopUp.css";
 const PopUp = (props) => {
   // const [confirmation, setConfirmation] = useState(false);
   let confirmation = false;
-  const { id } = useParams();
+  const { tid } = useParams();
 
   const sendRequest = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/travel/${id}`, {
+      const response = await fetch(`http://localhost:5000/travel/${tid}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

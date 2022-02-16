@@ -10,8 +10,8 @@ const EmployeeDashboard = () => {
   const [employeeName, setEmployeeName] = useState("");
   const [department, setDepartment] = useState("");
   const [salary, setSalary] = useState(0);
-  const { id } = useParams();
-  const [Id, setId] = useState(id);
+  const { eid } = useParams();
+  const [Id, setId] = useState(eid);
 
   const sendRequest = async () => {
     try {

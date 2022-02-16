@@ -5,8 +5,8 @@ import "./Resume.css";
 const Resume = () => {
   const [resume, setResume] = useState();
   const [resumeName, setResumeName] = useState("");
-  const { id } = useParams();
-  const [Id, SetId] = useState(id);
+  const { aid } = useParams();
+  const [Id, SetId] = useState(aid);
   const sendRequest = async (req, res, next) => {
     try {
       const response = await fetch(`http://localhost:5000/applicant/${Id}`);

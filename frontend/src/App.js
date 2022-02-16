@@ -15,39 +15,37 @@ import Home from "./components/Home/Home";
 import Salary from "./components/Salary/Salary";
 import Complaints from "./components/Complaints/Complaints";
 import NewComplaint from "./components/Complaints/NewComplaint";
+import Navbar from "./components/Navbar/Navbar";
 
 function App() {
-  
   return (
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/navbar/:id" element={<Navbar />} />
+          <Route path="/:id" element={<Home />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/signUp" element={<SignUp />} />
-          <Route path="/Dashboard" element={<Dash />} />
-          <Route path="/ApplicantPage" element={<ApplicantPage />} />
+          <Route path="/:id/Dashboard" element={<Dash />} />
+          <Route path="/:id/ApplicantPage" element={<ApplicantPage />} />
           <Route
-            path="/TravelRequests"
+            path="/:id/TravelRequests"
             element={<TravelRequests popup={false} />}
           />
-          <Route path="/Employee" element={<Employee />} />
-          <Route path="/LeaveRequests" element={<LeaveRequests />} />
-          <Route path="/Schedule" element={<Schedule />} />
-          <Route path="/resume/:id" element={<Resume />} />
+          <Route path="/:id/Employee" element={<Employee />} />
+          <Route path="/:id/LeaveRequests" element={<LeaveRequests />} />
+          <Route path="/:id/Schedule" element={<Schedule />} />
+          <Route path="/:id/resume/:aid" element={<Resume />} />
 
           <Route
-            path="//employeeDashboard/:id"
+            path="/:id/employeeDashboard/:eid"
             element={<EmployeeDashboard />}
           />
           <Route
             path="/:id/leaveConfirmation"
             element={<LeaveConfirmation />}
           />
-          <Route
-            path="/travel/:id"
-            element={<TravelRequests popup={true} />}
-          />
+          <Route path="/travel/:tid" element={<TravelRequests popup={true} />} />
           <Route path="/salary" element={<Salary />} />
           <Route path="/Complaints" element={<Complaints />} />
           <Route path="/newComplaints" element={<NewComplaint />} />

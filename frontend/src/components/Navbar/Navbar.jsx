@@ -1,13 +1,35 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import styles from "./Navbar.module.css";
 
 const Navbar = () => {
+  const [name, setName] = useState("");
+  const { id } = useParams();
+  const [Id, SetId] = useState(id);
+  const sendRequest = async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/${Id}`);
+      const responseData = await response.json();
+      if (!response.ok) {
+        throw Error("Error");
+      }
+      const username = responseData.user.name;
+      setName(username);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    sendRequest();
+  }, []);
+
   const LinkStyles = {
     textDecoration: "none",
     margin: "0.5rem",
     color: "grey",
   };
+
   return (
     <div>
       <nav
@@ -36,7 +58,8 @@ const Navbar = () => {
           >
             <ul className="navbar-nav mx-5">
               <li className="navbar-text" className={styles.navText}>
-                User Name
+                {/* User Name */}
+                {name}
               </li>
               <li className="nav-item dropdown">
                 <img
