@@ -24,3 +24,45 @@
 .infobox h1 {
   margin: 1rem;
 }
+@media only screen and (min-width: 800px) and (max-width: 1200px) {
+  .allboxes{
+    display: block;
+    width: 20%;
+    margin-right: 0%;
+    height: 60%;
+    
+     
+  }
+  .infobox{
+    margin-bottom: 3%;
+  }
+   
+}
+@media only screen and (min-width: 500px) and (max-width: 800px) {
+  .allboxes{
+    display: block;
+    width: 20%;
+    margin-right: 0%;
+    height: 60%;
+    margin-left: 0%;
+    
+  }
+  .infobox{
+    margin-bottom: 3%;
+  }
+   
+}
+@media only screen and (min-width: 200px) and (max-width: 500px) {
+  .allboxes{
+    display: block;
+    width: 33%;
+    margin-right: 0%;
+    height: 60%;
+    margin-left: 0%;
+    
+  }
+  .infobox{
+    margin-bottom: 3%;
+  }
+   
+}

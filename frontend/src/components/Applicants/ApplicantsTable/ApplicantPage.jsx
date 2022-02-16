@@ -18,7 +18,7 @@ const Applicant = () => {
   const sendRequest = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:5000/applicant/");
+      const response = await fetch("http://localhost:5000/api/applicant/");
       const responseData = await response.json();
       setLoadedApplicants(responseData.applicants);
       setIsLoading(false);

@@ -38,7 +38,7 @@ const Navbar = () => {
         style={{ width: "100vw" }}
       >
         <div className="container-fluid">
-          <Link to={`/`} style={LinkStyles}>
+          <Link to={`/${Id}`} style={LinkStyles}>
             <h1>HR Portal</h1>
           </Link>
           <button

@@ -8,17 +8,20 @@ import Card from "../../UI/Card";
 import LoadingSpinner from "../../UI/LoadingSpinner";
 import NewTravel from "./NewTravel";
 import PopUp from "./Popup";
+import { useParams } from "react-router";
 
 const TravelRequests = (props) => {
   const [travels, setTravels] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [newTravel, setNewTravel] = useState(false);
+  const { id } = useParams();
+  const [Id, setId] = useState(id);
 
   const sendRequest = async () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/travel");
+      const response = await fetch("http://localhost:5000/api/travel");
       const responseData = await response.json();
       console.log(responseData);
       if (!response.ok) {

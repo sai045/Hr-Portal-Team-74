@@ -6,7 +6,8 @@ import GlobalFilter from "./GlobalFilter";
 import styles from "./LeaveRequests.module.css";
 import Navbar from "../../Navbar/Navbar";
 import Card from "../../UI/Card";
-// import NewLeaveRequest from "./NewLeaveRequest"
+import NewLeaveRequest from "./NewLeaveRequest";
+import PopUp from "./PopUp";
 
 const LeaveRequests = () => {
   const [leaverequests, setLeaverequests] = useState([]);
@@ -50,13 +51,12 @@ const LeaveRequests = () => {
 
   const sendRequest = async () => {
     try {
-      const response = await fetch("http://localhost:5000/leave/");
+      const response = await fetch("http://localhost:5000/api/leaverequests/");
       const responseData = await response.json();
       if (!response.ok) {
         throw new Error(responseData.message);
       }
       setLeaverequests(responseData.leaverequests);
-      console.log(responseData.leaverequests);
     } catch (err) {
       console.error(err);
     }
@@ -71,6 +71,7 @@ const LeaveRequests = () => {
   const submitHandler = () => {
     setnewLeaveRequest(false);
   };
+  const [Popup, setPopup] = useState(false);
 
   return (
     <>
@@ -122,7 +123,10 @@ const LeaveRequests = () => {
                         );
                       })}
                       <td>
-                        <button onClick={confirmHandler}>Confirm</button>
+                        <button onClick={() => setPopup(true)}>
+                          {" "}
+                          Confirm{" "}
+                        </button>
                       </td>
                     </tr>
                   );

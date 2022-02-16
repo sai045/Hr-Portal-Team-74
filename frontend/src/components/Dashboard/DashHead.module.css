@@ -1,3 +1,24 @@
 .head {
   margin: 0px 0px 0px 150px;
 }
+@media only screen and (min-width: 800px) and (max-width: 1200px) {
+  .head{
+    text-align: center;
+    margin-left: 50%;
+  }
+   
+}
+@media only screen and (min-width: 500px) and (max-width: 800px) {
+  .head{
+    text-align: center;
+    margin-left: 50%;
+  }
+   
+}
+@media only screen and (min-width: 200px) and (max-width: 500px) {
+  .head{
+    text-align: center;
+    margin-left: 70%;
+  }
+   
+}

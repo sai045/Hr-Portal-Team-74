@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export const COLUMNS = [
   {
@@ -19,11 +19,17 @@ export const COLUMNS = [
   },
   {
     Header: "Resume",
-    accessor: "resume",
+    accessor: "_id",
     Cell: ({ cell }) => (
       <button
         onClick={() => {
-          window.location.assign(`${cell.row.values.resume}`);
+          const href = window.location.href;
+          const href_elements = href.split("/")
+          const id = href_elements[3]
+          const aid = cell.row.values._id;
+          console.log(id);
+          console.log(aid);
+          window.location.assign(`http://localhost:3000/${id}/resume/${aid}`);
         }}
       >
         Resume

@@ -9,7 +9,7 @@ const PopUp = (props) => {
 
   const sendRequest = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/travel/${tid}`, {
+      const response = await fetch(`http://localhost:5000/api/travel/${tid}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -30,7 +30,14 @@ const PopUp = (props) => {
         <button
           className="close-btn"
           onClick={() => {
-            window.location.assign(`http://localhost:3000/travelRequests`);
+            const href = window.location.href;
+            const href_elements = href.split("/");
+            const id = href_elements[3];
+            console.log(id);
+            window.location.assign(
+              `http://localhost:3000/${id}/travelrequests`
+            );
+            // window.location.assign(`http://localhost:3000/travelRequests/`);
           }}
         >
           {" "}
@@ -45,7 +52,13 @@ const PopUp = (props) => {
             onClick={() => {
               confirmation = true;
               sendRequest();
-              window.location.assign(`http://localhost:3000/travelRequests`);
+              const href = window.location.href;
+              const href_elements = href.split("/");
+              const id = href_elements[3];
+              console.log(id);
+              window.location.assign(
+                `http://localhost:3000/${id}/travelrequests`
+              );
               confirmation = false;
             }}
           >

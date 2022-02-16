@@ -1,7 +1,45 @@
 .graphbody {
-  margin: 7px 0px 0px 120px;
+  position: absolute;
+  margin: 7px 0px 0px 90px;
   border-radius: 1rem;
   box-shadow: 0rem 0rem 1rem rgb(88, 99, 161);
-  width: 800px;
-  height: 350px;
+  width: 700px;
+  height: 380px;
+}
+ 
+@media only screen and (min-width: 1000px) and (max-width: 1200px) {
+  .graphbody {
+    
+      top: 20%;
+      margin-left: 30%;
+      width: 500px;
+  }
+    
+}
+@media only screen and (min-width: 600px) and (max-width: 1000px) {
+  .graphbody {
+    
+       top: 17%;
+      margin-left: 32%;
+      width: 500px;
+  }
+    
+}
+@media only screen and (min-width: 500px) and (max-width: 600px) {
+  .graphbody {
+    
+       top: 25%;
+      margin-left: 35%;
+      width: 500px;
+  }
+    
+}
+@media only screen and (min-width: 200px) and (max-width: 500px) {
+  .graphbody {
+    
+       top: 25%;
+      margin-left: 55%;
+      width: 500px;
+  }
+    
 }

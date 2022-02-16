@@ -9,13 +9,13 @@ const Travel = () => {
     sendRequest();
   }, []);
   const [travels, setTravels] = useState([]);
-  const { id } = useParams();
-  const [Id, setId] = useState(id);
+  const { eid } = useParams();
+  const [Id, setId] = useState(eid);
 
   const sendRequest = async () => {
     try {
       const travelRequestsResponse = await fetch(
-        `http://localhost:5000/employee/travel/${Id}`
+        `http://localhost:5000/api/employee/travel/${Id}`
       );
       const travelRequestsResponseData = await travelRequestsResponse.json();
       console.log(travelRequestsResponseData.travelJSON);

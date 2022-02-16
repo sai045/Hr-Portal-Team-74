@@ -4,12 +4,15 @@ import { PieChart, Pie, Tooltip } from "recharts";
 import styles from "./salary.module.css";
 import Table from "./table";
 import Navbar from "../Navbar/Navbar";
+import { useParams } from "react-router";
 
 const Salary = () => {
   const [Data, setData] = useState([]);
+  const { id } = useParams();
+  const [Id, setId] = useState(id);
   const sendRequest = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/salary`);
+      const response = await fetch(`http://localhost:5000/api/salary`);
       const responseData = await response.json();
       console.log(responseData.obj);
       setData(responseData.obj);

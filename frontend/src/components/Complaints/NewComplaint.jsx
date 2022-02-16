@@ -5,7 +5,7 @@ import styles from "./Complaints.module.css";
 const NewComplaint = (props) => {
   const sendRequest = async () => {
     try {
-      const response = await fetch("http://localhost:5000/complaints/", {
+      const response = await fetch("http://localhost:5000/api/complaints/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

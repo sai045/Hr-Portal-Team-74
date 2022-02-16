@@ -6,7 +6,7 @@ import Employee from "./components/Employees/Employee/Employee";
 import LeaveRequests from "./components/Leave Request/Leave Request/LeaveRequests";
 import Login from "./components/Login/Login";
 import SignUp from "./components/SignUp/Signup";
-import Schedule from "./components/Schedule/Schedule";
+import Schedule from "./Schedule/Schedule";
 import Resume from "./components/Applicants/Resume/Resume";
 import EmployeeDashboard from "./components/Employees/EmployeeDashboard/EmployeeDashboard";
 import LeaveConfirmation from "./components/Leave Request/LeaveConfirmation/LeaveConfirmation";
@@ -45,7 +45,10 @@ function App() {
             path="/:id/leaveConfirmation"
             element={<LeaveConfirmation />}
           />
-          <Route path="/travel/:tid" element={<TravelRequests popup={true} />} />
+          <Route
+            path="/:id/travel/:tid"
+            element={<TravelRequests popup={true} />}
+          />
           <Route path="/:id/salary" element={<Salary />} />
           <Route path="/:id/Complaints" element={<Complaints />} />
           <Route path="/newComplaints" element={<NewComplaint />} />

@@ -6,7 +6,7 @@ const Complaint = (props) => {
   const deleteHandler = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/complaints/${props.id}`,
+        `http://localhost:5000/api/complaints/${props.id}`,
         {
           method: "DELETE",
           headers: {

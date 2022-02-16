@@ -18,7 +18,7 @@ const Employee = () => {
   const sendRequest = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:5000/employee/");
+      const response = await fetch("http://localhost:5000/api/employee/");
       const responseData = await response.json();
       if (!response.ok) {
         throw new Error(responseData.message);
@@ -89,6 +89,7 @@ const Employee = () => {
   );
 
   const { globalFilter, pageIndex, pageSize } = state;
+   
 
   return (
     <>

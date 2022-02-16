@@ -27,7 +27,7 @@ const SignUp = () => {
     } else {
       try {
         const response = await fetch(
-          "http://localhost:5000/users",
+          "http://localhost:5000/api/users",
           {
             method: "POST",
             headers: {
@@ -40,7 +40,7 @@ const SignUp = () => {
             }),
           },
           console.log("Successful"),
-          window.location.assign(`http://localhost:3000/`)
+          // window.location.assign(`http://localhost:3000/`)
         );
       } catch (err) {
         console.error(err);

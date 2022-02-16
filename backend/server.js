@@ -22,22 +22,23 @@ app.use(bodyParser.json());
 
 app.use(cors());
 
-app.use("/applicant", ApplicantRouter);
+app.use("/api/applicant", ApplicantRouter);
 
-app.use("/employee", EmployeeRouter);
+app.use("/api/employee", EmployeeRouter);
 
-app.use("/travel", TravelRouter);
+app.use("/api/travel", TravelRouter);
 
-app.use("/salary", SalaryRouter);
+app.use("/api/salary", SalaryRouter);
 
-app.use("/complaints", complaintsRouter);
+app.use("/api/complaints", complaintsRouter);
 
-app.use("/leave", leaveRouter);
+app.use("/api/leaverequests", leaveRouter);
 
 app.use("/api/users", require("./routes/users"));
 app.use("/api/profile", require("./routes/profile"));
 app.use("/api/auth", require("./routes/auth"));
 app.use("/", require("./routes/navbar"));
+app.use("/dashboard", require("./routes/dashboard"));
 
 app.use((req, res, next) => {
   const error = new Error("Couldn't find this route", 404);

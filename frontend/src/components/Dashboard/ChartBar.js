@@ -22,7 +22,7 @@ const ChartBar = () => {
     <div className={styles.graphbody}>
       <h2>Records</h2>
       <BarChart
-        width={700}
+        width={520}
         height={300}
         data={data}
         margin={{

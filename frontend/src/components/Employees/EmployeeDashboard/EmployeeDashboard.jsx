@@ -10,12 +10,13 @@ const EmployeeDashboard = () => {
   const [employeeName, setEmployeeName] = useState("");
   const [department, setDepartment] = useState("");
   const [salary, setSalary] = useState(0);
-  const { eid } = useParams();
-  const [Id, setId] = useState(eid);
+  const { eid, id } = useParams();
+  const [ID, setId] = useState(eid);
+  const [Id, setID] = useState(id);
 
   const sendRequest = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/employee/${Id}`);
+      const response = await fetch(`http://localhost:5000/api/employee/${ID}`);
       const responseData = await response.json();
       const name = responseData.employee.name;
       const S = responseData.employee.salary;
@@ -33,10 +34,10 @@ const EmployeeDashboard = () => {
   }, []);
 
   const deleteHandler = async () => {
-    const response = await fetch(`http://localhost:5000/employee/${Id}`, {
+    const response = await fetch(`http://localhost:5000/api/employee/${Id}`, {
       method: "DELETE",
     });
-    window.location.assign(`http://localhost:3000/Employee`);
+    window.location.assign(`http://localhost:3000/${ID}Employee`);
   };
 
   return (
@@ -54,7 +55,9 @@ const EmployeeDashboard = () => {
           <h1 className={`m-4`}>Leave Request</h1>
           <Leaves />
         </div>
-        <button onClick={deleteHandler} className={`m-4`}>Delete Employee</button>
+        <button onClick={deleteHandler} className={`m-4`}>
+          Delete Employee
+        </button>
       </Card>
     </>
   );
