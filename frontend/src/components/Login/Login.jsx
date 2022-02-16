@@ -42,7 +42,7 @@ const Login = () => {
       // window.location.assign(`http://localhost:3000/Home`);
       const id = responseData.id;
       console.log(id);
-      window.location.assign(`http://localhost:3000/navbar/${id}`);
+      window.location.assign(`http://localhost:3000/${id}`);
       console.log(response.json);
     } catch (err) {
       console.error(err.response);

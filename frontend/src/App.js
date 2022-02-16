@@ -24,7 +24,7 @@ function App() {
         <Routes>
           <Route path="/navbar/:id" element={<Navbar />} />
           <Route path="/:id" element={<Home />} />
-          <Route path="/Login" element={<Login />} />
+          <Route path="/" element={<Login />} />
           <Route path="/signUp" element={<SignUp />} />
           <Route path="/:id/Dashboard" element={<Dash />} />
           <Route path="/:id/ApplicantPage" element={<ApplicantPage />} />
@@ -46,8 +46,8 @@ function App() {
             element={<LeaveConfirmation />}
           />
           <Route path="/travel/:tid" element={<TravelRequests popup={true} />} />
-          <Route path="/salary" element={<Salary />} />
-          <Route path="/Complaints" element={<Complaints />} />
+          <Route path="/:id/salary" element={<Salary />} />
+          <Route path="/:id/Complaints" element={<Complaints />} />
           <Route path="/newComplaints" element={<NewComplaint />} />
         </Routes>
       </Router>

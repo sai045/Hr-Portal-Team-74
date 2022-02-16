@@ -6,6 +6,7 @@ const Navbar = () => {
   const [name, setName] = useState("");
   const { id } = useParams();
   const [Id, SetId] = useState(id);
+  // SetId(id);
   const sendRequest = async () => {
     try {
       const response = await fetch(`http://localhost:5000/${Id}`);
@@ -58,7 +59,6 @@ const Navbar = () => {
           >
             <ul className="navbar-nav mx-5">
               <li className="navbar-text" className={styles.navText}>
-                {/* User Name */}
                 {name}
               </li>
               <li className="nav-item dropdown">

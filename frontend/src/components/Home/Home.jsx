@@ -33,13 +33,13 @@ const Home = () => {
           className={`col-sm-10 col-md-2 ${styles.sidebar} ${styles.sidenavbar}`}
         >
           <ul className={`nav navSidebar row ${styles.navSidenavbar}`}>
-            <Link to={`/complaints`}>
+            <Link to={`/${Id}/complaints/`}>
               <li>Complaints</li>
             </Link>
-            <Link to={`/salary`}>
+            <Link to={`/${Id}/salary`}>
               <li>Salary</li>
             </Link>
-            <Link to={`/LeaveRequests`}>
+            <Link to={`/${Id}/LeaveRequests`}>
               <li>Leave Requests</li>
             </Link>
           </ul>
@@ -48,7 +48,7 @@ const Home = () => {
         <p className="text-center">Human Resource Manager</p>
         <div className={`${styles.mid}`}>
           <div className="text-center">
-            <Link to={`/dashboard`}>
+            <Link to={`/${Id}/dashboard`}>
               <button className={`${styles.icons}`}>
                 <img
                   src="http://cdn.onlinewebfonts.com/svg/img_233159.svg"
@@ -58,7 +58,7 @@ const Home = () => {
                 <div className="p-2  text-center">DashBoard</div>
               </button>
             </Link>
-            <Link to={`/Employee`}>
+            <Link to={`/${Id}/Employee`}>
               <button className={`${styles.icons}`}>
                 <img
                   src="https://cdn.onlinewebfonts.com/svg/img_549436.png"
@@ -68,7 +68,7 @@ const Home = () => {
                 <div className="p-2  text-center">Employees</div>
               </button>
             </Link>
-            <Link to={`/Schedule`}>
+            <Link to={`/${Id}/Schedule`}>
               <button className={`${styles.icons}`}>
                 <img
                   src="http://cdn.onlinewebfonts.com/svg/img_189017.png"
@@ -79,7 +79,7 @@ const Home = () => {
               </button>
             </Link>
             <div className="text-center">
-              <Link to={`/TravelRequests`}>
+              <Link to={`/${Id}/TravelRequests`}>
                 <button className={`${styles.icons}`}>
                   <img
                     src="https://cdn4.iconfinder.com/data/icons/startup-business-10/70/tour__flight__travel__briefcase__bag-512.png"
@@ -89,7 +89,7 @@ const Home = () => {
                   <div className="p-2  text-center">Travel Requests</div>
                 </button>
               </Link>
-              <Link to={`/ApplicantPage`}>
+              <Link to={`/${Id}/ApplicantPage`}>
                 <button className={`${styles.icons}`}>
                   <img
                     src="https://www.pinclipart.com/picdir/middle/40-402851_job-application-icon-clipart.png"
@@ -99,7 +99,7 @@ const Home = () => {
                   <div className="p-2  text-center">Applications</div>
                 </button>
               </Link>
-              <Link to={`/Announcements`}>
+              <Link to={`/${Id}/Announcements`}>
                 <button className={`${styles.icons}`}>
                   <img
                     src="https://cdn.onlinewebfonts.com/svg/img_456677.png"
