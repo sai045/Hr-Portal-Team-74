@@ -40,7 +40,7 @@ const SignUp = () => {
             }),
           },
           console.log("Successful"),
-          // window.location.assign(`http://localhost:3000/`)
+          window.location.assign(`http://localhost:3000/`)
         );
       } catch (err) {
         console.error(err);

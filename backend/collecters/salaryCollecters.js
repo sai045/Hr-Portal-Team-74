@@ -65,7 +65,7 @@ const groupSalaryByDepartment = async (req, res, next) => {
     const employees = await Employee.find().exec();
     employees.map((e) => {
       let department = e.department;
-      let present = departments.includes();
+      let present = departments.includes(department);
 
       if (present) {
       } else {
@@ -85,18 +85,22 @@ const groupSalaryByDepartment = async (req, res, next) => {
   } catch (err) {
     console.log(err);
   }
+
   let GroupSalary = [];
   for (let i = 0; i < groups.length; i++) {
     let length = groups[i].length;
+    console.log(length);
     let groupSalary = 0;
-    groupSalary = Number(groupSalary);
     for (let j = 0; j < length; j++) {
-      arr = groups[i][j];
-      arrSalary = Number(arr.salary);
+      let arrElement = groups[i][j];
+      let arrSalary = arrElement.salary;
+
       groupSalary = groupSalary + arrSalary;
-      GroupSalary.push(groupSalary);
     }
+
+    GroupSalary.push(groupSalary);
   }
+
   var obj = [];
   for (let k = 0; k < departments.length; k++) {
     let department = departments[k];

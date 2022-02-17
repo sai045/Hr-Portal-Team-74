@@ -3,8 +3,8 @@ import { useTable, useGlobalFilter, usePagination } from "react-table";
 import { COLUMNS } from "./columns";
 import GlobalFilter from "./GlobalFilter";
 import styles from "./Schedule.module.css";
-import Navbar from "../components/Navbar/Navbar";
-import Card from "../components/UI/Card";
+import Navbar from "../Navbar/Navbar";
+import Card from "../UI/Card";
 
 const Data = [
   { name: "Valeria Krzysztof", date: "22/7/2024", time: "5:08 PM" },
