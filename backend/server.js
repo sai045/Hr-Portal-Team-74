@@ -38,7 +38,7 @@ app.use("/api/users", require("./routes/users"));
 app.use("/api/profile", require("./routes/profile"));
 app.use("/api/auth", require("./routes/auth"));
 app.use("/", require("./routes/navbar"));
-app.use("/dashboard", require("./routes/dashboard"));
+app.use("/api/dashboard", require("./routes/dashboard"));
 
 app.use((req, res, next) => {
   const error = new Error("Couldn't find this route", 404);

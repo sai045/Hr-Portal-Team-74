@@ -5,18 +5,11 @@ const router = express.Router();
 
 router.get("/:id", async (req, res, next) => {
   const id = req.params.id;
-  // console.log(id);
-  // id = id.toObject();
-
-  // console.log(isValidObjectId(id));
   try {
-    // const Id = mongoose.Types.ObjectId(id);
-    // const user = await User.findOne({ _id: Id });
     const user = await User.findById(id);
     if (!user) {
       return res.json({ message: "User doesnt exist" });
     }
-    // const username = user.name;
     res.json({ user });
   } catch (err) {
     console.log(err);

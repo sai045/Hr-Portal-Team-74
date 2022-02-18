@@ -8,7 +8,6 @@ const config = require("config");
 const jwt = require("jsonwebtoken");
 
 const User = require("../models/User");
-const { exists } = require("../models/User");
 
 router.get("/", auth, async (req, res) => {
   try {

@@ -6,7 +6,7 @@ const TravelRequests = require("../models/TravelRequests");
 
 const router = express.Router();
 
-router.get("/:id", async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   const total_employees_needed = 120;
   let Applicants, Employees, vacancies, leaves, travels;
   try {
@@ -20,7 +20,7 @@ router.get("/:id", async (req, res, next) => {
       const employees = await Employee.find().exec();
       employees.map((e) => {
         let department = e.department;
-        let present = departments.includes();
+        let present = departments.includes(department);
 
         if (present) {
         } else {
@@ -41,17 +41,33 @@ router.get("/:id", async (req, res, next) => {
       for (let k = 0; k < departments.length; k++) {
         let department = departments[k];
         let group = groups[k];
-        obj.push({ department, group });
+        obj.push({ name: department, value: group });
       }
     } catch (err) {
       console.log(err);
     }
-
-    // res.json({ obj });
     res.json({ Applicants, Employees, vacancies, leaves, travels, obj });
   } catch (err) {
     console.log(err);
   }
+});
+
+router.post("/", async (req, res, next) => {
+  let { days } = req.body;
+  const leaves = await Leaverequests.find().exec();
+  var date = new Date();
+  var leaves_count = 0;
+  leaves.map((l) => {
+    let leavedate = new Date(l.leavedate);
+    var difference = Math.round(
+      (date.getTime() - leavedate.getTime()) / (1000 * 3600 * 24)
+    );
+    if (difference > 0 && difference < days) {
+      leaves_count += 1;
+    } else {
+    }
+  });
+  res.json({ leaves_count });
 });
 
 module.exports = router;

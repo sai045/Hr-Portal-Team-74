@@ -46,6 +46,7 @@ const Login = () => {
       console.log(response.json);
     } catch (err) {
       console.error(err.response);
+      document.getElementById("error").innerHTML = "Auth Failed";
     }
   };
 
@@ -83,6 +84,7 @@ const Login = () => {
             required
             className={styles.infoBox}
           ></input>
+          <div id="error"></div>
           <button type="submit" className={styles.btn}>
             Login
           </button>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import styles from "./Navbar.module.css";
+import logo from "./Logo.jpeg";
 
 const Navbar = () => {
   const [name, setName] = useState("");
@@ -37,9 +38,15 @@ const Navbar = () => {
         className="navbar navbar-expand-lg navbar-light bg-light"
         style={{ width: "100vw" }}
       >
-        <div className="container-fluid">
+        <div className="container-fluid" style={{ padding: "0" }}>
           <Link to={`/${Id}`} style={LinkStyles}>
-            <h1>HR Portal</h1>
+            <img
+              src={logo}
+              alt="image not supported"
+              height="50px"
+              width="130px"
+              style={{ display: "inline", padding: "0" }}
+            />
           </Link>
           <button
             className="navbar-toggler"
@@ -56,6 +63,7 @@ const Navbar = () => {
             className="collapse navbar-collapse nav-button"
             id="navbarNavDropdown"
             className="nav-button"
+            // style={{ padding: "0" }}
           >
             <ul className="navbar-nav mx-5">
               <li className="navbar-text" className={styles.navText}>

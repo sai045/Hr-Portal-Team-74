@@ -1,17 +1,27 @@
 import { PieChart, Pie, Tooltip } from "recharts";
 import styles from "./chart.module.css";
+import { useEffect, useState } from "react";
 
 const Chart = (props) => {
-  const data = [
-    { name: "Dept-1", value: 47 },
-    { name: " Dept-2", value: 62 },
-    { name: " Dept-3", value: 77 },
-    { name: " Dept-4", value: 82 },
-  ];
+  const [data, setData] = useState([]);
+
+  const sendRequest = async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/dashboard`);
+      const responseData = await response.json();
+      setData(responseData.obj);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    sendRequest();
+  }, []);
 
   return (
     <div className={`${props.className} ${styles.PieBody}`}>
-      <h2>Department Ratios</h2>
+      <h2 className={`mx-2`}>Department Ratios</h2>
       <PieChart width={300} height={310}>
         <Pie
           dataKey="value"

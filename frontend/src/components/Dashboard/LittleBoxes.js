@@ -1,5 +1,26 @@
+import { useEffect, useState } from "react";
 import styles from "./LittleBoxes.module.css";
+
 function LittleBoxes() {
+  const [applicants, setApplicants] = useState(0);
+  const [employees, setEmployees] = useState(0);
+  const [vacancies, setVacancies] = useState(0);
+  const sendRequest = async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/dashboard`);
+      const responseData = await response.json();
+      setApplicants(responseData.Applicants);
+      setEmployees(responseData.Employees);
+      setVacancies(responseData.vacancies);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    sendRequest();
+  }, []);
+
   return (
     <div>
       <ul className={styles.allboxes}>
@@ -15,17 +36,17 @@ function LittleBoxes() {
         </div>
         <div className={styles.infobox}>
           <li className={styles.vcncs}>
-            Vacancies<h1>40</h1>
+            Vacancies<h1>{vacancies}</h1>
           </li>
         </div>
         <div className={styles.infobox}>
           <li className={styles.aplcns}>
-            Applications<h1>382</h1>
+            Applications<h1>{applicants}</h1>
           </li>
         </div>
         <div className={styles.infobox}>
           <li className={styles.totemp}>
-            Total Employees<h1>1845</h1>
+            Total Employees<h1>{employees}</h1>
           </li>
         </div>
       </ul>

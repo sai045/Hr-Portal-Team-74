@@ -9,17 +9,45 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
+import { useEffect, useState } from "react";
 
 const ChartBar = () => {
+  const [days, setDays] = useState(6);
+  const [leaves, setLeaves] = useState(0);
+  const sendRequest = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/api/dashboard/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          days,
+        }),
+      });
+      const responseData = await response.json();
+      if (!response.ok) {
+        throw new Error(responseData.message);
+      }
+
+      setLeaves(responseData.leaves_count);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    sendRequest();
+  }, [days]);
   const data = [
     { name: "Applications", value: 60 },
     { name: "Employees", value: 95 },
-    { name: "Leaves", value: 40 },
+    { name: "Leaves", value: leaves },
     { name: "Resignations", value: 45 },
   ];
 
   return (
     <div className={styles.graphbody}>
+      {console.log(leaves)}
       <h2>Records</h2>
       <BarChart
         width={520}
@@ -44,7 +72,7 @@ const ChartBar = () => {
           background={{ fill: "#eee" }}
         />
       </BarChart>
-      <ToggleButton />
+      <ToggleButton setDays={setDays} sendRequest={sendRequest} />
     </div>
   );
 };

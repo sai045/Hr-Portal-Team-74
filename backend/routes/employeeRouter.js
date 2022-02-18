@@ -1,4 +1,5 @@
 const express = require("express");
+const auth = require("../Middleware/auth");
 
 const { check } = require("express-validator");
 
@@ -16,6 +17,7 @@ router.get("/leave/:eid", employeeController.getLeavesByEmployeeId);
 
 router.post(
   "/",
+
   [
     check("name").not().isEmpty(),
     check("department").not().isEmpty(),

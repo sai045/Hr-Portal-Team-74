@@ -10,4 +10,9 @@
 
 .navbar {
   z-index: 2;
+  /* width: 100vw; */
+}
+
+html {
+  width: 100vw;
 }

@@ -19,16 +19,20 @@ const SignUp = () => {
   const cpasswordHandler = (event) => {
     setCpassword(event.target.value);
   };
-
+  // https://mysterious-citadel-93609.herokuapp.com
+  let error = [];
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (password !== cpassword) {
-      console.log("Passwords do not match");
+    if (password.length < 8) {
+      document.getElementById("error").innerHTML =
+        "Password should be minimum 8 characters";
     } else {
-      try {
-        const response = await fetch(
-          "http://localhost:5000/api/users",
-          {
+      if (password !== cpassword) {
+        // console.log("Passwords do not match");
+        document.getElementById("error").innerHTML = "Passwords do not match";
+      } else {
+        try {
+          const response = await fetch("http://localhost:5000/api/users", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -38,12 +42,18 @@ const SignUp = () => {
               email,
               password,
             }),
-          },
-          console.log("Successful"),
-          window.location.assign(`http://localhost:3000/`)
-        );
-      } catch (err) {
-        console.error(err);
+          });
+          if (!response.ok) {
+            throw new Error(response.json().message);
+          }
+          console.log("Successful");
+          window.location.assign(`http://localhost:3000/`);
+        } catch (err) {
+          console.log(err);
+          // error.push(err);
+          document.getElementById("error").innerHTML = "Email already exist";
+          console.log(error);
+        }
       }
     }
   };
@@ -102,6 +112,7 @@ const SignUp = () => {
             onChange={cpasswordHandler}
             className={styles.infoBox}
           ></input>
+          <div id="error"></div>
           <input type="submit" className={styles.btn} value="I'm in"></input>
         </form>
       </div>
