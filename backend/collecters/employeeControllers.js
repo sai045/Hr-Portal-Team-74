@@ -49,20 +49,11 @@ const createEmployee = async (req, res, next) => {
     working_hours,
     salary,
     travelRequests: [],
-    dashboard,
     leaveRequests: [],
   });
 
   try {
     const employee = await newEmployee.save();
-    const id = newEmployee._id.toString();
-    const dashboardLink = `http://localhost:3000/employeeDashboard/${id}`;
-    employee.dashboard = dashboardLink;
-    try {
-      await employee.save();
-    } catch (err) {
-      console.log(err);
-    }
     res.json({ employee });
   } catch (err) {
     return next(Error(err, 500));

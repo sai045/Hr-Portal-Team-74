@@ -8,19 +8,20 @@ import Navbar from "../../Navbar/Navbar";
 import Card from "../../UI/Card";
 import NewLeaveRequest from "./NewLeaveRequest";
 import PopUp from "./PopUp";
+import LoadingSpinner from "../../UI/LoadingSpinner";
+import { useParams } from "react-router";
 
-const LeaveRequests = () => {
+const LeaveRequests = (props) => {
   const [leaverequests, setLeaverequests] = useState([]);
   const [newLeaveRequest, setnewLeaveRequest] = useState(false);
+  const { id } = useParams();
+  const [Id, setId] = useState(id);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     sendRequest();
   }, []);
 
-  const lid = 1;
-  const confirmHandler = () => {
-    window.location.href = `/${lid}/leaveConfirmation`;
-  };
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => leaverequests, [leaverequests]);
 
@@ -75,6 +76,11 @@ const LeaveRequests = () => {
 
   return (
     <>
+      {isLoading && (
+        <div>
+          <LoadingSpinner />
+        </div>
+      )}
       <Navbar />
       <Card>
         <div className={styles.LeaveRequests}>
@@ -106,7 +112,6 @@ const LeaveRequests = () => {
                         {column.render("Header")}
                       </th>
                     ))}
-                    <th>Confirmation</th>
                   </tr>
                 ))}
               </thead>
@@ -122,12 +127,6 @@ const LeaveRequests = () => {
                           </td>
                         );
                       })}
-                      <td>
-                        <button onClick={() => setPopup(true)}>
-                          {" "}
-                          Confirm{" "}
-                        </button>
-                      </td>
                     </tr>
                   );
                 })}
@@ -183,6 +182,7 @@ const LeaveRequests = () => {
               </button>
             </div>
           </div>
+          <PopUp trigger={props.popup} />
         </div>
       </Card>
     </>

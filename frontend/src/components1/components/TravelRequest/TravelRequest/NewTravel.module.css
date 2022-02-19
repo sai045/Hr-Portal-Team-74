@@ -1,0 +1,49 @@
+.Card {
+  width: 60%;
+}
+
+.newTravelForm {
+  /* border: 2px solid black; */
+  /* width: 60%; */
+}
+
+.newEmployee {
+  position: relative;
+  left: 20%;
+}
+
+.newTravelForm label {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  width: 50%;
+}
+
+.newTravelForm input {
+  border-radius: 0.5rem;
+  width: 50%;
+}
+
+@media (max-width: 500px) {
+  .newTravelForm {
+    width: 100%;
+  }
+  .Card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .newTravelForm label {
+    width: 100%;
+  }
+
+  .newTravelForm input {
+    width: 100%;
+  }
+}
+
+.closeButton {
+  position: relative;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}

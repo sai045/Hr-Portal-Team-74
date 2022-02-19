@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 const ChartBar = () => {
   const [days, setDays] = useState(6);
   const [leaves, setLeaves] = useState(0);
+  const [applicants, setApplicants] = useState(0);
   const sendRequest = async () => {
     try {
       const response = await fetch("http://localhost:5000/api/dashboard/", {
@@ -31,6 +32,7 @@ const ChartBar = () => {
       }
 
       setLeaves(responseData.leaves_count);
+      setApplicants(responseData.schedule_count);
     } catch (err) {
       console.log(err);
     }
@@ -39,10 +41,10 @@ const ChartBar = () => {
     sendRequest();
   }, [days]);
   const data = [
-    { name: "Applications", value: 60 },
-    { name: "Employees", value: 95 },
+    { name: "Applications", value: applicants },
+    { name: "Employees", value: 5 },
     { name: "Leaves", value: leaves },
-    { name: "Resignations", value: 45 },
+    { name: "Resignations", value: 4 },
   ];
 
   return (

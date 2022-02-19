@@ -32,23 +32,30 @@ function App() {
             path="/:id/TravelRequests"
             element={<TravelRequests popup={false} />}
           />
+          <Route
+            path="/:id/travel/:tid"
+            element={<TravelRequests popup={true} />}
+          />
           <Route path="/:id/Employee" element={<Employee />} />
-          <Route path="/:id/LeaveRequests" element={<LeaveRequests />} />
+          <Route
+            path="/:id/LeaveRequests"
+            element={<LeaveRequests popup={false} />}
+          />
+          <Route
+            path="/:id/leaves/:lid"
+            element={<LeaveRequests popup={true} />}
+          />
           <Route path="/:id/Schedule" element={<Schedule />} />
-          {/* <Route path="/:id/resume/:aid" element={<Resume />} /> */}
 
           <Route
             path="/:id/employeeDashboard/:eid"
             element={<EmployeeDashboard />}
           />
-          <Route
+          {/* <Route
             path="/:id/leaveConfirmation"
             element={<LeaveConfirmation />}
-          />
-          <Route
-            path="/:id/travel/:tid"
-            element={<TravelRequests popup={true} />}
-          />
+          /> */}
+
           <Route
             path="/:id/applicant/:aid"
             element={<ApplicantPage popup={true} />}

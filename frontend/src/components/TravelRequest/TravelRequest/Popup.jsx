@@ -66,7 +66,7 @@ const PopUp = (props) => {
         <button
           className="Pop-btn"
           onClick={() => {
-            confirmation = true;
+            confirmation = false;
             sendRequest();
           }}
         >

@@ -58,7 +58,6 @@ const NewLeaveRequest = (props) => {
   return (
     <>
       <Card className={`${styles.Card} m-4`}>
-        
         <div className="m-4">
           <h1 className={styles.heading}>New LeaveRequest</h1>
         </div>
@@ -79,7 +78,7 @@ const NewLeaveRequest = (props) => {
           />
           <br />
           <br />
-          <label htmlFor="from">LeaveDate : </label>
+          <label htmlFor="leavedate">LeaveDate : </label>
           <input
             type="text"
             name="leavedate"
@@ -91,7 +90,7 @@ const NewLeaveRequest = (props) => {
           />
           <br />
           <br />
-          <label htmlFor="to">To : </label>
+          <label htmlFor="days">Days : </label>
           <input
             type="text"
             name="days"
@@ -104,11 +103,11 @@ const NewLeaveRequest = (props) => {
           <br />
           <br />
           <button type="submit" className={`m-4`}>
-            Submit 
+            Submit
           </button>
           <button onClick={props.onClose} className={styles.closeButton}>
-          <i className="fas fa-window-close">Close</i>
-        </button>
+            <i className="fas fa-window-close">Close</i>
+          </button>
         </form>
       </Card>
     </>

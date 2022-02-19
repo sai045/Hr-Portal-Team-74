@@ -47,8 +47,6 @@ router.get("/", async (req, res, next) => {
       console.log(err);
     }
 
-    
-
     res.json({ Applicants, Employees, vacancies, leaves, travels, obj });
   } catch (err) {
     console.log(err);
@@ -67,10 +65,22 @@ router.post("/", async (req, res, next) => {
     );
     if (difference > 0 && difference < days) {
       leaves_count += 1;
-    } else {
     }
   });
-  res.json({ leaves_count });
+
+  const applicants = await Applicant.find().exec();
+  var schedule_count = 0;
+  applicants.map((a) => {
+    let scheduleDate = new Date(a.schedule);
+    var difference = Math.round(
+      (scheduleDate.getTime() - date.getTime()) / (1000 * 3600 * 24)
+    );
+    if (difference > 0 && difference < days) {
+      schedule_count += 1;
+    }
+  });
+
+  res.json({ leaves_count, schedule_count });
 });
 
 module.exports = router;

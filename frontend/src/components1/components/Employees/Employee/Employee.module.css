@@ -1,0 +1,66 @@
+.Employee {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.heading {
+  padding: 1rem 0 0 0;
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+.search {
+  position: relative;
+  left: 30%;
+  padding: 1rem !important;
+  margin: 1rem !important;
+  display: inline-block;
+}
+
+.table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  text-align: center;
+  width: 80%;
+}
+
+/* .tableOuter {
+  overflow: scroll;
+} */
+
+.table td,
+.table th {
+  border: 2px solid #ddd;
+  padding: 5px;
+  text-align: center;
+}
+
+.table tr:hover {
+  background-color: rgb(150, 146, 146);
+}
+
+.table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: rgb(26 37 103);
+  color: white;
+}
+
+* {
+  box-sizing: content-box;
+}
+
+@media (max-width: 620px) {
+  table {
+    display: block;
+    max-width: -moz-fit-content;
+    max-width: fit-content;
+    margin: 0 auto;
+    overflow-x: auto;
+    white-space: nowrap;
+    box-sizing: border-box;
+  }
+  .table {
+    width: 100%;
+  }
+}

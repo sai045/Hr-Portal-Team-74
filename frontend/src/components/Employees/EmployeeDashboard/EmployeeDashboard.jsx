@@ -34,10 +34,10 @@ const EmployeeDashboard = () => {
   }, []);
 
   const deleteHandler = async () => {
-    const response = await fetch(`http://localhost:5000/api/employee/${Id}`, {
+    const response = await fetch(`http://localhost:5000/api/employee/${ID}`, {
       method: "DELETE",
     });
-    window.location.assign(`http://localhost:3000/${ID}Employee`);
+    window.location.assign(`http://localhost:3000/${Id}/Employee`);
   };
 
   return (

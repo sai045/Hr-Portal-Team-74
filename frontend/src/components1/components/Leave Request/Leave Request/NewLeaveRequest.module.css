@@ -1,0 +1,18 @@
+.Card {
+  width: 100%;
+}
+
+.newEmployee {
+  position: relative;
+  left: 20%;
+}
+
+.newLeaveForm label {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  width: 50%;
+}
+
+.newLeaveForm input {
+  border-radius: 0.5rem;
+  width: 50%;
+}

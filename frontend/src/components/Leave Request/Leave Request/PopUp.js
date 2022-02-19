@@ -1,12 +1,48 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
+import { useParams } from "react-router";
 import "./PopUp.css";
 
-function PopUp(props) {
+const PopUp = (props) => {
+  let confirmation = false;
+  const { lid } = useParams();
+
+  const sendRequest = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/leaverequests/${lid}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            confirmation: confirmation,
+          }),
+        }
+      );
+      if (!response.ok) {
+        throw new Error(responseData.message);
+      }
+      console.log("Successfull");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return props.trigger ? (
     <div className="Pop-Card">
       <div className="Pop-top">
         <h4 className="Pop-head">Do You Want To Confirm the Request?</h4>
-        <button className="close-btn" onClick={() => props.setTrigger(false)}>
+        <button
+          className="close-btn"
+          onClick={() => {
+            const href = window.location.href;
+            const href_elements = href.split("/");
+            const id = href_elements[3];
+            console.log(id);
+            window.location.assign(`http://localhost:3000/${id}/leaverequests`);
+          }}
+        >
           {" "}
           ❌
         </button>
@@ -14,9 +50,31 @@ function PopUp(props) {
 
       <div className="buttons-div">
         <span>
-          <button className="Pop-btn">Yes</button>
+          <button
+            className="Pop-btn"
+            onClick={() => {
+              confirmation = true;
+              sendRequest();
+              const href = window.location.href;
+              const href_elements = href.split("/");
+              const id = href_elements[3];
+              console.log(id);
+              window.location.assign(
+                `http://localhost:3000/${id}/leaverequests`
+              );
+              confirmation = false;
+            }}
+          >
+            Yes
+          </button>
         </span>
-        <button className="Pop-btn" onClick={() => props.setTrigger(false)}>
+        <button
+          className="Pop-btn"
+          onClick={() => {
+            confirmation = false;
+            sendRequest();
+          }}
+        >
           No
         </button>
       </div>
@@ -24,5 +82,5 @@ function PopUp(props) {
   ) : (
     ""
   );
-}
+};
 export default PopUp;

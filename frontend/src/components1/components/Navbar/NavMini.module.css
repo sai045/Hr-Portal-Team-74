@@ -1,0 +1,20 @@
+ul.navul{
+    list-style: none;
+    display: flex;
+    margin-bottom: 0rem;
+    margin-left: 0%;
+    margin-top: 6%;
+    padding-left: 0%;
+    
+  }
+  @media only screen and  (max-width: 1000px) {
+       ul.navul{
+    list-style: none;
+    display: block;
+    margin-bottom: 0rem;
+    margin-left: 0%;
+    margin-top: 6%;
+    padding-left: 0%;
+    
+  }
+  }

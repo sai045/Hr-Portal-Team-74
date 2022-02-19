@@ -98,7 +98,7 @@ router.patch("/:id", async (req, res) => {
   }
 
   if (!leaverequest) {
-    return res.status(500).json({ msg: "Couldn't find the Travel Request" });
+    return res.status(500).json({ msg: "Couldn't find the Leave Request" });
   }
   res.json({ leaverequest });
   console.log(leaverequest);

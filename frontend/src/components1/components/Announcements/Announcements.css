@@ -1,0 +1,25 @@
+.heading{
+    margin: 0;
+    border: 2px solid rgb(88 99 161);
+    
+    border-radius: 15px;
+    padding : 30px 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+button.homebtn{
+     margin: 0 auto;
+     width: 100%;
+     padding-bottom: 1% ;
+     font-size: 5vh;
+     border-radius: 15px;
+     background-color:rgb(88 99 161);
+     border: 2px solid white;
+} 
+button.homebtn :hover{
+    background-color: white;
+    
+}
