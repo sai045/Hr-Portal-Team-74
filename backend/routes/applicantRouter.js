@@ -21,10 +21,10 @@ router.post(
   applicantController.createApplicant
 );
 
-router.get("/resume/:aid", applicantController.getResumeById);
+router.delete("/:aid", applicantController.deleteApplicantById);
 
-router.patch("/resume/:aid", applicantController.editResumeById);
+router.patch("/:aid", applicantController.editResumeById);
 
-router.delete("/resume/:aid", applicantController.deleteResumeById);
+router.get("/schedule/date", applicantController.getAllSchedule);
 
 module.exports = router;

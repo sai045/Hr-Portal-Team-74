@@ -46,6 +46,7 @@ const createApplicant = async (req, res, next) => {
     experience,
     qualification,
     position,
+    schedule: [],
   });
 
   try {
@@ -64,25 +65,6 @@ const createApplicant = async (req, res, next) => {
   }
 };
 
-const getResumeById = async (req, res, next) => {
-  const aid = req.params.aid;
-
-  let applicant;
-
-  try {
-    applicant = await Applicant.findById(aid).exec();
-  } catch (err) {
-    next(Error(err, 500));
-  }
-
-  if (!applicant) {
-    return next(new Error(`Couldn't find applicant`, 404));
-  }
-
-  const resume = applicant.resume;
-  res.json({ resume });
-};
-
 const editResumeById = async (req, res, next) => {
   const aid = req.params.aid;
 
@@ -97,19 +79,37 @@ const editResumeById = async (req, res, next) => {
     return next(new Error(`Couldn't find applicant`, 404));
   }
 
-  const { resume } = req.body;
-  applicant.resume = resume;
+  function randomDate(start, end) {
+    return new Date(
+      start.getTime() + Math.random() * (end.getTime() - start.getTime())
+    );
+  }
 
   try {
+    let schedule = randomDate(new Date(), new Date(2022, 9, 28));
+    applicant.schedule = schedule;
     await applicant.save();
   } catch (err) {
-    return next(Error(err, 500));
+    console.log(err);
   }
 
   res.json({ applicant });
 };
 
-const deleteResumeById = async (req, res, next) => {
+const getAllSchedule = async (req, res, next) => {
+  const check = (applicant) => {
+    return applicant.schedule.length > 0;
+  };
+  try {
+    const applicants = await Applicant.find().exec();
+    const scheduledApplicants = applicants.filter(check);
+    res.json({ scheduledApplicants });
+  } catch (err) {
+    return next(Error(err, 500));
+  }
+};
+
+const deleteApplicantById = async (req, res, next) => {
   const aid = req.params.aid;
 
   let applicant;
@@ -124,16 +124,15 @@ const deleteResumeById = async (req, res, next) => {
   }
 
   try {
-    await applicant.remove();
+    applicant.remove();
   } catch (err) {
-    return next(Error(err, 500));
+    next(Error(err, 500));
   }
-  res.status(200).json({ message: "Deleted Applicant" });
 };
 
 exports.getAllApplicants = getAllApplicants;
 exports.getApplicantById = getApplicantById;
 exports.createApplicant = createApplicant;
-exports.getResumeById = getResumeById;
 exports.editResumeById = editResumeById;
-exports.deleteResumeById = deleteResumeById;
+exports.deleteApplicantById = deleteApplicantById;
+exports.getAllSchedule = getAllSchedule;

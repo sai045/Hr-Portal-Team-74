@@ -35,7 +35,7 @@ function App() {
           <Route path="/:id/Employee" element={<Employee />} />
           <Route path="/:id/LeaveRequests" element={<LeaveRequests />} />
           <Route path="/:id/Schedule" element={<Schedule />} />
-          <Route path="/:id/resume/:aid" element={<Resume />} />
+          {/* <Route path="/:id/resume/:aid" element={<Resume />} /> */}
 
           <Route
             path="/:id/employeeDashboard/:eid"
@@ -48,6 +48,10 @@ function App() {
           <Route
             path="/:id/travel/:tid"
             element={<TravelRequests popup={true} />}
+          />
+          <Route
+            path="/:id/applicant/:aid"
+            element={<ApplicantPage popup={true} />}
           />
           <Route path="/:id/salary" element={<Salary />} />
           <Route path="/:id/Complaints" element={<Complaints />} />

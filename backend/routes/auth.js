@@ -69,5 +69,18 @@ router.post(
     }
   }
 );
+router.delete("/:uid", async (req, res, next) => {
+  const uid = req.params.uid;
+  let user = await User.findById(uid).exec();
+  if (!user) {
+    return res.json({ message: "User doesn't exist" }).json(500);
+  }
+  try {
+    user.remove();
+  } catch (err) {
+    console.log(err);
+  }
+  res.json({ message: "User Deleted" });
+});
 
 module.exports = router;

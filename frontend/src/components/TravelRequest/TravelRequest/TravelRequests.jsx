@@ -111,13 +111,7 @@ const TravelRequests = (props) => {
             <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
           </div>
 
-          {!table && (
-            <div>
-              <h4>No Travel Requests Available</h4>
-            </div>
-          )}
-
-          {table && (
+          {table ? (
             <table {...getTableProps()} className={styles.table}>
               <thead>
                 {headerGroups.map((headerGroup) => (
@@ -147,6 +141,10 @@ const TravelRequests = (props) => {
                 })}
               </tbody>
             </table>
+          ) : (
+            <div>
+              <h4>No Travel Requests Available</h4>
+            </div>
           )}
           <div className="m-2">
             <span>

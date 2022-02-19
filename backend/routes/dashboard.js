@@ -46,6 +46,9 @@ router.get("/", async (req, res, next) => {
     } catch (err) {
       console.log(err);
     }
+
+    
+
     res.json({ Applicants, Employees, vacancies, leaves, travels, obj });
   } catch (err) {
     console.log(err);

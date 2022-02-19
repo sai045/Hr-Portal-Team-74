@@ -3,20 +3,41 @@ import { useParams } from "react-router";
 import "./PopUp.css";
 
 const PopUp = (props) => {
-  let confirmation = false;
-  const { tid } = useParams();
+  const { aid } = useParams();
+
+  const deleteRequest = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/applicant/${aid}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (!response.ok) {
+        throw new Error(response.json().message);
+      }
+      console.log("SUCCESSFULL");
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const sendRequest = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/travel/${tid}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          confirmation: confirmation,
-        }),
-      });
+      const response = await fetch(
+        `http://localhost:5000/api/applicant/${aid}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({}),
+        }
+      );
+      if (!response.ok) {
+        throw new Error(response.json().message);
+      }
+      console.log("SUCCESSFULL");
     } catch (err) {
       console.log(err);
     }
@@ -33,9 +54,7 @@ const PopUp = (props) => {
             const href_elements = href.split("/");
             const id = href_elements[3];
             console.log(id);
-            window.location.assign(
-              `http://localhost:3000/${id}/travelrequests`
-            );
+            window.location.assign(`http://localhost:3000/${id}/applicantpage`);
           }}
         >
           {" "}
@@ -48,16 +67,14 @@ const PopUp = (props) => {
           <button
             className="Pop-btn"
             onClick={() => {
-              confirmation = true;
               sendRequest();
               const href = window.location.href;
               const href_elements = href.split("/");
               const id = href_elements[3];
               console.log(id);
               window.location.assign(
-                `http://localhost:3000/${id}/travelrequests`
+                `http://localhost:3000/${id}/applicantpage`
               );
-              confirmation = false;
             }}
           >
             Yes
@@ -66,8 +83,11 @@ const PopUp = (props) => {
         <button
           className="Pop-btn"
           onClick={() => {
-            confirmation = true;
-            sendRequest();
+            deleteRequest();
+            const href = window.location.href;
+            const href_elements = href.split("/");
+            const id = href_elements[3];
+            window.location.assign(`http://localhost:3000/${id}/applicantpage`);
           }}
         >
           No

@@ -7,8 +7,9 @@ import Navbar from "../../Navbar/Navbar";
 import Card from "../../UI/Card";
 import NewApplicant from "./NewApplicant";
 import LoadingSpinner from "../../UI/LoadingSpinner";
+import PopUp from "./Popup";
 
-const Applicant = () => {
+const Applicant = (props) => {
   const [isLoading, setIsLoading] = useState(false);
   const [loadedApplicants, setLoadedApplicants] = useState([]);
   const [newApplicant, setNewApplicant] = useState(false);
@@ -203,6 +204,7 @@ const Applicant = () => {
             </button>
           </div>
         </div>
+        <PopUp trigger={props.popup} />
       </Card>
     </>
   );

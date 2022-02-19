@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useTable, useGlobalFilter, usePagination } from "react-table";
 import { COLUMNS } from "./columns";
 import GlobalFilter from "./GlobalFilter";
@@ -6,16 +6,21 @@ import styles from "./Schedule.module.css";
 import Navbar from "../Navbar/Navbar";
 import Card from "../UI/Card";
 
-const Data = [
-  { name: "Valeria Krzysztof", date: "22/7/2024", time: "5:08 PM" },
-  { name: "Rebbecca Liddard", date: "27/8/2023", time: "11:25 AM" },
-  { name: "Stafford Dunbleton", date: "6/12/2024", time: "11:04 AM" },
-  { name: "Krisha Blodg", date: "22/4/2022", time: "8:58 AM" },
-];
-
 const Schedule = () => {
+  const [Data, setData] = useState([]);
+  const sendRequest = async () => {
+    const response = await fetch(
+      `http://localhost:5000/api/applicant/schedule/date`
+    );
+    const responseData = await response.json();
+    setData(responseData.scheduledApplicants);
+    // console.log(responseData.scheduledApplicants);
+  };
+  useEffect(() => {
+    sendRequest();
+  }, []);
   const columns = useMemo(() => COLUMNS, []);
-  const data = useMemo(() => Data, []);
+  const data = useMemo(() => Data, [Data]);
 
   const {
     getTableProps,

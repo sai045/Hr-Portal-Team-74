@@ -1,12 +1,35 @@
 import styles from "./Buttons.module.css";
 function Buttons(props) {
+  const href = window.location.href;
+  const href_elements = href.split("/");
+  const id = href_elements[3];
+  const sendRequest = async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/auth/${id}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) {
+        throw new Error(response.json().message);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div className={`${props.className} ${styles.btns}`}>
       <span className={styles.spanbtn}>
         <button className={styles.probutton}>Edit Profile</button>
       </span>
       <span className={styles.spanbtn}>
-        <button className={styles.deletebutton}>Delete Account</button>
+        <button
+          className={styles.deletebutton}
+          onClick={() => {
+            sendRequest();
+            window.location.assign(`http://localhost:3000/`);
+          }}
+        >
+          Delete Account
+        </button>
       </span>
     </div>
   );

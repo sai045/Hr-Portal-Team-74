@@ -63,7 +63,7 @@ const Navbar = () => {
             className="collapse navbar-collapse nav-button"
             id="navbarNavDropdown"
             className="nav-button"
-            // style={{ padding: "0" }}
+
           >
             <ul className="navbar-nav mx-5">
               <li className="navbar-text" className={styles.navText}>

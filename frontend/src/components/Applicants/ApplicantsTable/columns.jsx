@@ -18,21 +18,21 @@ export const COLUMNS = [
     accessor: "position",
   },
   {
-    Header: "Resume",
+    Header: "Schedule",
     accessor: "_id",
     Cell: ({ cell }) => (
       <button
         onClick={() => {
           const href = window.location.href;
-          const href_elements = href.split("/")
-          const id = href_elements[3]
+          const href_elements = href.split("/");
+          const id = href_elements[3];
           const aid = cell.row.values._id;
-          console.log(id);
-          console.log(aid);
-          window.location.assign(`http://localhost:3000/${id}/resume/${aid}`);
+          window.location.assign(
+            `http://localhost:3000/${id}/applicant/${aid}`
+          );
         }}
       >
-        Resume
+        Schedule
       </button>
     ),
   },

@@ -47,7 +47,6 @@ const ChartBar = () => {
 
   return (
     <div className={styles.graphbody}>
-      {console.log(leaves)}
       <h2>Records</h2>
       <BarChart
         width={520}

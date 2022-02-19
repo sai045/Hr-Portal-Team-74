@@ -5,7 +5,7 @@ const applicantSchema = new mongoose.Schema({
   qualification: { type: String, required: true },
   position: { type: String, required: true },
   experience: { type: Number, required: true },
-  resume: { type: String },
+  schedule: { type: Array },
 });
 
 // applicantSchema.plugin(applicantSchema)
