@@ -77,3 +77,7 @@ While using **Plexus**, create a new user, or use an existing user
 
 * Email: test@gmail.com
 * Password: test1234
+
+## Screenshots
+![Screenshot (451)](https://user-images.githubusercontent.com/85741790/154856584-869986a6-c296-4ba1-98e0-8bcf9accefa3.png)
+
