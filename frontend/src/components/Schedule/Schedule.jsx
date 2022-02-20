@@ -1,20 +1,24 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { useTable, useGlobalFilter, usePagination } from "react-table";
 import { COLUMNS } from "./columns";
 import GlobalFilter from "./GlobalFilter";
 import styles from "./Schedule.module.css";
 import Navbar from "../Navbar/Navbar";
 import Card from "../UI/Card";
+import { useState, useEffect } from "react";
 
 const Schedule = () => {
   const [Data, setData] = useState([]);
   const sendRequest = async () => {
     const response = await fetch(
-      `http://localhost:5000/api/applicant/schedule/date`
+      `https://mysterious-citadel-93609.herokuapp.com/api/applicant/schedule/date`
     );
+
     const responseData = await response.json();
+    if (!response.ok) {
+      throw new Error(responseData.message);
+    }
     setData(responseData.scheduledApplicants);
-    // console.log(responseData.scheduledApplicants);
   };
   useEffect(() => {
     sendRequest();

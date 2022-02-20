@@ -1,22 +1,31 @@
+.PieBody::after{
+  content: " ";
+  clear: both;
+  display: block;
+}
+  
+
 .PieBody {
   float: right;
-  margin-right: 3%;
+  margin-right: 0%;
   border-radius: 1rem;
   box-shadow: 1rem 0rem 2rem rgb(88, 99, 161);
-  width: 450px;
+  width: 350px;
   height: 360px;
   margin-top: 1%;
+  /* display: block; */
 }
 .heading {
   margin: 0rem 2rem;
   color: rgb(88, 99, 161);
   font-size: 7vh;
 }
-  @media only screen and (min-width: 800px) and (max-width: 1200px){
+  @media only screen and (min-width: 200px) and (max-width: 400px){
    .PieBody{
     
       float: left;
-         margin-left: 35%;
+
+         margin-left: 17%;
          width: 500px;
          margin-top: 0%;
 
@@ -25,30 +34,63 @@
    .heading{
      font-size: 5vh;
    }
+   .PieBody::after{
+  content: " ";
+  clear: both;
+  display: block;
+}
  }
- @media only screen and (min-width: 500px) and (max-width: 800px){
+ @media only screen and (min-width: 400px) and (max-width: 600px){
    .PieBody{
     
          float: left;
-         margin-left: 40%;
+         margin-left: 17%;
          width: 500px;
          margin-top: 2%;
            
    }
+   .PieBody::after{
+  content: " ";
+  clear: both;
+  display: block;
+}
    .heading{
      font-size: 6vh;
    }
   }
-  @media only screen and (min-width: 200px) and (max-width: 500px){
+  @media only screen and (min-width: 600px) and (max-width: 700px){
+   .PieBody{
+            
+         float: left;
+         margin-left: 15%;
+         width: 500px;
+         margin-top: 2%;
+           
+   }
+   .PieBody::after{
+  content: " ";
+  clear: both;
+  display: block;
+}
+   .heading{
+     font-size: 6vh;
+   }
+  }
+  @media only screen and (min-width: 750px) and (max-width: 1100px){
    .PieBody{
     
          float: left;
-         margin-left: 37%;
+         margin-left: 25%;
          width: 500px;
-         margin-top: 0%;
+         margin-top: 2%;
            
    }
+   .PieBody::after{
+  content: " ";
+  clear: both;
+  display: block;
+}
    .heading{
-     font-size: 6vh;
+     font-size: 4vh;
    }
   }

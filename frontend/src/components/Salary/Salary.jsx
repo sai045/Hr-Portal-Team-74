@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { PieChart, Pie, Tooltip } from "recharts";
-// import "./salary.css";
 import styles from "./salary.module.css";
 import Table from "./table";
 import Navbar from "../Navbar/Navbar";
@@ -12,9 +11,10 @@ const Salary = () => {
   const [Id, setId] = useState(id);
   const sendRequest = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/salary`);
+      const response = await fetch(
+        `https://mysterious-citadel-93609.herokuapp.com/api/salary`
+      );
       const responseData = await response.json();
-      console.log(responseData.obj);
       setData(responseData.obj);
     } catch (err) {
       console.log(err);

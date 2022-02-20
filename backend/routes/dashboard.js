@@ -6,7 +6,7 @@ const TravelRequests = require("../models/TravelRequests");
 
 const router = express.Router();
 
-router.get("/", async (req, res, next) => {
+router.get("/get", async (req, res, next) => {
   const total_employees_needed = 120;
   let Applicants, Employees, vacancies, leaves, travels;
   try {
@@ -47,13 +47,23 @@ router.get("/", async (req, res, next) => {
       console.log(err);
     }
 
-    res.json({ Applicants, Employees, vacancies, leaves, travels, obj });
+    var date = new Date();
+    const interviews_today = await Applicant.find({ schedule: date }).count();
+    res.json({
+      Applicants,
+      Employees,
+      vacancies,
+      leaves,
+      travels,
+      obj,
+      interviews_today,
+    });
   } catch (err) {
     console.log(err);
   }
 });
 
-router.post("/", async (req, res, next) => {
+router.post("/get", async (req, res, next) => {
   let { days } = req.body;
   const leaves = await Leaverequests.find().exec();
   var date = new Date();
@@ -73,14 +83,39 @@ router.post("/", async (req, res, next) => {
   applicants.map((a) => {
     let scheduleDate = new Date(a.schedule);
     var difference = Math.round(
-      (scheduleDate.getTime() - date.getTime()) / (1000 * 3600 * 24)
+      (date.getTime() - scheduleDate.getTime()) / (1000 * 3600 * 24)
     );
     if (difference > 0 && difference < days) {
       schedule_count += 1;
     }
   });
 
-  res.json({ leaves_count, schedule_count });
+  const employees = await Employee.find().exec();
+  var employee_count = 0;
+  employees.map((e) => {
+    let Hired_date = new Date(e.hired_date);
+    var difference = Math.round(
+      (date.getTime() - Hired_date.getTime()) / (1000 * 3600 * 24)
+    );
+    if (difference > 0 && difference < days) {
+      employee_count += 1;
+    }
+    console.log(difference);
+  });
+  const travels = await TravelRequests.find().exec();
+  var travel_count = 0;
+  travels.map((t) => {
+    let travel_date = new Date(t.applied_date);
+    var difference = Math.round(
+      (date.getTime() - travel_date.getTime()) / (1000 * 3600 * 24)
+    );
+    if (difference > 0 && difference < days) {
+      travel_count += 1;
+    }
+    console.log(difference);
+  });
+
+  res.json({ leaves_count, schedule_count, employee_count, travel_count });
 });
 
 module.exports = router;

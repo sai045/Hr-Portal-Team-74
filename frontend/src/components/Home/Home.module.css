@@ -1,12 +1,13 @@
 .symbols {
   display: block;
   margin: 1rem auto;
-  width: 50%;
+  /* width: 60%; */
+  width: 60%;
 }
 .smallSymbols {
   display: block;
   margin: 0 auto;
-  width: 83%;
+  width: 53%;
 }
 .icons {
   border: 2px solid black;
@@ -45,7 +46,7 @@ p {
   z-index: 2;
 }
 .sidebar {
-  position: fixed;
+  position: relative;
   left: 0;
   z-index: 100;
   display: block;
@@ -54,6 +55,8 @@ p {
   overflow-y: auto;
   background-color: #111;
   height: 90%;
+  width: 15%;
+  float: left;
 }
 .sidebar a {
   padding: 6px 6px 6px 32px;
@@ -131,12 +134,12 @@ p {
 .symbols {
   display: block;
   margin: 1rem auto;
-  width: 50%;
+  width: 60%;
 }
 .smallSymbols {
   display: block;
   margin: 0 auto;
-  width: 83%;
+  width: 53%;
 }
 .icons {
   border: 2px solid black;
@@ -175,7 +178,7 @@ p {
   z-index: 2;
 }
 .sidebar {
-  position: fixed;
+  position: relative;
   left: 0;
   z-index: 100;
   display: block;

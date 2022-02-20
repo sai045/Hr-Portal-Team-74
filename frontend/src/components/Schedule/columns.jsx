@@ -20,7 +20,7 @@ export const COLUMNS = [
         },
       },
       {
-        Header: "Date",
+        Header: "Time",
         accessor: "schedule",
         Cell: ({ cell }) => {
           let date = new Date(cell.row.values.schedule);

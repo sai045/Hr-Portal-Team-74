@@ -15,7 +15,7 @@ router.post(
   [
     check("name").not().isEmpty(),
     check("qualification").not().isEmpty(),
-    check("position").not().isEmpty(),
+    check("department").not().isEmpty(),
     check("experience").not().isEmpty(),
   ],
   applicantController.createApplicant

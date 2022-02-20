@@ -9,23 +9,28 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 const ChartBar = () => {
   const [days, setDays] = useState(6);
   const [leaves, setLeaves] = useState(0);
   const [applicants, setApplicants] = useState(0);
+  const [employees, setEmployees] = useState(0);
+  const [travels, setTravels] = useState(0);
   const sendRequest = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/dashboard/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          days,
-        }),
-      });
+      const response = await fetch(
+        "https://mysterious-citadel-93609.herokuapp.com/api/dashboard/get",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            days,
+          }),
+        }
+      );
       const responseData = await response.json();
       if (!response.ok) {
         throw new Error(responseData.message);
@@ -33,18 +38,21 @@ const ChartBar = () => {
 
       setLeaves(responseData.leaves_count);
       setApplicants(responseData.schedule_count);
+      setEmployees(responseData.employee_count);
+      setTravels(responseData.travel_count);
     } catch (err) {
       console.log(err);
     }
   };
   useEffect(() => {
     sendRequest();
-  }, [days]);
+  }, [days, leaves, applicants, employees, travels]);   
+
   const data = [
-    { name: "Applications", value: applicants },
-    { name: "Employees", value: 5 },
+    { name: "Interviews", value: applicants },
+    { name: "Employees", value: employees },
     { name: "Leaves", value: leaves },
-    { name: "Resignations", value: 4 },
+    { name: "Travels", value: travels },
   ];
 
   return (

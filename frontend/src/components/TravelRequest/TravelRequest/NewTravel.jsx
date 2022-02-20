@@ -6,20 +6,25 @@ const NewTravel = (props) => {
   const [employeeId, setId] = useState("");
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
+  const [applied_date, setApplied_date] = useState("");
 
   const sendRequest = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/travel/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          employeeId,
-          from,
-          to,
-        }),
-      });
+      const response = await fetch(
+        "https://mysterious-citadel-93609.herokuapp.com/api/travel",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            employeeId,
+            from,
+            to,
+            applied_date,
+          }),
+        }
+      );
       const responseData = await response.json();
       if (!response.ok) {
         throw new Error(responseData.message);
@@ -38,6 +43,9 @@ const NewTravel = (props) => {
   const toHandler = (event) => {
     setTo(event.target.value);
   };
+  const applied_dateHandler = (event) => {
+    setApplied_date(event.target.value);
+  };
 
   const newTravelHandler = (event) => {
     sendRequest();
@@ -46,11 +54,13 @@ const NewTravel = (props) => {
       employeeId,
       from,
       to,
+      applied_date,
     };
     props.onAdd(NewTravel);
     setId("");
     setFrom("");
     setTo("");
+    setApplied_date("");
 
     console.log(NewTravel);
   };
@@ -101,6 +111,18 @@ const NewTravel = (props) => {
             placeholder="Enter your desired to"
             value={to}
             onChange={toHandler}
+            required
+          />
+          <br />
+          <br />
+          <label htmlFor="to">Applied Date : </label>
+          <input
+            type="date"
+            name="applied_date"
+            id="applied_date"
+            placeholder="Enter the date you applied(YYYY-MM-DD)"
+            value={applied_date}
+            onChange={applied_dateHandler}
             required
           />
           <br />

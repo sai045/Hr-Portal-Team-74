@@ -4,6 +4,8 @@ import styles from "./signup.module.css";
 const SignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [location, setLocation] = useState("");
+  const [number, setNumber] = useState("");
   const [password, setPassword] = useState("");
   const [cpassword, setCpassword] = useState("");
 
@@ -13,46 +15,59 @@ const SignUp = () => {
   const emailHandler = (event) => {
     setEmail(event.target.value);
   };
+  const locationHandler = (event) => {
+    setLocation(event.target.value);
+  };
+  const numberHandler = (event) => {
+    setNumber(event.target.value);
+  };
   const passwordHandler = (event) => {
     setPassword(event.target.value);
   };
   const cpasswordHandler = (event) => {
     setCpassword(event.target.value);
   };
-  // https://mysterious-citadel-93609.herokuapp.com
-  let error = [];
+
   const onSubmit = async (e) => {
     e.preventDefault();
     if (password.length < 8) {
       document.getElementById("error").innerHTML =
-        "Password should be minimum 8 characters";
+        "Password should be more than 8 characters";
     } else {
       if (password !== cpassword) {
-        // console.log("Passwords do not match");
+        console.log("Passwords do not match");
         document.getElementById("error").innerHTML = "Passwords do not match";
       } else {
         try {
-          const response = await fetch("http://localhost:5000/api/users", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              name,
-              email,
-              password,
-            }),
-          });
+          const response = await fetch(
+            "https://mysterious-citadel-93609.herokuapp.com/api/users",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                name,
+                email,
+                location,
+                number,
+                password,
+              }),
+            }
+          );
+          const responseData = await response.json();
           if (!response.ok) {
-            throw new Error(response.json().message);
+            throw new Error(responseData.message);
           }
-          console.log("Successful");
-          window.location.assign(`http://localhost:3000/`);
+          const id = responseData.id;
+          console.log(id);
+          console.log("Successful"),
+            window.location.assign(
+              `https://mysterious-citadel-93609.herokuapp.com/`
+            );
         } catch (err) {
-          console.log(err);
-          // error.push(err);
-          document.getElementById("error").innerHTML = "Email already exist";
-          console.log(error);
+          console.error(err);
+          document.getElementById("error").innerHTML = "Email already exists";
         }
       }
     }
@@ -61,18 +76,8 @@ const SignUp = () => {
   return (
     <div className={styles.whole}>
       <div className={styles.lgnbx}>
-        <h1 className={styles.head}>HR-Portal</h1>
-        <svg
-          className={styles.head}
-          xmlns="http://www.w3.org/2000/svg"
-          width="50"
-          height="70"
-          fill="rgb(88 99 161)"
-          viewBox="0 0 16 16"
-        >
-          <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H4Zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
-          <path d="M2 1a2 2 0 0 0-2 2v9.5A1.5 1.5 0 0 0 1.5 14h.653a5.373 5.373 0 0 1 1.066-2H1V3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v9h-2.219c.554.654.89 1.373 1.066 2h.653a1.5 1.5 0 0 0 1.5-1.5V3a2 2 0 0 0-2-2H2Z" />
-        </svg>
+        <h1 className={styles.head}>Plexus</h1>
+        <h1 className={styles.head}>SignUp</h1>
         <form onSubmit={(e) => onSubmit(e)}>
           <input
             type="text"
@@ -90,6 +95,26 @@ const SignUp = () => {
             placeholder="Email"
             value={email}
             onChange={emailHandler}
+            required
+            className={styles.infoBox}
+          ></input>
+
+          <input
+            type="text"
+            name="Location"
+            placeholder="Location"
+            value={location}
+            onChange={locationHandler}
+            required
+            className={styles.infoBox}
+          ></input>
+
+          <input
+            type="text"
+            name="Number"
+            placeholder="Number"
+            value={number}
+            onChange={numberHandler}
             required
             className={styles.infoBox}
           ></input>

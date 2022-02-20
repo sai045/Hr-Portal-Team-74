@@ -9,7 +9,15 @@ const Home = () => {
   const [Id, SetId] = useState(id);
   const sendRequest = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/${Id}`);
+      const response = await fetch(
+        `https://mysterious-citadel-93609.herokuapp.com/api/${Id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      );
       const responseData = await response.json();
       if (!response.ok) {
         throw Error("Error");
@@ -47,7 +55,7 @@ const Home = () => {
         <h1 className="p-4 m-0 text-center">Hey,{name}</h1>
         <p className="text-center">Human Resource Manager</p>
         <div className={`${styles.mid}`}>
-          <div className="text-center">
+          <div className="text-center" style={{ padding: "0.8rem 0" }}>
             <Link to={`/${Id}/dashboard`}>
               <button className={`${styles.icons}`}>
                 <img
@@ -92,7 +100,7 @@ const Home = () => {
               <Link to={`/${Id}/ApplicantPage`}>
                 <button className={`${styles.icons}`}>
                   <img
-                    src="https://www.pinclipart.com/picdir/middle/40-402851_job-application-icon-clipart.png"
+                    src="https://cdn4.iconfinder.com/data/icons/staff-management-vol-1/72/34-512.png"
                     alt=""
                     className={`img-rounded ${styles.symbols}`}
                   ></img>

@@ -1,18 +1,26 @@
-.navText {
-  position: relative;
-  padding: 15px;
+.wholenav nav {
+  padding: 0;
 }
-.navPro {
-  display: block;
+
+div.container {
+  margin-left: 0;
+  margin-right: 0;
+}
+.meAuto {
+  text-align: center;
   margin: 0 auto;
-  width: 45px;
+  /* position: absolute; */
+  /* left: 80vw; */
 }
-
-.navbar {
-  z-index: 2;
-  /* width: 100vw; */
+a.nav-link {
+  color: black;
 }
-
-html {
-  width: 100vw;
+@media only screen and (max-width: 1000px) {
+  .wholenav {
+    width: 100%;
+  }
+  div.meAuto.navbar-nav {
+    text-align: center;
+    background-color: white;
+  }
 }

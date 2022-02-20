@@ -5,31 +5,32 @@ import styles from "./NewApplicant.module.css";
 const NewComplaint = (props) => {
   const sendRequest = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/applicant/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          qualification,
-          position,
-          experience,
-        }),
-      });
+      const response = await fetch(
+        "https://mysterious-citadel-93609.herokuapp.com/api/applicant/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            qualification,
+            department,
+            experience,
+          }),
+        }
+      );
       const responseData = await response.json();
       if (!response.ok) {
-        console.log(responseData.message);
         throw new Error(responseData.message);
       }
     } catch (err) {
-      console.log(err);
       props.onError(err);
     }
   };
   const [name, setName] = useState("");
   const [qualification, setQualification] = useState("");
-  const [position, setPosition] = useState("");
+  const [department, setDepartment] = useState("");
   const [experience, setExperience] = useState(0);
 
   const nameHandler = (event) => {
@@ -38,8 +39,8 @@ const NewComplaint = (props) => {
   const qualificationHandler = (event) => {
     setQualification(event.target.value);
   };
-  const complaintHandler = (event) => {
-    setPosition(event.target.value);
+  const departmentHandler = (event) => {
+    setDepartment(event.target.value);
   };
   const experienceHandler = (event) => {
     setExperience(event.target.value);
@@ -51,15 +52,14 @@ const NewComplaint = (props) => {
       name,
       qualification,
       experience,
-      position,
+      department,
     };
     props.onAdd(NewApplicant);
-    // props.sendRequest();
+    props.sendRequest();
     setName("");
-    setPosition("");
+    setDepartment("");
     setQualification("");
     setExperience(0);
-    console.log(NewApplicant);
   };
   return (
     <Card className={`${styles.Card} m-4`}>
@@ -91,21 +91,21 @@ const NewComplaint = (props) => {
           type="text"
           name="qualification"
           id="qualification"
-          placeholder="Enter your department"
+          placeholder="Enter your qualification"
           value={qualification}
           onChange={qualificationHandler}
           required
         />
         <br />
         <br />
-        <label htmlFor="position">Position : </label>
+        <label htmlFor="department">Department : </label>
         <input
           type="text"
-          name="position"
-          id="position"
-          placeholder="Enter your desired position"
-          value={position}
-          onChange={complaintHandler}
+          name="department"
+          id="department"
+          placeholder="Enter your desired department"
+          value={department}
+          onChange={departmentHandler}
           required
         />
         <br />
@@ -123,7 +123,7 @@ const NewComplaint = (props) => {
         <br />
         <br />
         <button type="submit" className={`m-4`}>
-          Submit Complaint
+          Submit Applicant
         </button>
       </form>
     </Card>

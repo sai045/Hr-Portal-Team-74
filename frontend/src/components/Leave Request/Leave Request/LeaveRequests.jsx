@@ -18,6 +18,18 @@ const LeaveRequests = (props) => {
   const [Id, setId] = useState(id);
   const [isLoading, setIsLoading] = useState(false);
 
+  const sendRequest = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/api/leaverequests/");
+      const responseData = await response.json();
+      if (!response.ok) {
+        throw new Error(responseData.message);
+      }
+      setLeaverequests(responseData.leaverequests);
+    } catch (err) {
+      console.error(err);
+    }
+  };
   useEffect(() => {
     sendRequest();
   }, []);
@@ -50,19 +62,6 @@ const LeaveRequests = (props) => {
     usePagination
   );
 
-  const sendRequest = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/api/leaverequests/");
-      const responseData = await response.json();
-      if (!response.ok) {
-        throw new Error(responseData.message);
-      }
-      setLeaverequests(responseData.leaverequests);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
   const { globalFilter, pageIndex, pageSize } = state;
 
   const closeHandler = () => {
@@ -73,6 +72,18 @@ const LeaveRequests = (props) => {
     setnewLeaveRequest(false);
   };
   const [Popup, setPopup] = useState(false);
+
+  if (leaverequests.length == 0) {
+    console.log("Hey");
+    const leavesformat = [
+      {
+        id: "Leave Id",
+        days: "days",
+        leavedate: "DD-MM-YYYY",
+      },
+    ];
+    setLeaverequests(leavesformat);
+  }
 
   return (
     <>
@@ -103,7 +114,16 @@ const LeaveRequests = (props) => {
               <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
             </div>
 
-            <table {...getTableProps()}>
+            <table
+              {...getTableProps()}
+              style={{
+                width: "300%",
+                position: "relative",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%,0)",
+              }}
+            >
               <thead>
                 {headerGroups.map((headerGroup) => (
                   <tr {...headerGroup.getHeaderGroupProps()}>

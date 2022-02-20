@@ -19,7 +19,9 @@ const Applicant = (props) => {
   const sendRequest = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:5000/api/applicant/");
+      const response = await fetch(
+        "https://mysterious-citadel-93609.herokuapp.com/api/applicant/"
+      );
       const responseData = await response.json();
       setLoadedApplicants(responseData.applicants);
       setIsLoading(false);
@@ -42,8 +44,6 @@ const Applicant = (props) => {
 
   const errorHandler = (err) => {
     error.push(err);
-
-    console.log(error);
     printError();
   };
 
@@ -51,11 +51,9 @@ const Applicant = (props) => {
     const Error = document.createElement("h1");
     let ERROR = String(error[0]);
     const duplicate = String("E11000");
-    console.log(error[0]);
 
     if (ERROR.includes(duplicate)) {
       Error.innerHTML = "Applicant already exists";
-      console.log("E11000");
     }
 
     document.getElementById("error").appendChild(Error);

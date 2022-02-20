@@ -18,7 +18,9 @@ const Employee = () => {
   const sendRequest = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:5000/api/employee/");
+      const response = await fetch(
+        "https://mysterious-citadel-93609.herokuapp.com/api/employee/"
+      );
       const responseData = await response.json();
       if (!response.ok) {
         throw new Error(responseData.message);
@@ -36,9 +38,6 @@ const Employee = () => {
 
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => loadedEmployees, [loadedEmployees]);
-  const submitHandler = () => {
-    setNewEmployee(false);
-  };
   const errorHandler = (err) => {
     error.push(err);
 
@@ -53,13 +52,16 @@ const Employee = () => {
 
     if (ERROR.includes(duplicate)) {
       Error.innerHTML = "Employee already exists";
-      console.log("E11000");
     }
 
     document.getElementById("error").appendChild(Error);
   };
 
   const closeHandler = () => {
+    setNewEmployee(false);
+  };
+
+  const submitHandler = () => {
     setNewEmployee(false);
   };
 
@@ -89,7 +91,6 @@ const Employee = () => {
   );
 
   const { globalFilter, pageIndex, pageSize } = state;
-   
 
   return (
     <>

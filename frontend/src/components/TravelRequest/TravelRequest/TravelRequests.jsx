@@ -21,9 +21,11 @@ const TravelRequests = (props) => {
     setIsLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/travel");
+      const response = await fetch(
+        "https://mysterious-citadel-93609.herokuapp.com/api/travel"
+      );
       const responseData = await response.json();
-      console.log(responseData);
+
       if (!response.ok) {
         throw new Error(responseData.message);
       }
@@ -111,7 +113,17 @@ const TravelRequests = (props) => {
             <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
           </div>
 
-          {table ? (
+          {!table && (
+            <div>
+              <h4>No Travel Requests Available</h4>
+            </div>
+          )}
+
+          {travels.length == 0 ? (
+            <>
+              <h1>No Travel Requests present</h1>
+            </>
+          ) : (
             <table {...getTableProps()} className={styles.table}>
               <thead>
                 {headerGroups.map((headerGroup) => (
@@ -141,10 +153,6 @@ const TravelRequests = (props) => {
                 })}
               </tbody>
             </table>
-          ) : (
-            <div>
-              <h4>No Travel Requests Available</h4>
-            </div>
           )}
           <div className="m-2">
             <span>
@@ -195,6 +203,7 @@ const TravelRequests = (props) => {
               Next
             </button>
           </div>
+          
           <PopUp trigger={props.popup} />
         </div>
       </Card>

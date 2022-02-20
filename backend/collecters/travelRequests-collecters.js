@@ -40,11 +40,13 @@ const createTravelRequests = async (req, res, next) => {
     next(Error("InValid Input", 422));
   }
 
-  const { employeeId, from, to } = req.body;
+  const { employeeId, from, to, applied_date } = req.body;
   const newTravel = new Travel({
     employeeId,
     from,
     to,
+    applied_date,
+    confirmation: false,
   });
 
   let employee;
@@ -93,7 +95,6 @@ const confirmTravelRequestById = async (req, res, next) => {
   }
 
   res.json({ travel });
-  console.log(travel);
 };
 
 exports.getAllTravelRequests = getAllTravelRequests;

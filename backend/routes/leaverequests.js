@@ -48,7 +48,7 @@ router.post(
       res.json({ leaverequest });
     } catch (err) {
       console.error(err.message);
-      return res.status(500).json("Server error");
+      return res.status(500).json(err);
     }
   }
 );

@@ -1,16 +1,18 @@
-.allboxes {
+ 
+ .allboxes {
   list-style: none;
   display: flex;
   justify-content: space-around;
-  margin-left: 50px;
+  margin-left: 43px;
 }
 .infobox {
-  padding: 0rem 1rem 0rem 1rem;
+  padding: 0rem 1rem 1rem 1rem;
   border-radius: 10px;
   text-align: center;
   height: 90px;
   background-color: rgb(156, 181, 226);
   font-size: 1rem;
+  margin-bottom: 2%;
 }
 .vcncs {
   width: 140px;
@@ -24,45 +26,91 @@
 .infobox h1 {
   margin: 1rem;
 }
-@media only screen and (min-width: 800px) and (max-width: 1200px) {
+ 
+@media only screen and (min-width: 200px) and (max-width: 380px) {
   .allboxes{
-    display: block;
-    width: 20%;
+    display: block; 
+    width: 83%;
     margin-right: 0%;
     height: 60%;
-    
+    margin-left: 10%;
+     
      
   }
-  .infobox{
-    margin-bottom: 3%;
+  .vcncs{
+    margin-left: 20%;
+  }
+  .aplcns{
+    margin-left: 20%;
   }
    
+   
 }
-@media only screen and (min-width: 500px) and (max-width: 800px) {
+@media only screen and (min-width: 380px) and (max-width: 600px) {
   .allboxes{
     display: block;
-    width: 20%;
+    width: 80%;
     margin-right: 0%;
     height: 60%;
-    margin-left: 0%;
-    
+    margin-left: 10%;
+     
   }
-  .infobox{
-    margin-bottom: 3%;
+  .vcncs{
+    margin-left: 20%;
+  }
+  .aplcns{
+    margin-left: 20%;
   }
    
 }
-@media only screen and (min-width: 200px) and (max-width: 500px) {
+@media only screen and (min-width: 600px) and (max-width: 700px) {
   .allboxes{
     display: block;
-    width: 33%;
-    margin-right: 0%;
+    width: 83%;
+    margin-bottom: 0%;
     height: 60%;
-    margin-left: 0%;
-    
+    margin-left: 9%;
+     
   }
-  .infobox{
-    margin-bottom: 3%;
+  .vcncs{
+    margin-left: 25%;
+  }
+  .aplcns{
+    margin-left: 25%;
   }
    
 }
+@media only screen and (min-width: 750px) and (max-width: 1100px) {
+   .allboxes{
+    display: block;
+    width: 70%;
+    margin-bottom: 0%;
+    height: 60%;
+    margin-left: 15%;
+     
+  }
+  .vcncs{
+    margin-left: 15%;
+  }
+  .aplcns{
+    margin-left: 15%;
+  }
+}
+
+@media only screen   and (width: 540px) {
+  .allboxes{
+    display: block;
+    width: 83%;
+    margin-bottom: 0%;
+    height: 60%;
+    margin-left: 9%;
+     
+  }
+  .vcncs{
+    margin-left: 20%;
+  }
+  .aplcns{
+    margin-left: 20%;
+  }
+   
+} 

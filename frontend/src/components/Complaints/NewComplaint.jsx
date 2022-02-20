@@ -5,17 +5,20 @@ import styles from "./Complaints.module.css";
 const NewComplaint = (props) => {
   const sendRequest = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/complaints/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          Name: name,
-          Department: department,
-          complaint: complaint,
-        }),
-      });
+      const response = await fetch(
+        "https://mysterious-citadel-93609.herokuapp.com/api/complaints/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            Name: name,
+            Department: department,
+            complaint: complaint,
+          }),
+        }
+      );
     } catch (err) {
       console.log(err);
     }
@@ -44,7 +47,6 @@ const NewComplaint = (props) => {
     sendRequest();
     props.onAdd(NewComplaint);
     setName(""), setComplaint(""), setDepartment("");
-    console.log(NewComplaint);
   };
 
   return (

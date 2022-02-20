@@ -14,8 +14,13 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  avatar: {
+  location:{
     type: String,
+    required: true,
+  },
+  number:{
+    type: Number,
+    required: true,
   },
 });
 

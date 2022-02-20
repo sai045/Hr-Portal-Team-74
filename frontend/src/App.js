@@ -16,13 +16,16 @@ import Salary from "./components/Salary/Salary";
 import Complaints from "./components/Complaints/Complaints";
 import NewComplaint from "./components/Complaints/NewComplaint";
 import Navbar from "./components/Navbar/Navbar";
+import Announcements from "./components/Announcements/Announcements";
+import UserDetails from "./components/UserDetails/UserDetails";
 
 function App() {
   return (
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/navbar/:id" element={<Navbar />} />
+          <Route path="/:Id/Announcements" element={<Announcements />} />
+          <Route path="/:id/UserDetails" element={<UserDetails />} />
           <Route path="/:id" element={<Home />} />
           <Route path="/" element={<Login />} />
           <Route path="/signUp" element={<SignUp />} />
@@ -51,11 +54,6 @@ function App() {
             path="/:id/employeeDashboard/:eid"
             element={<EmployeeDashboard />}
           />
-          {/* <Route
-            path="/:id/leaveConfirmation"
-            element={<LeaveConfirmation />}
-          /> */}
-
           <Route
             path="/:id/applicant/:aid"
             element={<ApplicantPage popup={true} />}

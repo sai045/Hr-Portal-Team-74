@@ -7,7 +7,18 @@ const Chart = (props) => {
 
   const sendRequest = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/dashboard`);
+      const response = await fetch(
+        "https://mysterious-citadel-93609.herokuapp.com/api/dashboard/get",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (!response.ok) {
+        throw new Error(responseData);
+      }
       const responseData = await response.json();
       setData(responseData.obj);
     } catch (err) {
@@ -21,8 +32,8 @@ const Chart = (props) => {
 
   return (
     <div className={`${props.className} ${styles.PieBody}`}>
-      <h2 className={`mx-2`}>Department Ratios</h2>
-      <PieChart width={300} height={310}>
+      <h2>Department Ratios</h2>
+      <PieChart width={300} height={200}>
         <Pie
           dataKey="value"
           isAnimationActive={true}

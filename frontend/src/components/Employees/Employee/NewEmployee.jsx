@@ -7,26 +7,30 @@ const NewEmployee = (props) => {
   const [department, setDepartment] = useState("");
   const [email, setEmail] = useState("");
   const [salary, setSalary] = useState(0);
+  const [hired_date, setHired_date] = useState(0);
   const [working_hours, setWorking_hours] = useState(0);
 
   const sendRequest = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/employee/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          department,
-          email,
-          salary,
-          working_hours,
-        }),
-      });
+      const response = await fetch(
+        "https://mysterious-citadel-93609.herokuapp.com/api/employee/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            department,
+            email,
+            salary,
+            working_hours,
+            hired_date,
+          }),
+        }
+      );
       const responseData = await response.json();
       if (!response.ok) {
-        // console.log(responseData.message);
         throw new Error(responseData.message);
       }
     } catch (err) {
@@ -49,21 +53,39 @@ const NewEmployee = (props) => {
   const working_hoursHandler = (event) => {
     setWorking_hours(event.target.value);
   };
+  const hired_dateHandler = (event) => {
+    setHired_date(event.target.value);
+  };
   const newEmployeeHandler = (event) => {
-    sendRequest();
     event.preventDefault();
+    const departments = [
+      "Marketing",
+      "Accounting",
+      "Product Management",
+      "Production",
+      "Management",
+      "Labor",
+      "Research",
+    ];
+    if (!departments.includes(department)) {
+      return (document.getElementById("error").innerHTML =
+        "Department do not exist");
+    }
+    sendRequest();
     const NewEmployee = {
       name,
       department,
       email,
       salary,
       working_hours,
+      hired_date,
     };
-    props.onAdd(NewEmployee);
+    props.onAdd()
     setName("");
     setDepartment("");
     setEmail("");
     setSalary(0);
+    setHired_date(0);
     setWorking_hours(0);
     console.log(NewEmployee);
   };
@@ -142,6 +164,19 @@ const NewEmployee = (props) => {
           />
           <br />
           <br />
+          <label htmlFor="hired_date">Hired Date : </label>
+          <input
+            type="date"
+            name="hired_date"
+            id="hired_date"
+            placeholder="Enter the date you got hired(YYYY-MM-DD)"
+            value={hired_date}
+            onChange={hired_dateHandler}
+            required
+          />
+          <br />
+          <br />
+          <div id="error"></div>
           <button type="submit" className={`m-4`}>
             Submit Employee
           </button>

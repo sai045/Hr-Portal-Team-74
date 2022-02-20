@@ -2,7 +2,7 @@ import Buttons from "./Buttons";
 import DashHead from "./DashHead";
 import LittleBoxes from "./LittleBoxes";
 import ChartBar from "./ChartBar";
-
+import ToggleButton from "./ToggleButton";
 import Chart from "./Chart";
 import styles from "./Dash.module.css";
 import Navbar from "../Navbar/Navbar";

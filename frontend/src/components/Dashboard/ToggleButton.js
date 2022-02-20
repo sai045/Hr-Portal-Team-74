@@ -6,6 +6,7 @@ const ToggleButton = (props) => {
     props.setDays(event.target.value);
     props.sendRequest();
   };
+
   return (
     <div className={styles.dropdownbtn}>
       <Input type="select" className={styles.select} onChange={optionHandler}>

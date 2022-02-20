@@ -8,7 +8,7 @@ const PopUp = (props) => {
   const deleteRequest = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/applicant/${aid}`,
+        `https://mysterious-citadel-93609.herokuapp.com/api/applicant/${aid}`,
         {
           method: "DELETE",
         }
@@ -25,7 +25,7 @@ const PopUp = (props) => {
   const sendRequest = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/applicant/${aid}`,
+        `https://mysterious-citadel-93609.herokuapp.com/api/applicant/${aid}`,
         {
           method: "PATCH",
           headers: {
@@ -46,7 +46,7 @@ const PopUp = (props) => {
   return props.trigger ? (
     <div className="Pop-Card">
       <div className="Pop-top">
-        <h4 className="Pop-head">Do You Want To Confirm the Request?</h4>
+        <h4 className="Pop-head">Do You Want To Schedule the Interview?</h4>
         <button
           className="close-btn"
           onClick={() => {
@@ -54,7 +54,9 @@ const PopUp = (props) => {
             const href_elements = href.split("/");
             const id = href_elements[3];
             console.log(id);
-            window.location.assign(`http://localhost:3000/${id}/applicantpage`);
+            window.location.assign(
+              `https://mysterious-citadel-93609.herokuapp.com/${id}/applicantpage`
+            );
           }}
         >
           {" "}
@@ -73,7 +75,7 @@ const PopUp = (props) => {
               const id = href_elements[3];
               console.log(id);
               window.location.assign(
-                `http://localhost:3000/${id}/applicantpage`
+                `https://mysterious-citadel-93609.herokuapp.com/${id}/applicantpage`
               );
             }}
           >
@@ -87,7 +89,9 @@ const PopUp = (props) => {
             const href = window.location.href;
             const href_elements = href.split("/");
             const id = href_elements[3];
-            window.location.assign(`http://localhost:3000/${id}/applicantpage`);
+            window.location.assign(
+              `https://mysterious-citadel-93609.herokuapp.com/${id}/applicantpage`
+            );
           }}
         >
           No

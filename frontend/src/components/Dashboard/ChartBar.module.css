@@ -5,41 +5,73 @@
   box-shadow: 0rem 0rem 1rem rgb(88, 99, 161);
   width: 700px;
   height: 380px;
+  /* display: block; */
 }
  
+@media only screen and (min-width: 200px) and (max-width: 380px) {
+  .graphbody {
+    
+      top: 150%;
+      margin-left: 20%;
+      width: 500px;
+
+  }
+    
+}
+@media only screen and (min-width: 380px) and (max-width: 600px) {
+  .graphbody {
+    
+       top: 160%;
+      margin-left: 17%;
+      width: 500px;
+  }
+    
+}
+@media only screen and (width: 540px) {
+  .graphbody {
+    
+       top: 160%;
+      margin-left: 17%;
+      width: 500px;
+  }
+    
+}
+@media only screen and (min-width: 600px) and (max-width: 700px) {
+  .graphbody {
+    
+       top: 105%;
+      margin-left: 17%;
+      width: 500px;
+  }
+    
+}
+@media only screen and (min-width: 750px) and (max-width: 800px) {
+  .graphbody {
+    
+       top: 125%;
+      margin-left: 17%;
+      width: 500px;
+  }
+    
+}
+
+@media only screen and (min-width: 800px) and (max-width: 1000px) {
+  .graphbody {
+    
+       top: 100%;
+      margin-left: 25%;
+      width: 500px;
+  }
+    
+}
 @media only screen and (min-width: 1000px) and (max-width: 1200px) {
   .graphbody {
     
-      top: 20%;
+      top: 190%;
       margin-left: 30%;
       width: 500px;
+      margin-top: 12%;
   }
-    
-}
-@media only screen and (min-width: 600px) and (max-width: 1000px) {
-  .graphbody {
-    
-       top: 17%;
-      margin-left: 32%;
-      width: 500px;
-  }
-    
-}
-@media only screen and (min-width: 500px) and (max-width: 600px) {
-  .graphbody {
-    
-       top: 25%;
-      margin-left: 35%;
-      width: 500px;
-  }
-    
-}
-@media only screen and (min-width: 200px) and (max-width: 500px) {
-  .graphbody {
-    
-       top: 25%;
-      margin-left: 55%;
-      width: 500px;
-  }
-    
-}
+   
+} 
+     

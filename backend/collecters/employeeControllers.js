@@ -40,7 +40,7 @@ const createEmployee = async (req, res, next) => {
     // return next(error("InValid Input", 422));
     return res.json({ errors });
   }
-  const { name, email, department, working_hours, salary, dashboard } =
+  const { name, email, department, working_hours, salary, hired_date } =
     req.body;
   const newEmployee = new Employee({
     name,
@@ -48,6 +48,7 @@ const createEmployee = async (req, res, next) => {
     department,
     working_hours,
     salary,
+    hired_date,
     travelRequests: [],
     leaveRequests: [],
   });

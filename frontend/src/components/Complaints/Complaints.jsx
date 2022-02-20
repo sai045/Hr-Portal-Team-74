@@ -15,7 +15,7 @@ const Complaints = () => {
   const sendRequest = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("http://localhost:5000/api/complaints/");
+      const response = await fetch("https://mysterious-citadel-93609.herokuapp.com/api/complaints/");
 
       const responseData = await response.json();
 

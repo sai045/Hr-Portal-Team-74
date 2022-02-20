@@ -53,8 +53,17 @@
   box-sizing: border-box;
 }
 
-@media (max-width: 620px) {
+/* @media (max-width: 620px) {
   .table {
     width: 100%;
+  }
+} */
+@media only screen and (max-width: 660px) {
+  .search {
+    left: 0%;
+  }
+  .table {
+    left: 5%;
+    overflow-x: hidden;
   }
 }

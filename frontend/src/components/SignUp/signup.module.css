@@ -1,8 +1,7 @@
 .lgnbx {
   text-align: center;
-  margin: 50px 0px 0px 50px;
-  padding: 10px 26px 30px 10px;
-  /* height: 370px; */
+  margin: 40px 0px 0px 50px;
+  padding: 20px 30px 30px 10px;
   background-color: rgb(189, 196, 235);
   border-radius: 20px;
   box-shadow: 4px 3px 4px black;
@@ -16,7 +15,7 @@
   height: auto;
 }
 .btn {
-  margin: 20px 20px 10px 40px;
+  margin: 20px 20px 0px 40px;
   padding: 10px 30px 10px 30px;
   background-color: rgb(88 99 161);
   border-radius: 10px;
@@ -28,9 +27,8 @@
 }
 .whole {
   display: flex;
-  /* border: 2px solid black; */
-  margin: 40px 150px 30px 150px;
-  padding: 0px 50px 65px 36px;
+  margin: 0px 150px 50px 150px;
+  padding: 0px 50px 50px 36px;
   border-radius: 25px;
   box-shadow: 6px 6px 8px 6px rgb(88 99 161);
   position: relative;
@@ -40,7 +38,7 @@
   margin: auto;
 }
 .head {
-  margin: 10px 30px 10px 80px;
+  margin: 10px 30px 30px 80px;
 }
 .foot {
   text-decoration: underline;
@@ -74,7 +72,7 @@
     height: 100%;
   }
 }
-@media only screen and (min-width: 200px) and (max-width: 600px) {
+@media only screen and (min-width: 300px) and (max-width: 600px) {
   .image {
     display: none;
   }
@@ -86,12 +84,65 @@
     height: 40%;
     padding-bottom: 8%;
     padding-right: 3%;
+    border-radius: 0px;
+  box-shadow: 0px 0px 0px 0px rgb(88 99 161);
   }
   .lgnbx {
     margin-left: 0rem;
     margin-top: 10%;
     padding-right: 10%;
     width: 100%;
+    padding-left: 0%;
+  }
+}
+@media only screen and (min-width: 100px) and (max-width: 300px) {
+  .image {
+    display: none;
+  }
+  .whole {
+    width: 91%;
+    margin-right: 7%;
+    margin-left: 7%;
+    padding-left: 3%;
+    height: 40%;
+    padding-bottom: 8%;
+    padding-right: 3%;
+    border-radius: 0px;
+  box-shadow: 0px 0px 0px 0px rgb(88 99 161);
+  }
+  .lgnbx {
+    margin-left: 0rem;
+    margin-top: 10%;
+    padding-right: 10%;
+    width: 100%;
+    padding-left: 0%;
+  }
+  input.infoBox{
+    margin-left: 3%;
+    padding-right: 15%;
+  }
+
+}
+@media only screen and (width: 540px) {
+   .image {
+    display: none;
+  }
+  .whole {
+    width: 91%;
+    margin-right: 7%;
+    margin-left: 7%;
+    padding-left: 3%;
+    height: 40%;
+    padding-bottom: 8%;
+    padding-right: 3%;
+    border-radius: 0px;
+  box-shadow: 0px 0px 0px 0px rgb(88 99 161);
+  }
+  .lgnbx {
+    margin-left: 0rem;
+    margin-top: 10%;
+    padding-right: 10%;
+    width: 70%;
     padding-left: 0%;
   }
 }

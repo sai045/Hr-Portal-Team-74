@@ -12,6 +12,18 @@ export const COLUMNS = [
     accessor: "to",
   },
   {
+    Header: "Applied date",
+    accessor: "applied_date",
+    Cell: ({ cell }) => {
+      let date = new Date(cell.row.values.applied_date);
+      let days = date.getDate();
+      let months = date.getMonth() + 1;
+      let years = date.getFullYear();
+      let DATE = `${days}-${months}-${years}`;
+      return <p>{DATE}</p>;
+    },
+  },
+  {
     Header: "Confirmation",
     accessor: "_id",
     Cell: ({ cell }) => (
@@ -21,7 +33,9 @@ export const COLUMNS = [
           const href_elements = href.split("/");
           const id = href_elements[3];
           const tid = cell.row.values._id;
-          window.location.assign(`http://localhost:3000/${id}/travel/${tid}`);
+          window.location.assign(
+            `https://mysterious-citadel-93609.herokuapp.com/${id}/travel/${tid}`
+          );
         }}
       >
         Confirmation

@@ -1,4 +1,5 @@
 import styles from "./Buttons.module.css";
+import { Link } from "react-router-dom";
 function Buttons(props) {
   const href = window.location.href;
   const href_elements = href.split("/");
@@ -18,14 +19,18 @@ function Buttons(props) {
   return (
     <div className={`${props.className} ${styles.btns}`}>
       <span className={styles.spanbtn}>
-        <button className={styles.probutton}>Edit Profile</button>
+        <Link to={`/${id}/UserDetails`}>
+          <button className={styles.probutton}>Edit Profile</button>
+        </Link>
       </span>
       <span className={styles.spanbtn}>
         <button
           className={styles.deletebutton}
           onClick={() => {
             sendRequest();
-            window.location.assign(`http://localhost:3000/`);
+            window.location.assign(
+              `https://mysterious-citadel-93609.herokuapp.com/`
+            );
           }}
         >
           Delete Account

@@ -17,6 +17,10 @@ router.post(
       "password",
       "Please enter password with 8 or more characters"
     ).isLength({ min: 8 }),
+    check("location", "Enter your location").not().isEmpty(),
+    check("number", "Enter your contact number")
+      .isNumeric()
+      .isLength({ max: 10 }),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -24,7 +28,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, email, password } = req.body;
+    const { name, email, password, location, number } = req.body;
 
     try {
       let user = await User.findOne({ email });
@@ -42,14 +46,20 @@ router.post(
       user = new User({
         name,
         email,
-        avatar,
         password,
+        location,
+        number,
       });
 
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(password, salt);
-
-      const result = await user.save();
+      try {
+        const result = await user.save();
+        console.log(result);
+      } catch (err) {
+        res.json({ err });
+        console.log(err);
+      }
 
       const payload = {
         user: {
@@ -58,13 +68,43 @@ router.post(
       };
       jwt.sign(payload, config.get("jwtSecret"), (err, token) => {
         if (err) throw err;
-        res.json({ token });
+        id = user.id;
+        res.json({ id });
+        console.log(id);
       });
     } catch (err) {
-      console.error(err.message);
+      console.error(err);
       return res.status(500).json("Server error");
     }
   }
 );
+
+router.get("/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const users = await User.findById(id);
+
+    if (!users) {
+      return res.status(500).json({ msg: "There isn't any user with this id" });
+    }
+
+    res.json(users);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
+router.get("/", async (req, res) => {
+  try {
+    const users = await User.find({ confirmation: false });
+    if (users.length == 0) {
+      return res.json({ message: "No Users" });
+    }
+    res.json({ users });
+  } catch (err) {
+    return res.status(500).send("Server Error");
+  }
+});
 
 module.exports = router;
