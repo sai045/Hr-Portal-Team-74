@@ -1,6 +1,9 @@
 # Title of the Project
 HR-Portal
 
+# Hosted URL
+https://mysterious-citadel-93609.herokuapp.com/
+
 # Team Members
 Aalasyam Sai Varshith 2020BCS-001
 <br/>Eesala Tejasri 2020BCS-029
@@ -16,3 +19,10 @@ In this HR-Portal, HR of a company has access to all the employees and their iss
 
 # Features Implemented
 ## Frontend
+1.React Hooks
+<br/>2.Css Modules
+<br/>3.Bootstrap
+
+## Backend
+1.NodeJS + Express API
+<br/>2.NodeJS + MongoDB Database 
