@@ -64,3 +64,13 @@ In this HR-Portal, HR of a company has access to all the employees and their iss
 6. mongoose
 <br/>
 7. nodemon
+
+# Local Setup
+<br/>
+1. Make sure that the latest version of NodeJS and NPM are installed.
+2. Clone The Repository
+3. While in the root directoey, move to frontend and run **npm i** and **npm start**
+4. 
+
+Email: test@gmail.com
+Password: test1234
