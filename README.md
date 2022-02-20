@@ -72,7 +72,7 @@ In this HR-Portal, HR of a company has access to all the employees and their iss
 3. While in the root directory, move to frontend and run `npm i` and `npm start`.
 4. Move back to root directory
 5. Move to backend and run `npm i` and `nodemon server`
-
+<br/>
 While using **Plexus**, create a new user, or use an existing user
 
 * Email: test@gmail.com
