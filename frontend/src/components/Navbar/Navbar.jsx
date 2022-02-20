@@ -13,9 +13,10 @@ const Navbar = () => {
   const sendRequest = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/${Id}`
+        `http://localhost:5000/${Id}`
       );
       const responseData = await response.json();
+      console.log(responseData)
       if (!response.ok) {
         throw Error("Error");
       }

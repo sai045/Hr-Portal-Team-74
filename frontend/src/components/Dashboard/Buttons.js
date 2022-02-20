@@ -29,7 +29,7 @@ function Buttons(props) {
           onClick={() => {
             sendRequest();
             window.location.assign(
-              `https://localhost:3000/`
+              `http://localhost:3000/`
             );
           }}
         >

@@ -7,15 +7,12 @@ import LeaveRequests from "./components/Leave Request/Leave Request/LeaveRequest
 import Login from "./components/Login/Login";
 import SignUp from "./components/SignUp/Signup";
 import Schedule from "./components/Schedule/Schedule";
-import Resume from "./components/Applicants/Resume/Resume";
 import EmployeeDashboard from "./components/Employees/EmployeeDashboard/EmployeeDashboard";
-import LeaveConfirmation from "./components/Leave Request/LeaveConfirmation/LeaveConfirmation";
 import Dash from "./components/Dashboard/Dash";
 import Home from "./components/Home/Home";
 import Salary from "./components/Salary/Salary";
 import Complaints from "./components/Complaints/Complaints";
 import NewComplaint from "./components/Complaints/NewComplaint";
-import Navbar from "./components/Navbar/Navbar";
 import Announcements from "./components/Announcements/Announcements";
 import UserDetails from "./components/UserDetails/UserDetails";
 

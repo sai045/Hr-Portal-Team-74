@@ -10,7 +10,7 @@ const Home = () => {
   const sendRequest = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/${Id}`,
+        `http://localhost:5000/${Id}`,
         {
           headers: {
             "Content-Type": "application/json",
