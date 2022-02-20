@@ -9,7 +9,7 @@ const LittleBoxes = () => {
   const sendRequest = async () => {
     try {
       const response = await fetch(
-        "https://mysterious-citadel-93609.herokuapp.com/api/dashboard/get",
+        "http://localhost:5000/api/dashboard/get",
         {
           method: "GET",
           headers: {

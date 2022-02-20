@@ -29,7 +29,7 @@ function Buttons(props) {
           onClick={() => {
             sendRequest();
             window.location.assign(
-              `https://mysterious-citadel-93609.herokuapp.com/`
+              `https://localhost:3000/`
             );
           }}
         >

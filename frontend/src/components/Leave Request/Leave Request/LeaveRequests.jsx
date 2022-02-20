@@ -117,11 +117,9 @@ const LeaveRequests = (props) => {
             <table
               {...getTableProps()}
               style={{
-                width: "300%",
-                position: "relative",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%,0)",
+                width: "80vh",
+                marginLeft: "10vh",
+                marginRight: "10vh",
               }}
             >
               <thead>

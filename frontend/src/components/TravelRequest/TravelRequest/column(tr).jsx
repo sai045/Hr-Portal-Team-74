@@ -34,7 +34,7 @@ export const COLUMNS = [
           const id = href_elements[3];
           const tid = cell.row.values._id;
           window.location.assign(
-            `https://mysterious-citadel-93609.herokuapp.com/${id}/travel/${tid}`
+            `http://localhost:3000/${id}/travel/${tid}`
           );
         }}
       >

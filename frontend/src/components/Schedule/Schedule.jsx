@@ -11,7 +11,7 @@ const Schedule = () => {
   const [Data, setData] = useState([]);
   const sendRequest = async () => {
     const response = await fetch(
-      `https://mysterious-citadel-93609.herokuapp.com/api/applicant/schedule/date`
+      `http://localhost:5000/api/applicant/schedule/date`
     );
 
     const responseData = await response.json();

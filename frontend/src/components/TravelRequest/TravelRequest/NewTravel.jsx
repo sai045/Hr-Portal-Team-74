@@ -11,7 +11,7 @@ const NewTravel = (props) => {
   const sendRequest = async () => {
     try {
       const response = await fetch(
-        "https://mysterious-citadel-93609.herokuapp.com/api/travel",
+        "http://localhost:5000/api/travel",
         {
           method: "POST",
           headers: {

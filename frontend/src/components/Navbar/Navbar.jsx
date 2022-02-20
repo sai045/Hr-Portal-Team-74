@@ -13,7 +13,7 @@ const Navbar = () => {
   const sendRequest = async () => {
     try {
       const response = await fetch(
-        `https://mysterious-citadel-93609.herokuapp.com/api/${Id}`
+        `http://localhost:5000/api/${Id}`
       );
       const responseData = await response.json();
       if (!response.ok) {
@@ -64,7 +64,7 @@ const Navbar = () => {
                 Details
               </ReactBootsrtap.Nav.Link>
               <Link
-                to={"https://mysterious-citadel-93609.herokuapp.com/"}
+                to={"/"}
                 style={{ textDecoration: "none" }}
               >
                 <ReactBootsrtap.Nav.Link>Log Out</ReactBootsrtap.Nav.Link>

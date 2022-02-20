@@ -6,7 +6,7 @@ const Complaint = (props) => {
   const deleteHandler = async () => {
     try {
       const response = await fetch(
-        `https://mysterious-citadel-93609.herokuapp.com/api/complaints/${props.id}`,
+        `https://localhost:5000/api/complaints/${props.id}`,
         {
           method: "DELETE",
           headers: {

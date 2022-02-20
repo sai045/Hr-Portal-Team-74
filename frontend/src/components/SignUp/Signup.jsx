@@ -40,7 +40,7 @@ const SignUp = () => {
       } else {
         try {
           const response = await fetch(
-            "https://mysterious-citadel-93609.herokuapp.com/api/users",
+            "http://localhost:5000/api/users",
             {
               method: "POST",
               headers: {
@@ -63,7 +63,7 @@ const SignUp = () => {
           console.log(id);
           console.log("Successful"),
             window.location.assign(
-              `https://mysterious-citadel-93609.herokuapp.com/`
+              `http://localhost:3000/`
             );
         } catch (err) {
           console.error(err);

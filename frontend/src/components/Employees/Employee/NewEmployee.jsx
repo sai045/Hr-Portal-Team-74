@@ -13,7 +13,7 @@ const NewEmployee = (props) => {
   const sendRequest = async () => {
     try {
       const response = await fetch(
-        "https://mysterious-citadel-93609.herokuapp.com/api/employee/",
+        "http://localhost:5000/api/employee/",
         {
           method: "POST",
           headers: {

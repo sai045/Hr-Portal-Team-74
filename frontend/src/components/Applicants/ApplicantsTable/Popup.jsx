@@ -8,7 +8,7 @@ const PopUp = (props) => {
   const deleteRequest = async () => {
     try {
       const response = await fetch(
-        `https://mysterious-citadel-93609.herokuapp.com/api/applicant/${aid}`,
+        `https://localhost:5000/api/applicant/${aid}`,
         {
           method: "DELETE",
         }
@@ -25,7 +25,7 @@ const PopUp = (props) => {
   const sendRequest = async () => {
     try {
       const response = await fetch(
-        `https://mysterious-citadel-93609.herokuapp.com/api/applicant/${aid}`,
+        `https://localhost:5000/api/applicant/${aid}`,
         {
           method: "PATCH",
           headers: {
@@ -55,7 +55,7 @@ const PopUp = (props) => {
             const id = href_elements[3];
             console.log(id);
             window.location.assign(
-              `https://mysterious-citadel-93609.herokuapp.com/${id}/applicantpage`
+              `https://localhost:3000/${id}/applicantpage`
             );
           }}
         >
@@ -75,7 +75,7 @@ const PopUp = (props) => {
               const id = href_elements[3];
               console.log(id);
               window.location.assign(
-                `https://mysterious-citadel-93609.herokuapp.com/${id}/applicantpage`
+                `https://localhost:3000/${id}/applicantpage`
               );
             }}
           >
@@ -90,7 +90,7 @@ const PopUp = (props) => {
             const href_elements = href.split("/");
             const id = href_elements[3];
             window.location.assign(
-              `https://mysterious-citadel-93609.herokuapp.com/${id}/applicantpage`
+              `https://localhost:3000/${id}/applicantpage`
             );
           }}
         >

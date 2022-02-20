@@ -10,7 +10,7 @@ const Home = () => {
   const sendRequest = async () => {
     try {
       const response = await fetch(
-        `https://mysterious-citadel-93609.herokuapp.com/api/${Id}`,
+        `http://localhost:5000/api/${Id}`,
         {
           headers: {
             "Content-Type": "application/json",

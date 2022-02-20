@@ -20,7 +20,7 @@ const Applicant = (props) => {
     setIsLoading(true);
     try {
       const response = await fetch(
-        "https://mysterious-citadel-93609.herokuapp.com/api/applicant/"
+        "https://localhost:5000/api/applicant/"
       );
       const responseData = await response.json();
       setLoadedApplicants(responseData.applicants);

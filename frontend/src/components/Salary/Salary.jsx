@@ -12,7 +12,7 @@ const Salary = () => {
   const sendRequest = async () => {
     try {
       const response = await fetch(
-        `https://mysterious-citadel-93609.herokuapp.com/api/salary`
+        `http://localhost:5000/api/salary`
       );
       const responseData = await response.json();
       setData(responseData.obj);

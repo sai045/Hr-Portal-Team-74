@@ -22,7 +22,7 @@ const TravelRequests = (props) => {
 
     try {
       const response = await fetch(
-        "https://mysterious-citadel-93609.herokuapp.com/api/travel"
+        "http://localhost:5000/api/travel"
       );
       const responseData = await response.json();
 

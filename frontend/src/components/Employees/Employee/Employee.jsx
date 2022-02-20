@@ -19,7 +19,7 @@ const Employee = () => {
     setIsLoading(true);
     try {
       const response = await fetch(
-        "https://mysterious-citadel-93609.herokuapp.com/api/employee/"
+        "http://localhost:5000/api/employee/"
       );
       const responseData = await response.json();
       if (!response.ok) {
