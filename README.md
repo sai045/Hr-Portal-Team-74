@@ -26,3 +26,21 @@ In this HR-Portal, HR of a company has access to all the employees and their iss
 ## Backend
 1.NodeJS + Express API
 <br/>2.NodeJS + MongoDB Database 
+
+# PACKAGES
+## FRONTEND PACKAGES
+1.Bootstrap
+<br/>2.react-bootstrap
+<br/>3.react-router
+<br/>4.react-router-dom
+<br/>5.react-table
+<br/>6.recharts
+
+## BACKEND PACKAGES
+1.bcrypt
+<br/>2.body-parser
+<br/>3.config
+<br/>4.cors
+<br/>5.jsonwebtoken
+<br/>6.mongoose
+<br/>7.nodemon
