@@ -41,7 +41,7 @@ export const COLUMNS = [
           console.log(id);
           console.log(eid);
           window.location.assign(
-            `https://mysterious-citadel-93609.herokuapp.com/${id}/employeeDashboard/${eid}`
+            `https://hr-portal-team-74.vercel.app/${id}/employeeDashboard/${eid}`
           );
         }}
       >
