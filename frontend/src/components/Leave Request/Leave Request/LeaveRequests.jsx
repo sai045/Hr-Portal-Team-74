@@ -20,7 +20,7 @@ const LeaveRequests = (props) => {
 
   const sendRequest = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/leaverequests/");
+      const response = await fetch("https://hr-portal-team-74.vercel.app/api/leaverequests/");
       const responseData = await response.json();
       if (!response.ok) {
         throw new Error(responseData.message);
