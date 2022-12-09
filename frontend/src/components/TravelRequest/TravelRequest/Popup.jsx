@@ -8,7 +8,7 @@ const PopUp = (props) => {
 
   const sendRequest = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/travel/${tid}`, {
+      const response = await fetch(`https://hr-portal-team-74.vercel.app/api/travel/${tid}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -34,7 +34,7 @@ const PopUp = (props) => {
             const id = href_elements[3];
             console.log(id);
             window.location.assign(
-              `http://localhost:3000/${id}/travelrequests`
+              `https://hr-portal-team-74-y1r7.vercel.app/${id}/travelrequests`
             );
           }}
         >
@@ -55,7 +55,7 @@ const PopUp = (props) => {
               const id = href_elements[3];
               console.log(id);
               window.location.assign(
-                `http://localhost:3000/${id}/travelrequests`
+                `https://hr-portal-team-74-y1r7.vercel.app/${id}/travelrequests`
               );
               confirmation = false;
             }}
