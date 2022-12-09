@@ -15,7 +15,7 @@ const Travel = () => {
   const sendRequest = async () => {
     try {
       const leaveRequestsResponse = await fetch(
-        `http://localhost:5000/api/employee/leave/${Id}`
+        `https://hr-portal-team-74.vercel.app/api/employee/leave/${Id}`
       );
       const leaveRequestsResponseData = await leaveRequestsResponse.json();
       console.log(leaveRequestsResponseData.leaveJSON);
