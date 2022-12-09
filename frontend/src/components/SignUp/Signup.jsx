@@ -40,7 +40,7 @@ const SignUp = () => {
       } else {
         try {
           const response = await fetch(
-            "http://localhost:5000/api/users",
+            "https://hr-portal-team-74.vercel.app/api/users",
             {
               method: "POST",
               headers: {
