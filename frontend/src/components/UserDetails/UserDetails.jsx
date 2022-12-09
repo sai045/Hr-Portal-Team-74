@@ -12,7 +12,7 @@ const UserDetails = () => {
   const sendRequest = async () => {
     try {
       const response = await fetch(
-        `https://mysterious-citadel-93609.herokuapp.com/api/${Id}`
+        `https://hr-portal-team-74.vercel.app/api/${Id}`
       );
       const responseData = await response.json();
       if (!response.ok) {
