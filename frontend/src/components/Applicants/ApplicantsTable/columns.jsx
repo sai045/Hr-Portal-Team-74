@@ -28,7 +28,7 @@ export const COLUMNS = [
           const id = href_elements[3];
           const aid = cell.row.values._id;
           window.location.assign(
-            `https://mysterious-citadel-93609.herokuapp.com/${id}/applicant/${aid}`
+            `https://hr-portal-team-74.vercel.app/${id}/applicant/${aid}`
           );
         }}
       >
