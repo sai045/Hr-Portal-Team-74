@@ -6,7 +6,7 @@ const NewComplaint = (props) => {
   const sendRequest = async () => {
     try {
       const response = await fetch(
-        "https://localhost:5000/api/complaints/",
+        "https://hr-portal-team-74.vercel.app/complaints/",
         {
           method: "POST",
           headers: {
