@@ -20,7 +20,7 @@ const Applicant = (props) => {
     setIsLoading(true);
     try {
       const response = await fetch(
-        "http://localhost:5000/api/applicant/"
+        "https://hr-portal-team-74.vercel.app/applicant/"
       );
       const responseData = await response.json();
       setLoadedApplicants(responseData.applicants);
