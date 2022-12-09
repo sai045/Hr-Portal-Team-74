@@ -24,7 +24,7 @@ const Login = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/auth",
+        "https://hr-portal-team-74.vercel.app/api/auth",
         {
           method: "POST",
           headers: {
@@ -45,7 +45,7 @@ const Login = () => {
       const id = responseData.id;
       console.log(id);
       window.location.assign(
-        `http://localhost:3000/${id}`
+        `https://hr-portal-team-74-y1r7.vercel.app/${id}`
       );
       console.log(response.json);
     } catch (err) {
