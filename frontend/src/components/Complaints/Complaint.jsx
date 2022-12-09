@@ -6,7 +6,7 @@ const Complaint = (props) => {
   const deleteHandler = async () => {
     try {
       const response = await fetch(
-        `https://hr-portal-team-74.vercel.app/complaints/${props.id}`,
+        `https://hr-portal-team-74.vercel.app/api/complaints/${props.id}`,
         {
           method: "DELETE",
           headers: {
