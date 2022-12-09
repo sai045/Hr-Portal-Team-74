@@ -9,7 +9,7 @@ const LittleBoxes = () => {
   const sendRequest = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/api/dashboard/get",
+        "https://hr-portal-team-74.vercel.app/api/dashboard/get",
         {
           method: "GET",
           headers: {
