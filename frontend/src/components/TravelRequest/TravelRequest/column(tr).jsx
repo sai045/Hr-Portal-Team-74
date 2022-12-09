@@ -34,7 +34,7 @@ export const COLUMNS = [
           const id = href_elements[3];
           const tid = cell.row.values._id;
           window.location.assign(
-            `http://localhost:3000/${id}/travel/${tid}`
+            `https://hr-portal-team-74-y1r7.vercel.app/${id}/travel/${tid}`
           );
         }}
       >
