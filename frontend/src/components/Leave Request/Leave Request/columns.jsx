@@ -21,7 +21,7 @@ export const COLUMNS = [
           const href_elements = href.split("/");
           const id = href_elements[3];
           const lid = cell.row.values._id;
-          window.location.assign(`http://localhost:3000/${id}/leaves/${lid}`);
+          window.location.assign(`https://hr-portal-team-74-y1r7.vercel.app/${id}/leaves/${lid}`);
         }}
       >
         Confirmation
