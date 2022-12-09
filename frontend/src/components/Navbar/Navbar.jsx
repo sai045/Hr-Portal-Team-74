@@ -13,7 +13,6 @@ const Navbar = () => {
   const sendRequest = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/${Id}`
       );
       const responseData = await response.json();
       console.log(responseData)
