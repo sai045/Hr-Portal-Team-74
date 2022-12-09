@@ -8,7 +8,7 @@ const PopUp = (props) => {
   const deleteRequest = async () => {
     try {
       const response = await fetch(
-        `https://localhost:5000/api/applicant/${aid}`,
+        `https://hr-portal-team-74.vercel.app/applicant/${aid}`,
         {
           method: "DELETE",
         }
