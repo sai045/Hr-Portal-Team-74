@@ -12,7 +12,7 @@ const Salary = () => {
   const sendRequest = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/salary`
+        `https://hr-portal-team-74.vercel.app/api/salary`
       );
       const responseData = await response.json();
       setData(responseData.obj);
