@@ -9,7 +9,7 @@ const PopUp = (props) => {
   const sendRequest = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/leaverequests/${lid}`,
+        `https://hr-portal-team-74.vercel.app/api/leaverequests/${lid}`,
         {
           method: "PATCH",
           headers: {
@@ -40,7 +40,7 @@ const PopUp = (props) => {
             const href_elements = href.split("/");
             const id = href_elements[3];
             console.log(id);
-            window.location.assign(`http://localhost:3000/${id}/leaverequests`);
+            window.location.assign(`https://hr-portal-team-74-y1r7.vercel.app/${id}/leaverequests`);
           }}
         >
           {" "}
@@ -60,7 +60,7 @@ const PopUp = (props) => {
               const id = href_elements[3];
               console.log(id);
               window.location.assign(
-                `http://localhost:3000/${id}/leaverequests`
+                `https://hr-portal-team-74-y1r7.vercel.app/${id}/leaverequests`
               );
               confirmation = false;
             }}
