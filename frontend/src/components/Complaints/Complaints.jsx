@@ -15,7 +15,7 @@ const Complaints = () => {
   const sendRequest = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("https://hr-portal-team-74.vercel.app/complaints/");
+      const response = await fetch("https://hr-portal-team-74.vercel.app/api/complaints/");
 
       const responseData = await response.json();
 
