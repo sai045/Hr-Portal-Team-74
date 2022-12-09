@@ -6,7 +6,7 @@ function Buttons(props) {
   const id = href_elements[3];
   const sendRequest = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/auth/${id}`, {
+      const response = await fetch(`https://hr-portal-team-74.vercel.app/api/auth/${id}`, {
         method: "DELETE",
       });
       if (!response.ok) {
