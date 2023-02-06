@@ -2,7 +2,7 @@
 HR-Portal
 
 # Hosted URL
-https://mysterious-citadel-93609.herokuapp.com/
+https://hr-portal-team-74-y1r7.vercel.app/
 
 # Team Members
 Aalasyam Sai Varshith 2020BCS-001
