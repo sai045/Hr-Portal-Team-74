@@ -9,7 +9,7 @@ const LittleBoxes = () => {
   const sendRequest = async () => {
     try {
       const response = await fetch(
-        "https://hr-portal-team-74.vercel.app/api/dashboard/get",
+        "https://sai045-hr-portal-backend.onrender.com/api/dashboard/get",
         {
           method: "GET",
           headers: {
