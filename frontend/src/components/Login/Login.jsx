@@ -24,7 +24,7 @@ const Login = () => {
 
     try {
       const response = await fetch(
-        "https://hr-portal-team-74.vercel.app/api/auth",
+        "https://sai045-hr-portal-backend.onrender.com/api/auth",
         {
           method: "POST",
           headers: {
