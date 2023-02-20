@@ -12,7 +12,7 @@ const UserDetails = () => {
   const sendRequest = async () => {
     try {
       const response = await fetch(
-        `https://hr-portal-team-74.vercel.app/api/${Id}`
+        `https://sai045-hr-portal-backend.onrender.com/api/${Id}`
       );
       const responseData = await response.json();
       if (!response.ok) {
