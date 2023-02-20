@@ -6,7 +6,7 @@ function Buttons(props) {
   const id = href_elements[3];
   const sendRequest = async () => {
     try {
-      const response = await fetch(`https://hr-portal-team-74.vercel.app/api/auth/${id}`, {
+      const response = await fetch(`https://sai045-hr-portal-backend.onrender.com/api/auth/${id}`, {
         method: "DELETE",
       });
       if (!response.ok) {
@@ -29,7 +29,7 @@ function Buttons(props) {
           onClick={() => {
             sendRequest();
             window.location.assign(
-              `http://localhost:3000/`
+              `https://hr-portal-team-74-y1r7.vercel.app/`
             );
           }}
         >
