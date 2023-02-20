@@ -20,7 +20,7 @@ const Applicant = (props) => {
     setIsLoading(true);
     try {
       const response = await fetch(
-        "https://sai045-hr-portal-backend.onrender.com//api/applicant/"
+        "https://sai045-hr-portal-backend.onrender.com/api/applicant/"
       );
       const responseData = await response.json();
       setLoadedApplicants(responseData.applicants);
