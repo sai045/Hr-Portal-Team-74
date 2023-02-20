@@ -11,7 +11,7 @@ const NewTravel = (props) => {
   const sendRequest = async () => {
     try {
       const response = await fetch(
-        "https://hr-portal-team-74.vercel.app/api/travel",
+        "https://sai045-hr-portal-backend.onrender.com/api/travel",
         {
           method: "POST",
           headers: {
