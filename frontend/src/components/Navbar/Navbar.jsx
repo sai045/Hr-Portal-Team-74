@@ -12,7 +12,7 @@ const Navbar = () => {
   // SetId(id);
   const sendRequest = async () => {
     try {
-      const response = await fetch("https://hr-portal-team-74.vercel.app/${Id}");
+      const response = await fetch("https://sai045-hr-portal-backend.onrender.com/${Id}");
       const responseData = await response.json();
       console.log(responseData)
       if (!response.ok) {
