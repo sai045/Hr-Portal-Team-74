@@ -41,7 +41,7 @@ export const COLUMNS = [
           console.log(id);
           console.log(eid);
           window.location.assign(
-            `https://hr-portal-team-74.vercel.app/${id}/employeeDashboard/${eid}`
+            `https://hr-portal-team-74-y1r7.vercel.app/${id}/employeeDashboard/${eid}`
           );
         }}
       >
