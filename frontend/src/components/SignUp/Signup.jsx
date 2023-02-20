@@ -40,7 +40,7 @@ const SignUp = () => {
       } else {
         try {
           const response = await fetch(
-            "https://hr-portal-team-74.vercel.app/api/users",
+            "https://sai045-hr-portal-backend.onrender.com/api/users",
             {
               method: "POST",
               headers: {
@@ -63,7 +63,7 @@ const SignUp = () => {
           console.log(id);
           console.log("Successful"),
             window.location.assign(
-              `http://localhost:3000/`
+              `https://hr-portal-team-74-y1r7.vercel.app/`
             );
         } catch (err) {
           console.error(err);
