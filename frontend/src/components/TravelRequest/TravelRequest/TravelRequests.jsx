@@ -22,7 +22,7 @@ const TravelRequests = (props) => {
 
     try {
       const response = await fetch(
-        "https://hr-portal-team-74.vercel.app/api/travel"
+        "https://sai045-hr-portal-backend.onrender.com/api/travel"
       );
       const responseData = await response.json();
 
