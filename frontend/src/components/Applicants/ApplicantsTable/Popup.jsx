@@ -90,7 +90,7 @@ const PopUp = (props) => {
             const href_elements = href.split("/");
             const id = href_elements[3];
             window.location.assign(
-              https://hr-portal-team-74-y1r7.vercel.app/${id}/applicantpage`
+              `https://hr-portal-team-74-y1r7.vercel.app/${id}/applicantpage`
             );
           }}
         >
