@@ -6,7 +6,7 @@ const NewComplaint = (props) => {
   const sendRequest = async () => {
     try {
       const response = await fetch(
-        "https://sai045-hr-portal-backend.onrender.com//api/applicant/",
+        "https://sai045-hr-portal-backend.onrender.com/api/applicant/",
         {
           method: "POST",
           headers: {
