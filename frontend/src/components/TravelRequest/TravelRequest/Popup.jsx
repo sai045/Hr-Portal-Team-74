@@ -8,7 +8,7 @@ const PopUp = (props) => {
 
   const sendRequest = async () => {
     try {
-      const response = await fetch(`https://hr-portal-team-74.vercel.app/api/travel/${tid}`, {
+      const response = await fetch(`https://sai045-hr-portal-backend.onrender.com/api/travel/${tid}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
