@@ -16,7 +16,7 @@ const EmployeeDashboard = () => {
 
   const sendRequest = async () => {
     try {
-      const response = await fetch(`https://hr-portal-team-74.vercel.app/api/employee/${ID}`);
+      const response = await fetch(`https://sai045-hr-portal-backend.onrender.com/api/employee/${ID}`);
       const responseData = await response.json();
       const name = responseData.employee.name;
       const S = responseData.employee.salary;
@@ -34,7 +34,7 @@ const EmployeeDashboard = () => {
   }, []);
 
   const deleteHandler = async () => {
-    const response = await fetch(`http://localhost:5000/api/employee/${ID}`, {
+    const response = await fetch(`https://sai045-hr-portal-backend.onrender.com/api/employee/${ID}`, {
       method: "DELETE",
     });
     window.location.assign(`https://hr-portal-team-74-y1r7.vercel.app/${Id}/Employee`);
