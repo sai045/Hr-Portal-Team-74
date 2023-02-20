@@ -11,7 +11,7 @@ const Schedule = () => {
   const [Data, setData] = useState([]);
   const sendRequest = async () => {
     const response = await fetch(
-      `https://hr-portal-team-74.vercel.app/api/applicant/schedule/date`
+      `https://sai045-hr-portal-backend.onrender.com/api/applicant/schedule/date`
     );
 
     const responseData = await response.json();
