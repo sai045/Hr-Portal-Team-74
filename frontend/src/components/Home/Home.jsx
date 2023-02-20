@@ -10,7 +10,7 @@ const Home = () => {
   const sendRequest = async () => {
     try {
       const response = await fetch(
-        `https://hr-portal-team-74.vercel.app/${Id}`,
+        `https://sai045-hr-portal-backend.onrender.com/${Id}`,
         {
           headers: {
             "Content-Type": "application/json",
