@@ -10,7 +10,7 @@ const Home = () => {
   const sendRequest = async () => {
     try {
       const response = await fetch(
-        `https://sai045-hr-portal-backend.onrender.com/${Id}`,
+        `https://sai045-hr-portal-backend.onrender.com/api/${Id}`,
         {
           headers: {
             "Content-Type": "application/json",
