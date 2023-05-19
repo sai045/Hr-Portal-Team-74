@@ -20,7 +20,7 @@ const LeaveRequests = (props) => {
 
   const sendRequest = async () => {
     try {
-      const response = await fetch("https://sai045-hr-portal-backend.onrender.com/api/leaverequests/");
+      const response = await fetch("https://sai045-hr-portal-backend.onrender.com/api/leave/");
       const responseData = await response.json();
       if (!response.ok) {
         throw new Error(responseData.message);
