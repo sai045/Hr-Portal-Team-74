@@ -9,7 +9,7 @@ const PopUp = (props) => {
   const sendRequest = async () => {
     try {
       const response = await fetch(
-        `https://sai045-hr-portal-backend.onrender.com/api/leaverequests/${lid}`,
+        `https://sai045-hr-portal-backend.onrender.com/api/leave/${lid}`,
         {
           method: "PATCH",
           headers: {
